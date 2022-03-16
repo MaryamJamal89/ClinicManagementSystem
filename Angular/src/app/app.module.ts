@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { ErrorComponent } from './error/error.component';
 import { DoctorDashboardComponent } from './doctor/doctor-dashboard/doctor-dashboard.component';
 import { PrescriptionAddComponent } from './doctor/prescription-add/prescription-add.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PrescriptionAddComponent } from './doctor/prescription-add/prescription
     LoginComponent,
     ErrorComponent,
     DoctorDashboardComponent,
-    PrescriptionAddComponent
+    PrescriptionAddComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule
