@@ -1,0 +1,16 @@
+{
+    "dependencies": {
+        "express": "^4.17.3",
+        "mongoose": "^6.2.6"
+    },
+    "scripts": {
+        "start": "nodemon app"
+    },
+    "name": "backend",
+    "version": "1.0.0",
+    "main": "server.js",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": ""
+}
