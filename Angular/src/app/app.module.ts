@@ -13,6 +13,7 @@ import { AddDoctorComponent } from './receptionist/add-doctor/add-doctor.compone
 import { AddPatientComponent } from './receptionist/add-patient/add-patient.component';
 import { AddReceptionistComponent } from './receptionist/add-receptionist/add-receptionist.component';
 import { PrintInvoiceComponent } from './receptionist/print-invoice/print-invoice.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PrintInvoiceComponent } from './receptionist/print-invoice/print-invoic
     AddDoctorComponent,
     AddPatientComponent,
     AddReceptionistComponent,
-    PrintInvoiceComponent
+    PrintInvoiceComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule
