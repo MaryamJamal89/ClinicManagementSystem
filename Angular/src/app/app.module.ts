@@ -14,6 +14,7 @@ import { AddPatientComponent } from './receptionist/add-patient/add-patient.comp
 import { AddReceptionistComponent } from './receptionist/add-receptionist/add-receptionist.component';
 import { PrintInvoiceComponent } from './receptionist/print-invoice/print-invoice.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ReceptionistHeaderComponent } from './components/receptionist-header/receptionist-header.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AddPatientComponent,
     AddReceptionistComponent,
     PrintInvoiceComponent,
-    FooterComponent
+    FooterComponent,
+    ReceptionistHeaderComponent
   ],
   imports: [
     BrowserModule
