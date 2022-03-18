@@ -8,8 +8,8 @@ const bodyParser = require("body-parser");
 const clinicroute = require('./Routers/clinic_router');
 const doctorroute = require('./Routers/doctor_router');
 const receptionistroute = require('./Routers/recep_router');
+const patientroute = require('./Routers/patient_router');
 // const appointment = require('./database/models/appointment');
-// const patient = require('./database/models/patient');
 // const prescription = require('./database/models/prescription');
 
 
@@ -39,6 +39,7 @@ app.use("/home", (request, response) => {
 app.use("/clinic", clinicroute);
 app.use("/doctor", doctorroute);
 app.use("/receptionist", receptionistroute);
+app.use("/patient", patientroute);
 
 app.use((request, response, next) => {
     response.send("HELOo ");
