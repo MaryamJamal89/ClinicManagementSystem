@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 
 import { AppComponent } from './app.component';
 import * as $ from 'jquery';
@@ -16,6 +19,11 @@ import { PrintInvoiceComponent } from './receptionist/print-invoice/print-invoic
 import { FooterComponent } from './components/footer/footer.component';
 import { ReceptionistHeaderComponent } from './components/receptionist-header/receptionist-header.component';
 
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin,
+]);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,10 +38,11 @@ import { ReceptionistHeaderComponent } from './components/receptionist-header/re
     AddReceptionistComponent,
     PrintInvoiceComponent,
     FooterComponent,
-    ReceptionistHeaderComponent
+    ReceptionistHeaderComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FullCalendarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
