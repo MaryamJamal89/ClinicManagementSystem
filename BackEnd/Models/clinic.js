@@ -1,10 +1,5 @@
 const mongoose = require('mongoose');
 const clinicSchema = new mongoose.Schema({
-    patientID: {
-        type: mongoose.Types.ObjectId,
-        required: true,
-        ref: "patient"
-    },
     location: {
         city: {
             type: String,

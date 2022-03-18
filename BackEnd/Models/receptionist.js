@@ -19,8 +19,8 @@ const receptionistSchema = new mongoose.Schema({
     },
     permissions: {
         type: String,
-        minlength: 3,
-        trim: true
+        enum: ["S", "J"],
+        required: true
     }
 
 });
