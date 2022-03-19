@@ -2,6 +2,8 @@
     "dependencies": {
         "body-parser": "^1.19.2",
         "express": "^4.17.3",
+        "express-session": "^1.17.2",
+        "express-validator": "^6.14.0",
         "mongoose": "^6.2.6"
     },
     "scripts": {

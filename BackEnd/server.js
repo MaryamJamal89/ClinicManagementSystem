@@ -3,16 +3,28 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
+const session = require('express-session');
+
 
 
 const clinicroute = require('./Routers/clinic_router');
 const doctorroute = require('./Routers/doctor_router');
 const receptionistroute = require('./Routers/recep_router');
 const patientroute = require('./Routers/patient_router');
-// const appointment = require('./database/models/appointment');
+const loginroute = require('./Routers/login_router');
 // const prescription = require('./database/models/prescription');
 
+// session
+app.use(session({
+    secret: 'youtube_video',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 60 * 1000 * 30
+    }
+}));
 
+////////////////////////////////////////////////////////////////
 mongoose.connect("mongodb+srv://Randa:1234@cluster0.e3oxq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority").then(() => {
     app.listen(8080, () => {
         console.log("I am listening ......")
@@ -40,6 +52,17 @@ app.use("/clinic", clinicroute);
 app.use("/doctor", doctorroute);
 app.use("/receptionist", receptionistroute);
 app.use("/patient", patientroute);
+app.use("/login", loginroute);
+
+app.get('/loggout', (req, res, next) => {
+    // Check if the session is exist
+    if (req.session.user) {
+        // destroy the session and redirect the user to the index page.
+        req.session.destroy(function() {
+            res.redirect('/');
+        });
+    }
+});
 
 app.use((request, response, next) => {
     response.send("HELOo ");
