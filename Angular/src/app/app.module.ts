@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';// a plugin!
+
 
 import { AppComponent } from './app.component';
 import * as $ from 'jquery';
@@ -18,11 +21,15 @@ import { AddReceptionistComponent } from './receptionist/add-receptionist/add-re
 import { PrintInvoiceComponent } from './receptionist/print-invoice/print-invoice.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ReceptionistHeaderComponent } from './components/receptionist-header/receptionist-header.component';
+import { DoctorService } from './doctor.service';
 
-FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+
+FullCalendarModule.registerPlugins([
   dayGridPlugin,
-  interactionPlugin,
-]);
+  timeGridPlugin,
+  listPlugin,
+  interactionPlugin
+])
 
 @NgModule({
   declarations: [
@@ -44,7 +51,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     BrowserModule,
     FullCalendarModule,
   ],
-  providers: [],
+  providers: [DoctorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
