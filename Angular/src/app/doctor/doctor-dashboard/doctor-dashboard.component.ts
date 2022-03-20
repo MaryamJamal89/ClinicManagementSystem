@@ -7,7 +7,6 @@ import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullca
 import dayGridPlugin from '@fullcalendar/daygrid'; //< import. it
 import { EventInput } from '@fullcalendar/angular';
 
-
 @Component({
   selector: 'pm-doctor-dashboard',
   templateUrl: './doctor-dashboard.component.html',
