@@ -22,7 +22,9 @@ export class DoctorDashboardComponent implements OnInit {
   constructor(private docSrv: DoctorService){ }
   
   ngOnInit(): void { 
-    this.appointments=this.docSrv.getAllAppointments();
+    this.docSrv.getAllAppointments().subscribe({
+      next: a => { this.appointments = a; }
+    })
     for (let i = 0; i < this.appointments.length; i++) {
       this.INITIAL_EVENTS.push({
         title: this.appointments[i].serviceName,
