@@ -24,12 +24,12 @@ export class DoctorService {
   ]
 
   private appointment:Appointment[]=[
-    new Appointment("5","1","1",new Date(2022,2,22,10,30),1,"Cash",1000,"X-ray"),
-    new Appointment("5","1","1",new Date(2022,2,23,10,30),1,"Cash",1000,"TEST"),
-    new Appointment("5","1","1",new Date(2022,2,25,2,30),1,"Cash",1000,"VVAS"),
-    new Appointment("5","1","1",new Date(2022,3,25,7,30),1,"Cash",1000,"HHA"),
-    new Appointment("5","1","1",new Date(2022,4,25,5,30),1,"Cash",1000,"QUES"),
-    new Appointment("5","1","1",new Date(2022,11,25,13,30),1,"Cash",1000,"AXD"),
+    new Appointment("1","1",new Date(2022,2,22,10,30),1,"Cash",1000,"X-ray"),
+    new Appointment("1","1",new Date(2022,2,23,10,30),1,"Cash",1000,"TEST"),
+    new Appointment("1","1",new Date(2022,2,25,2,30),1,"Cash",1000,"VVAS"),
+    new Appointment("1","1",new Date(2022,3,25,7,30),1,"Cash",1000,"HHA"),
+    new Appointment("1","1",new Date(2022,4,25,5,30),1,"Cash",1000,"QUES"),
+    new Appointment("1","1",new Date(2022,11,25,13,30),1,"Cash",1000,"AXD"),
   ]
   constructor(public http:HttpClient) { }
 
@@ -45,7 +45,7 @@ export class DoctorService {
   //?----------------------------Appointment------------------------------?//
 
   addAppointment(newApp : Appointment){
-    this.appointment.push(new Appointment(newApp._id,newApp.doctorId,newApp.patientID,newApp.appDate,newApp.period,newApp.paymentMethod,newApp.fees,newApp.serviceName))
+    this.appointment.push(new Appointment(newApp.doctorID,newApp.patientID,newApp.date,newApp.period,newApp.paymentMethod,newApp.fees,newApp.service))
   }
 
     getAllAppointment():Appointment[]{

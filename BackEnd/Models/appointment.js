@@ -10,10 +10,20 @@ const appointmentSchema = new mongoose.Schema({
         required: true,
         ref: "patient"
     },
-    service: [{
-        type: String,
-        required: true,
-    }],
+    service: {
+        _id: {
+            type: mongoose.Types.ObjectId,
+            required: true
+        },
+        name:{
+            type:String,
+            required: true
+        },
+        fees:{
+            type:Number,
+            required:true
+        }
+    },
     date: Date,
     period: {
         type: Number,
