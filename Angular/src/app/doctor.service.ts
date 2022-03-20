@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Data } from '@angular/router';
 import { Appointment } from './_models/appointment';
 import { Doctor } from './_models/doctor';
@@ -30,7 +31,7 @@ export class DoctorService {
     new Appointment("5","1","1",new Date(2022,4,25,5,30),1,"Cash",1000,"QUES"),
     new Appointment("5","1","1",new Date(2022,11,25,13,30),1,"Cash",1000,"AXD"),
   ]
-  constructor() { }
+  constructor(public http:HttpClient) { }
 
   //?----------------------------Prescription------------------------------?//
 
@@ -47,8 +48,12 @@ export class DoctorService {
     this.appointment.push(new Appointment(newApp._id,newApp.doctorId,newApp.patientID,newApp.appDate,newApp.period,newApp.paymentMethod,newApp.fees,newApp.serviceName))
   }
 
-    getAllAppointments():Appointment[]{
+    getAllAppointment():Appointment[]{
     return this.appointment;
+  }
+
+  getAllAppointments(){
+    return this.http.get<Appointment[]>("http://localhost:8080/appointments");
   }
   //?----------------------------Temp------------------------------?//
 
