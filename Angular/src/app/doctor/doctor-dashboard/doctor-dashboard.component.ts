@@ -67,24 +67,28 @@ export class DoctorDashboardComponent implements OnInit {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
-    const title = prompt('Please enter a new title for your event');
+    const title = prompt('Please enter Service name');
+    const paymentMethod = prompt('Please enter paymentMethod');
+    let s = prompt('Please enter Fees')||0 ;
+    let fees:number = +s ;
+    
     const calendarApi = selectInfo.view.calendar;
 
     calendarApi.unselect(); // clear date selection
 
-    if (title) 
+    if (title&&paymentMethod&&fees) 
     
     {
       // this.newAppointment.serviceName=title
       calendarApi.addEvent(
         
         {
-        title,
+          title,
         start: selectInfo.startStr,
         end: selectInfo.endStr,
         allDay: selectInfo.allDay
       });
-      this.docSrv.addAppointment(new Appointment("0","0","0",new Date(selectInfo.startStr),1,"Cash",1000,title));
+      this.docSrv.addAppointment(new Appointment("0","0","0",new Date(selectInfo.startStr),1,paymentMethod,fees,title));
       this.appointments.forEach(element => {
         console.log(element)
       });
