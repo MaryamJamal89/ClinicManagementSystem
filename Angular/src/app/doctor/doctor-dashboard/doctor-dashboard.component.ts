@@ -83,7 +83,7 @@ export class DoctorDashboardComponent implements OnInit {
       calendarApi.addEvent(
         
         {
-          title,
+        title,
         start: selectInfo.startStr,
         end: selectInfo.endStr,
         allDay: selectInfo.allDay
@@ -92,6 +92,7 @@ export class DoctorDashboardComponent implements OnInit {
       this.appointments.forEach(element => {
         console.log(element)
       });
+      
     }
   }
 

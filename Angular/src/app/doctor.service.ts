@@ -10,6 +10,7 @@ import { Prescription } from './_models/prescription';
   providedIn: 'root'
 })
 export class DoctorService {
+  //?----------------------------Temp Objects------------------------------?//
 
   private doctor:Doctor[]=[
     new Doctor("1","2","Nader","123",5),
@@ -31,9 +32,16 @@ export class DoctorService {
   ]
   constructor() { }
 
-  add(newPres : Prescription){
+  //?----------------------------Prescription------------------------------?//
+
+  addPrescription(newPres : Prescription){
     this.prescription.push(new Prescription(newPres._id,newPres.doctorId,newPres.patientID,newPres.medicineName,newPres.amountDesc,newPres.dose))
   }
+  getAllPrescription():Prescription[]{
+    return this.prescription;
+  }
+
+  //?----------------------------Appointment------------------------------?//
 
   addAppointment(newApp : Appointment){
     this.appointment.push(new Appointment(newApp._id,newApp.doctorId,newApp.patientID,newApp.appDate,newApp.period,newApp.paymentMethod,newApp.fees,newApp.serviceName))
@@ -42,6 +50,7 @@ export class DoctorService {
     getAllAppointments():Appointment[]{
     return this.appointment;
   }
+  //?----------------------------Temp------------------------------?//
 
   //   getAppointmentByDate(date:Data):Appointment{
   //   for (let i = 0; i < this.appointment.length; i++) {
