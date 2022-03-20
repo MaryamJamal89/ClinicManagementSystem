@@ -22,6 +22,8 @@ import { PrintInvoiceComponent } from './receptionist/print-invoice/print-invoic
 import { FooterComponent } from './components/footer/footer.component';
 import { ReceptionistHeaderComponent } from './components/receptionist-header/receptionist-header.component';
 import { DoctorService } from './doctor.service';
+import { MainSlidebarComponent } from './receptionist/main-slidebar/main-slidebar.component';
+import { ReceptionistDashboardComponent } from './receptionist/receptionist-dashboard/receptionist-dashboard.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -46,6 +48,8 @@ FullCalendarModule.registerPlugins([
     PrintInvoiceComponent,
     FooterComponent,
     ReceptionistHeaderComponent,
+    MainSlidebarComponent,
+    ReceptionistDashboardComponent,
   ],
   imports: [
     BrowserModule,
