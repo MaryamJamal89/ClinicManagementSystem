@@ -13,11 +13,12 @@ exports.getappoints = function(request, response, next) {
 
 }
 exports.getappoints = function(req, res) {
-        appointment.find({ date: req.params.app_date, doctorID: req.params.doctor_id })
-            .then((doctors) => res.send(doctors))
-            .catch((error) => console.log(error));
-    }
-    ////////////////////////////////////////POST//////////////////////////////////////////////////////////
+    appointment.find({ date: req.params.app_date, doctorID: req.params.doctor_id })
+        .then((doctors) => res.send(doctors))
+        .catch((error) => console.log(error));
+}
+
+////////////////////////////////////////POST//////////////////////////////////////////////////////////
 exports.createappoints = (request, response, next) => {
     //validation result
     let appointObject = new appoint({
@@ -36,6 +37,7 @@ exports.createappoints = (request, response, next) => {
         }).catch(error => console.log(error))
 }
 
+////////////////////////////////////////DELETE//////////////////////////////////////////////////////////S
 exports.deleteappoints = (req, res) => {
     appointment.findByIdAndDelete(req.params.appointmentId)
         .then((appointment) => res.send(appointment))
