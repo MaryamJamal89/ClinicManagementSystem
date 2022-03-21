@@ -6,7 +6,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';// a plugin!
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import * as $ from 'jquery';
@@ -25,7 +26,7 @@ import { ReceptionistHeaderComponent } from './components/receptionist-header/re
 import { DoctorService } from './doctor.service';
 import { MainSlidebarComponent } from './receptionist/main-slidebar/main-slidebar.component';
 import { ReceptionistDashboardComponent } from './receptionist/receptionist-dashboard/receptionist-dashboard.component';
-import { FormsModule } from '@angular/forms';
+import { SearchPatientComponent } from './receptionist/search-patient/search-patient.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -52,14 +53,20 @@ FullCalendarModule.registerPlugins([
     ReceptionistHeaderComponent,
     MainSlidebarComponent,
     ReceptionistDashboardComponent,
+    SearchPatientComponent,
   ],
   imports: [
     BrowserModule,
     FullCalendarModule,
     HttpClientModule,
+    MatDatepickerModule,
+  ],
+  exports: [
+    MatDatepickerModule,
     FormsModule,
   ],
   providers: [DoctorService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
