@@ -25,6 +25,7 @@ import { ReceptionistHeaderComponent } from './components/receptionist-header/re
 import { DoctorService } from './doctor.service';
 import { MainSlidebarComponent } from './receptionist/main-slidebar/main-slidebar.component';
 import { ReceptionistDashboardComponent } from './receptionist/receptionist-dashboard/receptionist-dashboard.component';
+import { FormsModule } from '@angular/forms';
 
 
 FullCalendarModule.registerPlugins([
@@ -56,6 +57,7 @@ FullCalendarModule.registerPlugins([
     BrowserModule,
     FullCalendarModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [DoctorService],
   bootstrap: [AppComponent]
