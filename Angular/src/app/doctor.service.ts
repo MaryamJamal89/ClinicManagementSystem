@@ -5,6 +5,7 @@ import { Appointment } from './_models/appointment';
 import { Doctor } from './_models/doctor';
 import { Patient } from './_models/patient';
 import { Prescription } from './_models/prescription';
+import { Service } from './_models/service';
 
 
 @Injectable({
@@ -24,12 +25,9 @@ export class DoctorService {
   ]
 
   private appointment:Appointment[]=[
-    new Appointment("1","1","1",new Date(2022,2,22,10,30),1,"Cash",1000,"X-ray"),
-    new Appointment("1","1","1",new Date(2022,2,23,10,30),1,"Cash",1000,"TEST"),
-    new Appointment("1","1","1",new Date(2022,2,25,2,30),1,"Cash",1000,"VVAS"),
-    new Appointment("1","1","1",new Date(2022,3,25,7,30),1,"Cash",1000,"HHA"),
-    new Appointment("1","1","1",new Date(2022,4,25,5,30),1,"Cash",1000,"QUES"),
-    new Appointment("1","1","1",new Date(2022,11,25,13,30),1,"Cash",1000,"AXD"),
+    new Appointment("1","1",new Date(2022,2,22,10,30),new Date(2022,2,22,11,30),"Cash",1000,new Service("ssss",0)),
+    new Appointment("1","1",new Date(2022,2,23,10,30),new Date(2022,2,23,11,30),"Cash",1000,new Service("ssss",0)),
+    new Appointment("1","1",new Date(2022,2,25,2,30),new Date(2022,2,25,3,30),"Cash",1000,new Service("ssss",0)),
   ]
   constructor(public http:HttpClient) { }
 
@@ -45,8 +43,10 @@ export class DoctorService {
   //?----------------------------Appointment------------------------------?//
 
   addAppointment(newApp : Appointment){
-    this.appointment.push(new Appointment(newApp._id,newApp.doctorID,newApp.patientID,newApp.date,newApp.period,newApp.paymentMethod,newApp.fees,newApp.service))
+    return this.http.post<Appointment>("http://localhost:8080/appointments",newApp)
+    //this.appointment.push(new Appointment(newApp._id,newApp.doctorID,newApp.patientID,newApp.date,newApp.period,newApp.paymentMethod,newApp.fees,newApp.service))
   }
+
 
   //   getAllAppointment():Appointment[]{
   //   return this.appointment;

@@ -7,6 +7,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';// a plugin!
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import * as $ from 'jquery';
@@ -62,8 +63,10 @@ FullCalendarModule.registerPlugins([
   ],
   exports: [
     MatDatepickerModule,
+    FormsModule,
   ],
   providers: [DoctorService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

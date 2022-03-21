@@ -25,8 +25,8 @@ exports.createAppoints = (request, response, next) => {
         doctorID: request.body.doctorID,
         patientID: request.body.patientID,
         service: request.body.service,
-        date: request.body.date,
-        period: request.body.period,
+        startDate: request.body.startDate,
+        endDate: request.body.endDate,
         paymentMethod: request.body.paymentMethod,
         fees: request.body.fees,
     })

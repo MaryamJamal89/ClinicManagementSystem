@@ -1,5 +1,6 @@
 import { Doctor } from "./doctor";
+import { Service } from "./service";
 
 export class Appointment {
-    constructor(public _id:any,public doctorID:any,public patientID:any,public date:Date,public period:number,public paymentMethod:string,public fees:number,public service:any){}
+    constructor(public doctorID:any,public patientID:any,public startDate:Date,public endDate:Date,public paymentMethod:string,public fees:number,public service:Service,public _id?:any){}
 }
