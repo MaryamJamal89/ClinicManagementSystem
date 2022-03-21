@@ -6,7 +6,7 @@ import { EventInput } from '@fullcalendar/angular';
 @Component({
   selector: 'pm-receptionist-dashboard',
   templateUrl: './receptionist-dashboard.component.html',
-  styleUrls: ['./receptionist-dashboard.component.css']
+  styleUrls: ['./receptionist-dashboard.component.css', '../../../../dist/css/adminlte.min.css']
 })
 export class ReceptionistDashboardComponent implements OnInit {
   calendarPlugins = [dayGridPlugin]; // important!
