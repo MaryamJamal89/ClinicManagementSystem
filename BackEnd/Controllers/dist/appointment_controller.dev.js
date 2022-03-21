@@ -13,7 +13,7 @@ exports.getAppoints = function (request, response, next) {
   });
 };
 
-exports.getAppoints = function (req, res) {
+exports.getAppointsId = function (req, res) {
   appointment.find({
     date: req.params.app_date,
     doctorID: req.params.doctor_id

@@ -21,10 +21,8 @@ export class DoctorDashboardComponent implements OnInit {
   //INITIAL_EVENTS: EventInput[] = [];
   calendarVisible = true;
   calendarOptions: CalendarOptions = {}
-    
   currentEvents: EventApi[] = [];
   arr:any =[];
-  
   constructor(private docSrv: DoctorService) { }
   
   ngOnInit(): void {
