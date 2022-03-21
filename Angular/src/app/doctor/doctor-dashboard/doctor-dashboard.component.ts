@@ -29,7 +29,6 @@ export class DoctorDashboardComponent implements OnInit {
   
   ngOnInit(): void {
     this.getData();
-    this.get2Events()
   }
 
   getData(){
@@ -128,16 +127,4 @@ export class DoctorDashboardComponent implements OnInit {
     this.currentEvents = events;
   }
   
-
-  get2Events(){
-    for (let i = 0; i < this.appointments.length; i++) {
-      this.arr.push({
-        title:this.appointments[i].service.name,
-        date:this.appointments[i].date
-      })
-      console.log(this.arr)
-      console.log(this.appointments)
-      return this.arr
-    }
-  }
 }
