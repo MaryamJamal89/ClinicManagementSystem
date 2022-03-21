@@ -6,12 +6,12 @@ const controller = require("./../Controllers/prescription_controller")
 router.get("", controller.getPrescription);
 
 //get all prescriptions of a specific doctor
-app.get('/:doctor_id', controller.getbyDoctor);
+router.get('/:doctor_id', controller.getbyDoctor);
 
 //create new prescription
 router.post("", controller.postPrescription);
 
 //delete prescription by id
-app.delete('/:prescriptionId', controller.deletePrescription)
+router.delete('/:prescriptionId', controller.deletePrescription)
 
 module.exports = router;
