@@ -11,26 +11,17 @@ const appointmentSchema = new mongoose.Schema({
         ref: "patient"
     },
     service: {
-        _id: {
-            type: mongoose.Types.ObjectId,
+        name: {
+            type: String,
             required: true
         },
-        name:{
-            type:String,
+        fees: {
+            type: Number,
             required: true
-        },
-        fees:{
-            type:Number,
-            required:true
         }
     },
-    date: Date,
-    period: {
-        type: Number,
-        minlength: 1,
-        maxlength: 5,
-        required: true
-    },
+    startDate: Date,
+    endDate: Date,
     paymentMethod: {
         type: String,
         enum: ["cash", "visa", "insurance"],
