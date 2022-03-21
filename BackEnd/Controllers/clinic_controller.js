@@ -8,8 +8,14 @@ exports.getClinic = function(request, response, next) {
             response.status(200).json(result)
         })
         .catch(error => next(error));
-
-
+}
+exports.getServiceName = function(request, response, next) {
+    Clinic.findOne({},{
+        services:{$elemMatch:{_id : request.body.serviceid}},_id:0})
+        .then(result => {
+            response.status(200).json(result)
+        })
+        .catch(error => next(error));
 }
 
 ////////////////////////////////////////POST//////////////////////////////////////////////////////////

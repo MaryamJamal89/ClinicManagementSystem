@@ -4,7 +4,7 @@ const appoint = require("./../Models/appointment");
 ////////////////////////////////////////GET///////////////////////////////////////////////////////////
 exports.getAppoints = function(request, response, next) {
     appoint.find({})
-        .populate({ path: "doctor", strictPopulate: false }, { path: "patient", strictPopulate: false })
+        //.populate({ path: "doctor", strictPopulate: false }, { path: "patient", strictPopulate: false })
         .then(result => {
             response.status(200).json(result)
         })
@@ -15,6 +15,7 @@ exports.getAppoints = function(req, res) {
         .then((doctors) => res.send(doctors))
         .catch((error) => console.log(error));
 }
+
 
 ////////////////////////////////////////POST//////////////////////////////////////////////////////////
 exports.createAppoints = (request, response, next) => {

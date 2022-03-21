@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router()
 const controller = require("./../Controllers/clinic_controller")
 
-router.get("", controller.getClinic);
+router.get("/all", controller.getClinic);
+router.get("/service", controller.getServiceName);
+
 router.post("", controller.createClinic);
 
 module.exports = router;
