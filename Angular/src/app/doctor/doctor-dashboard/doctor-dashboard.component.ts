@@ -16,7 +16,7 @@ import { arrow } from '@popperjs/core';
 })
 export class DoctorDashboardComponent implements OnInit {
   appointments: Appointment[] = [];
-  newAppointment: Appointment = new Appointment("0","0", "0", new Date(), 1, "Cash", 1000, "x");
+  newAppointment: Appointment = new Appointment("0","0", "0", new Date(), new Date(), "Cash", 1000, "x");
   calendarPlugins = [dayGridPlugin]; // important!
   //INITIAL_EVENTS: EventInput[] = [];
   calendarVisible = true;
@@ -36,7 +36,8 @@ export class DoctorDashboardComponent implements OnInit {
         for (let i = 0; i < this.appointments.length; i++) {
           this.arr.push({
             title:this.appointments[i].service.name,
-            date:this.appointments[i].date
+            date:this.appointments[i].startDate,
+            end:this.appointments[i].endDate,
           })}
         setTimeout(()=>{
           this.calendarOptions = {
@@ -107,7 +108,11 @@ export class DoctorDashboardComponent implements OnInit {
           end: selectInfo.endStr,
           allDay: selectInfo.allDay
         });
-      this.docSrv.addAppointment(new Appointment("0","0", "0", new Date(selectInfo.startStr), 1, paymentMethod, fees, title));
+
+        this.docSrv.addAppointment(this.newAppointment).subscribe({
+          next:a=>{this.newAppointment=a}
+        })
+      //this.docSrv.addAppointment(new Appointment("0","0", "0", new Date(selectInfo.startStr), 1, paymentMethod, fees, title));
       this.appointments.forEach(element => {
         console.log(element)
       });
@@ -124,5 +129,13 @@ export class DoctorDashboardComponent implements OnInit {
   handleEvents(events: EventApi[]) {
     this.currentEvents = events;
   }
+
+  //?-------------------------------Add Appointment--------------------------------?//
+  // addDepartment(){
+  //   this.stdSer.add(this.newDepartment).subscribe({
+  //     next:a=>{this.newDepartment=a}
+  //   })
+  //   this.router.navigate(["./department"])
+  // }
   
 }
