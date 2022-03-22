@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'pm-search-patient',
   templateUrl: './search-patient.component.html',
-  styleUrls: ['./search-patient.component.css', '../../../../dist/css/adminlte.min.css']
+  styleUrls: ["../../../../dist/css/adminlte.min.css",'./search-patient.component.css']
 })
 export class SearchPatientComponent implements OnInit {
 
