@@ -45,6 +45,7 @@
     "fullcalendar": "^5.10.2",
     "hammerjs": "^2.0.8",
     "jquery": "^3.6.0",
+    "mongoose": "^6.2.7",
     "ng2-charts": "^3.0.8",
     "rxjs": "~7.5.0",
     "sparklines": "^1.3.0",

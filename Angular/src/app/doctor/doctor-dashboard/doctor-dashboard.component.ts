@@ -8,6 +8,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'; //< import. it
 import { EventInput } from '@fullcalendar/angular';
 import { arrow } from '@popperjs/core';
 import { Service } from '../../_models/service';
+import { Mongoose } from 'mongoose'
 
 
 @Component({
@@ -29,6 +30,7 @@ export class DoctorDashboardComponent implements OnInit {
   
   ngOnInit(): void {
     this.getData();
+    // console.log(new mongoose.types.objectId)
   }
 
   getData(){
