@@ -4,7 +4,6 @@ const Recep = require("./../Models/receptionist");
 
 //User Login
 exports.Login = (request, response, next) => {
-
     let errors = validationResult(request);
 
     if (!errors.isEmpty()) {
@@ -16,20 +15,22 @@ exports.Login = (request, response, next) => {
 
         let insertedusername = request.body.userName;
         let insertedPassword = request.body.password;
+
+
         Doctor.findOne({ userName: insertedusername })
             .then(result => {
                 if (result == null) {
-                    Recep.findOne({userName: insertedusername}) .then(result=>{
-                        if (result == null) console.log('wrong username')
-                        if (result.password == insertedPassword) {
-                            response.status(201).json({ message: "Logged" });
+                    Recep.findOne({userName: insertedusername}) .then(result2=>{
+                        if (result2 == null) console.log('wrong username')
+                        if (result2.password == insertedPassword) {
+                            response.status(201).json({ message: "Logged res" });
                         } else {
                             response.status(201).json({ message: "Password is Wrong" });
                         }
                     })
-                };
-                if (result.password == insertedPassword) {
-                    response.status(201).json({ message: "Logged" });
+                }
+                else if (result.password == insertedPassword) {
+                    response.status(201).json({ message: "Logged doc" });
                 } else {
                     response.status(201).json({ message: "Password is Wrong" });
                 }
