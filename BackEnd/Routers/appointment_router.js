@@ -13,7 +13,6 @@ router.post("", controller.createAppoints);
 
 router.put("/update", controller.updAteappoints);
 
-//router.delete('/:appointmentId', controller.deleteappoints)
-router.delete("/:id", controller.deleteAppoints);
+router.delete("/:Id", controller.deleteAppoints);
 
 module.exports = router;
