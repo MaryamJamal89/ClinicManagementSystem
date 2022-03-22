@@ -27,7 +27,16 @@ import { DoctorService } from './doctor.service';
 import { MainSlidebarComponent } from './receptionist/main-slidebar/main-slidebar.component';
 import { ReceptionistDashboardComponent } from './receptionist/receptionist-dashboard/receptionist-dashboard.component';
 import { SearchPatientComponent } from './receptionist/search-patient/search-patient.component';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginGuard } from './guards/login.guard';
 
+const routes:Routes=
+[
+  {path:"login",component:LoginComponent},
+  {path:"doctor",component:DoctorDashboardComponent,canActivate:[LoginGuard]},
+  {path:"receptionist",component:ReceptionistDashboardComponent,canActivate:[LoginGuard]},
+  {path:"",redirectTo:"/login",pathMatch:"full"}
+]
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -61,6 +70,8 @@ FullCalendarModule.registerPlugins([
     HttpClientModule,
     MatDatepickerModule,
     FormsModule,
+    RouterModule.forRoot(routes),
+
   ],
   exports: [
     MatDatepickerModule,
