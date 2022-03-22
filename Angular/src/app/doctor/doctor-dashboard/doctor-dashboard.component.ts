@@ -10,6 +10,7 @@ import { arrow } from '@popperjs/core';
 import { Service } from '../../_models/service';
 
 
+
 @Component({
   selector: 'pm-doctor-dashboard',
   templateUrl: './doctor-dashboard.component.html',
@@ -29,6 +30,7 @@ export class DoctorDashboardComponent implements OnInit {
   
   ngOnInit(): void {
     this.getData();
+    // console.log(new mongoose.types.objectId)
   }
 
   getData(){
@@ -61,6 +63,7 @@ export class DoctorDashboardComponent implements OnInit {
             eventClick: this.handleEventClick.bind(this),
             eventsSet: this.handleEvents.bind(this),
             events:this.arr, 
+            
             // [
             //   {
             //     title:this.appointments[0].service.name,
@@ -104,20 +107,22 @@ export class DoctorDashboardComponent implements OnInit {
 
     if (title) {
       // this.newAppointment.serviceName=title
-      calendarApi.addEvent(
-
-        {
-          title,
-          start: selectInfo.startStr,
-          end: selectInfo.endStr,
-          allDay: selectInfo.allDay,
-        });
+    
         this.newAppointment.service.name = title 
         this.newAppointment.startDate =  new Date(selectInfo.start)
         this.newAppointment.endDate =  new Date(selectInfo.end)
         
         this.docSrv.addAppointment(this.newAppointment).subscribe({
-          next:a=>{this.newAppointment=a}
+          next:a=>{this.newAppointment=a
+            calendarApi.addEvent(
+              {
+                title,
+                start: selectInfo.startStr,
+                end: selectInfo.endStr,
+                allDay: selectInfo.allDay,
+                id:this.newAppointment._id,
+              });
+          }
         })
         
       //this.docSrv.addAppointment(new Appointment("0","0", "0", new Date(selectInfo.startStr), 1, paymentMethod, fees, title));
