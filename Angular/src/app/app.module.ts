@@ -60,6 +60,7 @@ FullCalendarModule.registerPlugins([
     FullCalendarModule,
     HttpClientModule,
     MatDatepickerModule,
+    FormsModule,
   ],
   exports: [
     MatDatepickerModule,
