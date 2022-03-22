@@ -52,7 +52,8 @@ export class DoctorDashboardComponent implements OnInit {
   // end of modal
 
   appointments: Appointment[] = [];
-  newAppointment: Appointment = new Appointment("62345f2086e4b9494d6237a4", "6235f4d9571875cdd3317bb4", new Date(), new Date(), "cash", 1000, new Service("x", 0));
+  newAppointment: Appointment = new Appointment("62345f2086e4b9494d6237a4", "6235f4d9571875cdd3317bb4", new Date(), new Date(), "cash", 1000, new Service("x",0));
+  deleteAppointment: Appointment = new Appointment("", "", new Date(), new Date(), "cash", 0, new Service("",0));
   calendarPlugins = [dayGridPlugin]; // important!
   //INITIAL_EVENTS: EventInput[] = [];
   calendarVisible = true;
@@ -68,14 +69,15 @@ export class DoctorDashboardComponent implements OnInit {
     this.docSrv.getAllAppointments().subscribe({
       next: a => {
         this.appointments = a;
+        this.arr=[];
         for (let i = 0; i < this.appointments.length; i++) {
           this.arr.push({
-            title: this.appointments[i].service.name,
-            date: this.appointments[i].startDate,
-            end: this.appointments[i].endDate,
-          })
-        }
-        setTimeout(() => {
+            title:this.appointments[i].service.name,
+            date:this.appointments[i].startDate,
+            end:this.appointments[i].endDate,
+            id:this.appointments[i]._id,
+          })}
+        setTimeout(()=>{
           this.calendarOptions = {
             headerToolbar: {
               left: 'prev,next today',
@@ -142,19 +144,16 @@ export class DoctorDashboardComponent implements OnInit {
           title,
           start: selectInfo.startStr,
           end: selectInfo.endStr,
-          allDay: selectInfo.allDay
+          allDay: selectInfo.allDay,
         });
-      this.newAppointment.service.name = title
-      this.newAppointment.startDate = new Date(selectInfo.start)
-      this.newAppointment.endDate = new Date(selectInfo.end)
-
-      // modal
-      // open(this.content);
-      // end of modal
-
-      this.docSrv.addAppointment(this.newAppointment).subscribe({
-        next: a => { this.newAppointment = a }
-      })
+        this.newAppointment.service.name = title 
+        this.newAppointment.startDate =  new Date(selectInfo.start)
+        this.newAppointment.endDate =  new Date(selectInfo.end)
+        
+        this.docSrv.addAppointment(this.newAppointment).subscribe({
+          next:a=>{this.newAppointment=a}
+        })
+        
       //this.docSrv.addAppointment(new Appointment("0","0", "0", new Date(selectInfo.startStr), 1, paymentMethod, fees, title));
       this.appointments.forEach(element => {
         console.log(element)
@@ -165,6 +164,10 @@ export class DoctorDashboardComponent implements OnInit {
 
   handleEventClick(clickInfo: EventClickArg) {
     if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+      this.deleteAppointment._id= clickInfo.event.id
+      this.docSrv.deleteAppointment(this.deleteAppointment._id).subscribe({
+        next: a => { this.deleteAppointment = a; }
+      })
       clickInfo.event.remove();
     }
   }

@@ -59,8 +59,10 @@ exports.updAteappoints = (request, response) => {
 
     }
     ////////////////////////////////////////DELETE//////////////////////////////////////////////////////////
-exports.deleteAppoints = (req, res) => {
-    appointment.findByIdAndDelete(req.params.appointmentId)
-        .then((appointment) => res.send(appointment))
-        .catch((error) => console.log(error));
+exports.deleteAppoints = (req, res,next) => {
+    appoint.findByIdAndDelete(req.params.Id)
+    .then(result => {
+        res.status(200).json({ message: "Deleted" })
+    })
+    .catch(error => next(error));
 }

@@ -1,5 +1,6 @@
 const { validationResult } = require("express-validator");
 const Doctor = require("./../Models/doctor");
+const Recep = require("./../Models/receptionist");
 
 //User Login
 exports.Login = (request, response, next) => {
@@ -17,7 +18,16 @@ exports.Login = (request, response, next) => {
         let insertedPassword = request.body.password;
         Doctor.findOne({ userName: insertedusername })
             .then(result => {
-                if (result == null) response.status(201).json({ message: "Email is Wrong" });
+                if (result == null) {
+                    Recep.findOne({userName: insertedusername}) .then(result=>{
+                        if (result == null) console.log('wrong username')
+                        if (result.password == insertedPassword) {
+                            response.status(201).json({ message: "Logged" });
+                        } else {
+                            response.status(201).json({ message: "Password is Wrong" });
+                        }
+                    })
+                };
                 if (result.password == insertedPassword) {
                     response.status(201).json({ message: "Logged" });
                 } else {
