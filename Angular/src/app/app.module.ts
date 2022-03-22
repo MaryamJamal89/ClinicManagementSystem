@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -63,6 +63,7 @@ FullCalendarModule.registerPlugins([
     MainSlidebarComponent,
     ReceptionistDashboardComponent,
     SearchPatientComponent,
+   // AddAppointmentDoctorComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,8 +72,7 @@ FullCalendarModule.registerPlugins([
     MatDatepickerModule,
     FormsModule,
     RouterModule.forRoot(routes),
-
-  ],
+    ],
   exports: [
     MatDatepickerModule,
     FormsModule,
