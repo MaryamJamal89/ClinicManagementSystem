@@ -8,7 +8,6 @@ import dayGridPlugin from '@fullcalendar/daygrid'; //< import. it
 import { EventInput } from '@fullcalendar/angular';
 import { arrow } from '@popperjs/core';
 import { Service } from '../../_models/service';
-import { Mongoose } from 'mongoose'
 
 
 @Component({
@@ -106,22 +105,25 @@ export class DoctorDashboardComponent implements OnInit {
 
     if (title) {
       // this.newAppointment.serviceName=title
-      calendarApi.addEvent(
-
-        {
-          title,
-          start: selectInfo.startStr,
-          end: selectInfo.endStr,
-          allDay: selectInfo.allDay,
-        });
+  
         this.newAppointment.service.name = title 
         this.newAppointment.startDate =  new Date(selectInfo.start)
         this.newAppointment.endDate =  new Date(selectInfo.end)
-        
+   
         this.docSrv.addAppointment(this.newAppointment).subscribe({
-          next:a=>{this.newAppointment=a}
+          next:a=>{this.newAppointment=a
+            calendarApi.addEvent(
+              {
+                title,
+                start: selectInfo.startStr,
+                end: selectInfo.endStr,
+                allDay: selectInfo.allDay,
+                id:a._id
+              });
+          }
+          
         })
-        
+      
       //this.docSrv.addAppointment(new Appointment("0","0", "0", new Date(selectInfo.startStr), 1, paymentMethod, fees, title));
       this.appointments.forEach(element => {
         console.log(element)
