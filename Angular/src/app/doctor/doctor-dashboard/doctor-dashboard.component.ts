@@ -11,9 +11,11 @@ import { DoctorService } from '../../doctor.service';
 
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; //< import. it
+
 import { EventInput } from '@fullcalendar/angular';
 
 import { arrow } from '@popperjs/core';
+
 import { Service } from '../../_models/service';
 
 
@@ -171,6 +173,8 @@ export class DoctorDashboardComponent implements OnInit {
         next: a => { this.deleteAppointment = a; }
       })
       clickInfo.event.remove();
+    }else {
+      //!Redirect to prescription page
     }
   }
 

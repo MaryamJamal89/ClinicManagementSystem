@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ReceptionistService } from 'src/app/receptionist.service';
+import { Patient } from 'src/app/_models/patient';
 
 @Component({
   selector: 'pm-add-patient',
@@ -8,9 +10,17 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 })
 export class AddPatientComponent implements OnInit {
 
-  constructor() { }
+  newPatient:Patient= new Patient("","","male",new Date(),0);
+
+  constructor(public patSer:ReceptionistService) { }
 
   ngOnInit(): void {
+  }
+
+  addPatient(){
+    this.patSer.addPatient(this.newPatient).subscribe({
+      next:a=>{this.newPatient=a}
+    })
   }
 
 }
