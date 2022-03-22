@@ -37,17 +37,17 @@
                                             <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
 
                                             <div class="form-outline mb-4">
-                                                <input type="text" id="form2Example17" class="form-control form-control-lg" [(ngModel)]="userName" />
-                                                <label class="form-label" for="form2Example17">Email address</label>
+                                                <input type="text" id="userName" name="userName" class="form-control form-control-lg" [(ngModel)]="userName" #id="ngModel" />
+                                                <label class="form-label" for="userName">Username</label>
                                             </div>
 
                                             <div class="form-outline mb-4">
-                                                <input type="password" id="form2Example27" class="form-control form-control-lg" [(ngModel)]="password" />
-                                                <label class="form-label" for="form2Example27">Password</label>
+                                                <input type="password" id="password" name="password" class="form-control form-control-lg" [(ngModel)]="password" #id="ngModel" />
+                                                <label class="form-label" for="password">Password</label>
                                             </div>
 
                                             <div class="pt-1 mb-4">
-                                                <button class="btn btn-dark btn-lg btn-block" type="button" (click)="login()">Login</button>
+                                                <button class="btn btn-dark btn-lg btn-block" type="submit" (click)="login()">Login</button>
                                             </div>
 
                                             <a class="small text-muted" href="#!">Forgot password?</a>

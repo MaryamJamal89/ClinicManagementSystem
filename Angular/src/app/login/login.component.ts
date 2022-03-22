@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  userName:string="RandaHadad";
-  password:string="123";
+  userName:string="";
+  password:string="";
 
   constructor(public authser:AuthServiceService,public router:Router) { }
 
@@ -19,16 +19,18 @@ export class LoginComponent implements OnInit {
 
   login()
   {
-    console.log(this.userName);
+    console.log(`USER NAME ${this.userName}`);
+    console.log(this.password);
     this.authser.login(this.userName,this.password)
     .subscribe((data:any)=>
     {
+      console.log(data);
       if(data.message==="Logged doc")
       {
         this.authser.isLogged=true;
         this.router.navigateByUrl("/doctor");
       }
-      else if(data.message==="Logged rec")
+      else if(data.message==="Logged res")
       {
         this.authser.isLogged=true;
         this.router.navigateByUrl("/receptionist");

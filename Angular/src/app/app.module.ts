@@ -14,6 +14,7 @@ import * as $ from 'jquery';
 import { LoginComponent } from './login/login.component';
 import { ErrorComponent } from './error/error.component';
 import { DoctorDashboardComponent } from './doctor/doctor-dashboard/doctor-dashboard.component';
+import { AddAppointmentDoctorComponent } from './doctor/add-appointment-doctor/add-appointment-doctor.component';
 import { PrescriptionAddComponent } from './doctor/prescription-add/prescription-add.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AddAppointmentComponent } from './receptionist/add-appointment/add-appointment.component';
@@ -63,7 +64,7 @@ FullCalendarModule.registerPlugins([
     MainSlidebarComponent,
     ReceptionistDashboardComponent,
     SearchPatientComponent,
-   // AddAppointmentDoctorComponent,
+    AddAppointmentDoctorComponent,
   ],
   imports: [
     BrowserModule,
