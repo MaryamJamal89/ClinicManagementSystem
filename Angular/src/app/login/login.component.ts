@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../auth-service.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pm-login',
@@ -11,18 +12,29 @@ export class LoginComponent implements OnInit {
   userName:string="";
   password:string="";
 
-  constructor(public authser:AuthServiceService) { }
+  constructor(public authser:AuthServiceService,public router:Router) { }
 
   ngOnInit(): void {
   }
 
   login()
   {
-    //console.log(this.userName);
+    console.log(`USER NAME ${this.userName}`);
+    console.log(this.password);
     this.authser.login(this.userName,this.password)
-    .subscribe((data)=>
+    .subscribe((data:any)=>
     {
       console.log(data);
+      if(data.message==="Logged doc")
+      {
+        this.authser.isLogged=true;
+        this.router.navigateByUrl("/doctor");
+      }
+      else if(data.message==="Logged res")
+      {
+        this.authser.isLogged=true;
+        this.router.navigateByUrl("/receptionist");
+      }
     });
   }
 

@@ -22,7 +22,7 @@ exports.Login = (request, response, next) => {
                 if (result == null) {
                     Recep.findOne({userName: insertedusername}) .then(result2=>{
                         if (result2 == null) console.log('wrong username')
-                        if (result2.password == insertedPassword) {
+                        else if (result2.password == insertedPassword) {
                             response.status(201).json({ message: "Logged res" });
                         } else {
                             response.status(201).json({ message: "Password is Wrong" });
