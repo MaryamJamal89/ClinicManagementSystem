@@ -55,6 +55,10 @@ export class DoctorService {
   getAllAppointments(){
     return this.http.get<Appointment[]>("http://localhost:8080/appointments");
   }
+
+  deleteAppointment(id:string){
+    return this.http.delete<Appointment>(`http://localhost:8080/appointments/${id}`);
+  }
   //?----------------------------Temp------------------------------?//
 
   //   getAppointmentByDate(date:Data):Appointment{
