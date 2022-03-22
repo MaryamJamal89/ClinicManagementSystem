@@ -140,6 +140,8 @@ export class DoctorDashboardComponent implements OnInit {
         next: a => { this.deleteAppointment = a; }
       })
       clickInfo.event.remove();
+    }else {
+      //!Redirect to prescription page
     }
   }
 
