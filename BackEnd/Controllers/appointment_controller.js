@@ -60,7 +60,7 @@ exports.updAteappoints = (request, response) => {
     }
     ////////////////////////////////////////DELETE//////////////////////////////////////////////////////////
 exports.deleteAppoints = (req, res) => {
-    appointment.findByIdAndDelete(req.body.appointmentId)
+    appointment.findByIdAndDelete(req.params.appointmentId)
         .then((appointment) => res.send(appointment))
         .catch((error) => console.log(error));
 }
