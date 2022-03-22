@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import * as $ from 'jquery'; // that's is the syntax for jquery
+import { Component, ViewChild } from '@angular/core';
+
 import { CalendarOptions, Calendar } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; //< import. it
+
+import {ModalDirective} from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +14,8 @@ export class AppComponent {
 
   constructor() { }
   ngOnInit() { }
+
+  // @ViewChild(ModalDirective) modal: ModalDirective;
 
   // calendarPlugins = [dayGridPlugin]; // important!
 
