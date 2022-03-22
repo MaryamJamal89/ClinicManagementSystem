@@ -3,20 +3,19 @@ import { ModalDirective } from 'angular-bootstrap-md';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'pm-add-appointment',
-  templateUrl: './add-appointment.component.html',
-  styleUrls: ['./add-appointment.component.css', '../../../../dist/css/adminlte.min.css']
+  selector: 'pm-add-appointment-doctor',
+  templateUrl: './add-appointment-doctor.component.html',
+  styleUrls: ['./add-appointment-doctor.component.css', '../../../../dist/css/adminlte.min.css']
 })
-export class AddAppointmentComponent implements OnInit {
+export class AddAppointmentDoctorComponent implements OnInit {
 
-  // constructor() { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
 
+  // Modal
   closeResult = '';
-
-  constructor(private modalService: NgbModal) { }
 
   open(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -35,5 +34,6 @@ export class AddAppointmentComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+  // end of modal
 
 }

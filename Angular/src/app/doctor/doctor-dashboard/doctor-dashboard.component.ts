@@ -1,11 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+declare let $: any;
+
 import { Chart, registerables } from '../../../../node_modules/chart.js'
 Chart.register(...registerables);
+
 import { Appointment } from 'src/app/_models/appointment';
 import { DoctorService } from '../../doctor.service';
+
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; //< import. it
 import { EventInput } from '@fullcalendar/angular';
+
 import { arrow } from '@popperjs/core';
 import { Service } from '../../_models/service';
 
@@ -16,6 +23,33 @@ import { Service } from '../../_models/service';
   styleUrls: ['./doctor-dashboard.component.css']
 })
 export class DoctorDashboardComponent implements OnInit {
+
+  constructor(private docSrv: DoctorService, private modalService: NgbModal) {
+  }
+
+  // constructor(private modalService: NgbModal) { }  
+  // Modal
+  closeResult = '';
+
+  open(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+  // end of modal
+
   appointments: Appointment[] = [];
   newAppointment: Appointment = new Appointment("62345f2086e4b9494d6237a4", "6235f4d9571875cdd3317bb4", new Date(), new Date(), "cash", 1000, new Service("x",0));
   deleteAppointment: Appointment = new Appointment("", "", new Date(), new Date(), "cash", 0, new Service("",0));
@@ -24,15 +58,14 @@ export class DoctorDashboardComponent implements OnInit {
   calendarVisible = true;
   calendarOptions: CalendarOptions = {}
   currentEvents: EventApi[] = [];
-  arr:any =[];
-  constructor(private docSrv: DoctorService) { }
-  
+  arr: any = [];
+
   ngOnInit(): void {
     this.getData();
     // console.log(new mongoose.types.objectId)
   }
 
-  getData(){
+  getData() {
     this.docSrv.getAllAppointments().subscribe({
       next: a => {
         this.appointments = a;
@@ -61,7 +94,7 @@ export class DoctorDashboardComponent implements OnInit {
             select: this.handleDateSelect.bind(this),
             eventClick: this.handleEventClick.bind(this),
             eventsSet: this.handleEvents.bind(this),
-            events:this.arr, 
+            events: this.arr,
             // [
             //   {
             //     title:this.appointments[0].service.name,
@@ -76,7 +109,7 @@ export class DoctorDashboardComponent implements OnInit {
           };
         }
         )
-        
+
         console.log(this.appointments)
       }
     })
@@ -94,7 +127,7 @@ export class DoctorDashboardComponent implements OnInit {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
-    const title =this.newAppointment.service.name;
+    const title = this.newAppointment.service.name;
     // const paymentMethod = prompt('Please enter paymentMethod');
     // let s = prompt('Please enter Fees') || 0;
     // let fees: number = +s;
@@ -105,7 +138,7 @@ export class DoctorDashboardComponent implements OnInit {
 
     if (title) {
       // this.newAppointment.serviceName=title
-  
+    
         this.newAppointment.service.name = title 
         this.newAppointment.startDate =  new Date(selectInfo.start)
         this.newAppointment.endDate =  new Date(selectInfo.end)
@@ -118,10 +151,9 @@ export class DoctorDashboardComponent implements OnInit {
                 start: selectInfo.startStr,
                 end: selectInfo.endStr,
                 allDay: selectInfo.allDay,
-                id:a._id
+                id:this.newAppointment._id,
               });
           }
-          
         })
       
       //this.docSrv.addAppointment(new Appointment("0","0", "0", new Date(selectInfo.startStr), 1, paymentMethod, fees, title));
@@ -153,5 +185,5 @@ export class DoctorDashboardComponent implements OnInit {
   //   })
   //   this.router.navigate(["./department"])
   // }
-  
+
 }

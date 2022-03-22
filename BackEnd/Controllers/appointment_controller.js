@@ -33,7 +33,7 @@ exports.createAppoints = (request, response, next) => {
 
     appointObject.save()
         .then(result => {
-            response.status(201).json({ message: "added" })
+            response.status(201).json(result)
         }).catch(error => console.log(error))
 }
 

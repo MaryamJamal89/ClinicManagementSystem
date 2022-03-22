@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -27,7 +27,8 @@ import { DoctorService } from './doctor.service';
 import { MainSlidebarComponent } from './receptionist/main-slidebar/main-slidebar.component';
 import { ReceptionistDashboardComponent } from './receptionist/receptionist-dashboard/receptionist-dashboard.component';
 import { SearchPatientComponent } from './receptionist/search-patient/search-patient.component';
-
+import { AddAppointmentDoctorComponent } from './doctor/add-appointment-doctor/add-appointment-doctor.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -54,6 +55,7 @@ FullCalendarModule.registerPlugins([
     MainSlidebarComponent,
     ReceptionistDashboardComponent,
     SearchPatientComponent,
+    AddAppointmentDoctorComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +63,7 @@ FullCalendarModule.registerPlugins([
     HttpClientModule,
     MatDatepickerModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     MatDatepickerModule,

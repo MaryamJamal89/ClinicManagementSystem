@@ -1,0 +1,70 @@
+<!-- Modal -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <p class="modal-title h5" id="modal-basic-title">New Appointment</p>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form class="row g-3 needs-validation" #add="ngForm">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td>
+              <div class="form-group">
+                <label for="InputName">Service Name:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-server"></i></span>
+                    </div>
+                    <input class="form-control" id="InputName" name="InputName" type="text" placeholder="Service Name" required>
+                </div>
+                <!-- /.input group -->
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-group">
+                <label for="InputFees">Service Fees:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-money"></i></span>
+                    </div>
+                    <input class="form-control" id="InputFees" name="InputFees" type="number" placeholder="Service Fees" required>
+                </div>
+                <!-- /.input group -->
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td>              
+              <div class="form-group">
+                <label>Payment Method:</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PaymentMethod" value="VISA-Card">
+                    <label class="form-check-label">VISA Card</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PaymentMethod" value="Cash">
+                    <label class="form-check-label">Cash</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="PaymentMethod" value="Insurance">
+                  <label class="form-check-label">Insurance</label>
+              </div>
+            </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-info" (click)="modal.close('Save click')">SAVE</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary m-5 d-block" (click)="open(content)">Launch demo modal</button>
+<hr>
+<pre>{{ closeResult }}</pre>
+<!-- End of Modal -->
