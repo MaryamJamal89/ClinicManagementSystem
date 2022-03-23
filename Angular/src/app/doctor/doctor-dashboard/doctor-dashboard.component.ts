@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import { Component, OnInit, ViewChild } from '@angular/core';
-=======
 import { Component, ElementRef, OnInit, ViewChild,AfterViewInit, Inject, VERSION } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';
->>>>>>> c54d5f150ada607054f2bac23e202381d0f29c45
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 declare let $: any;
@@ -130,12 +126,8 @@ export class DoctorDashboardComponent implements OnInit  {
         this.newAppointment.service.name = title 
         this.newAppointment.startDate =  new Date(selectInfo.start)
         this.newAppointment.endDate =  new Date(selectInfo.end)
-<<<<<<< HEAD
-   
-=======
         // this.open(this.contentFromHtml)
 
->>>>>>> c54d5f150ada607054f2bac23e202381d0f29c45
         this.docSrv.addAppointment(this.newAppointment).subscribe({
           next:a=>{this.newAppointment=a
             calendarApi.addEvent(
