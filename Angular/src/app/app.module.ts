@@ -33,6 +33,7 @@ import { DoctorFooterComponent } from './doctor/doctor-footer/doctor-footer.comp
 import { LoginGuard } from './guards/login.guard';
 
 import { DoctorService } from './doctor.service';
+import { AboutComponent } from './about/about.component';
 
 const routes:Routes=
 [
@@ -69,6 +70,7 @@ FullCalendarModule.registerPlugins([
     AddAppointmentDoctorComponent,
     AddPrescriptionComponent,
     DoctorFooterComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
