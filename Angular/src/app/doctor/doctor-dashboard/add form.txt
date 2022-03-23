@@ -1,0 +1,33 @@
+<!-- Add Appointment-->
+    <h1>Add Appointment</h1>
+<form class="row g-3 needs-validation" #add="ngForm" >
+  <table class="table table-borderless">
+    <tbody>
+      <tr>
+        <td>
+          <label>Service name</label><input class="form-control" id="name" name="name" type="text" [(ngModel)]="newAppointment.service.name" #id="ngModel" placeholder="Name" required><br>
+        </td>
+        <td>
+            <label>Service fees</label><input class="form-control" id="id" name="id" type="number" [(ngModel)]="newAppointment.service.fees" #id="ngModel" placeholder="Fees" required><br>
+          </td>
+          <td>
+            <label>Start Date</label><input class="form-control" id="date" name="date" type="date" [(ngModel)]="newAppointment.startDate" #id="ngModel" placeholder="Start Date" required><br>
+          </td>
+          <td>
+            <label>Start Date</label><input class="form-control" id="date" name="date" type="date" [(ngModel)]="newAppointment.endDate" #id="ngModel" placeholder="End Date" required><br>
+          </td>
+          <td>
+            <label>Payment Method</label><input class="form-control" id="payment" name="payment" type="text" [(ngModel)]="newAppointment.paymentMethod" #id="ngModel" placeholder="Payment method" required><br>
+          </td>
+      </tr>
+      <!-- <tr>
+        <td colspan="3"><button class="btn btn-success" type="submit" (click)="handleDateSelect()" [disabled]="add.invalid" >
+            ADD <i class="fa fa-plus-square" aria-hidden="true"></i>
+          </button></td>
+
+      </tr> -->
+    </tbody>
+
+  </table>
+</form>
+<!-- End Adding -->

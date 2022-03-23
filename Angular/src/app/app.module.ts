@@ -14,6 +14,7 @@ import * as $ from 'jquery';
 import { LoginComponent } from './login/login.component';
 import { ErrorComponent } from './error/error.component';
 import { DoctorDashboardComponent } from './doctor/doctor-dashboard/doctor-dashboard.component';
+
 import { AddAppointmentDoctorComponent } from './doctor/add-appointment-doctor/add-appointment-doctor.component';
 import { PrescriptionAddComponent } from './doctor/prescription-add/prescription-add.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -28,6 +29,9 @@ import { DoctorService } from './doctor.service';
 import { MainSlidebarComponent } from './receptionist/main-slidebar/main-slidebar.component';
 import { ReceptionistDashboardComponent } from './receptionist/receptionist-dashboard/receptionist-dashboard.component';
 import { SearchPatientComponent } from './receptionist/search-patient/search-patient.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddPrescriptionComponent } from './doctor/add-prescription/add-prescription.component';
+import { DoctorFooterComponent } from './doctor/doctor-footer/doctor-footer.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginGuard } from './guards/login.guard';
 
@@ -52,7 +56,6 @@ FullCalendarModule.registerPlugins([
     LoginComponent,
     ErrorComponent,
     DoctorDashboardComponent,
-    PrescriptionAddComponent,
     HeaderComponent,
     AddAppointmentComponent,
     AddDoctorComponent,
@@ -65,6 +68,8 @@ FullCalendarModule.registerPlugins([
     ReceptionistDashboardComponent,
     SearchPatientComponent,
     AddAppointmentDoctorComponent,
+    AddPrescriptionComponent,
+    DoctorFooterComponent,
   ],
   imports: [
     BrowserModule,

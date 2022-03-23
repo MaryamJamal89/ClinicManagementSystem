@@ -11,15 +11,41 @@
           <tr>
             <td>
               <div class="form-group">
+                <label>Patient ID</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user-injured"></i></span>
+                  </div>
+                  <select class="form-control">
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-group">
                 <label for="InputName">Service Name:</label>
                 <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-server"></i></span>
-                    </div>
-                    <input class="form-control" id="InputName" name="InputName" type="text" placeholder="Service Name" required>
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-server"></i></span>
+                  </div>
+                  <select class="form-control">
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                  <!-- <input class="form-control" id="InputName" name="InputName" type="text" placeholder="Service Name" required> -->
                 </div>
                 <!-- /.input group -->
-            </div>
+              </div>
             </td>
           </tr>
           <tr>
@@ -27,32 +53,48 @@
               <div class="form-group">
                 <label for="InputFees">Service Fees:</label>
                 <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-money"></i></span>
-                    </div>
-                    <input class="form-control" id="InputFees" name="InputFees" type="number" placeholder="Service Fees" required>
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-money"></i></span>
+                  </div>
+                  <input class="form-control" id="InputFees" name="InputFees" type="number" placeholder="Service Fees"
+                    required disabled>
                 </div>
                 <!-- /.input group -->
-            </div>
+              </div>
             </td>
           </tr>
           <tr>
-            <td>              
+            <td>
+              <div class="form-group">
+                <label for="InputPayedFees">Payed Fees:</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-money"></i></span>
+                  </div>
+                  <input class="form-control" id="InputFees" name="InputPayedFees" type="number"
+                    placeholder="Payed Fees" required>
+                </div>
+                <!-- /.input group -->
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
               <div class="form-group">
                 <label>Payment Method:</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="PaymentMethod" value="VISA-Card">
-                    <label class="form-check-label">VISA Card</label>
+                  <input class="form-check-input" type="radio" name="PaymentMethod" value="VISA-Card">
+                  <label class="form-check-label">VISA Card</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="PaymentMethod" value="Cash">
-                    <label class="form-check-label">Cash</label>
+                  <input class="form-check-input" type="radio" name="PaymentMethod" value="Cash">
+                  <label class="form-check-label">Cash</label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="PaymentMethod" value="Insurance">
                   <label class="form-check-label">Insurance</label>
+                </div>
               </div>
-            </div>
             </td>
           </tr>
         </tbody>
