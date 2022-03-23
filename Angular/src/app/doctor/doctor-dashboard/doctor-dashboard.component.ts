@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild,AfterViewInit, Inject, VERSION } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -18,42 +18,22 @@ import { EventInput } from '@fullcalendar/angular';
 import { arrow } from '@popperjs/core';
 
 import { Service } from '../../_models/service';
+import { DOCUMENT } from '@angular/common';
 
 
 
 @Component({
   selector: 'pm-doctor-dashboard',
   templateUrl: './doctor-dashboard.component.html',
-  styleUrls: ['./doctor-dashboard.component.css']
+  styleUrls: ['./doctor-dashboard.component.css', '../../../../dist/css/adminlte.min.css']
 })
-export class DoctorDashboardComponent implements OnInit {
-
-  constructor(private docSrv: DoctorService, private modalService: NgbModal) {
+export class DoctorDashboardComponent implements OnInit  {
+  contentFromHtml:any;
+  constructor(@Inject(DOCUMENT) document: Document,private docSrv: DoctorService, private modalService: NgbModal) {
   }
 
   // constructor(private modalService: NgbModal) { }  
-  // Modal
-  closeResult = '';
-
-  open(content: any) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-  // end of modal
-
+  
   appointments: Appointment[] = [];
   newAppointment: Appointment = new Appointment("62345f2086e4b9494d6237a4", "6235f4d9571875cdd3317bb4", new Date(), new Date(), "cash", 1000, new Service("x",0));
   deleteAppointment: Appointment = new Appointment("", "", new Date(), new Date(), "cash", 0, new Service("",0));
@@ -63,6 +43,7 @@ export class DoctorDashboardComponent implements OnInit {
   calendarOptions: CalendarOptions = {}
   currentEvents: EventApi[] = [];
   arr: any = [];
+ 
 
   ngOnInit(): void {
     this.getData();
@@ -146,7 +127,8 @@ export class DoctorDashboardComponent implements OnInit {
         this.newAppointment.service.name = title 
         this.newAppointment.startDate =  new Date(selectInfo.start)
         this.newAppointment.endDate =  new Date(selectInfo.end)
-        
+        // this.open(this.contentFromHtml)
+
         this.docSrv.addAppointment(this.newAppointment).subscribe({
           next:a=>{this.newAppointment=a
             calendarApi.addEvent(
@@ -159,7 +141,6 @@ export class DoctorDashboardComponent implements OnInit {
               });
           }
         })
-        
       //this.docSrv.addAppointment(new Appointment("0","0", "0", new Date(selectInfo.startStr), 1, paymentMethod, fees, title));
       this.appointments.forEach(element => {
         console.log(element)
@@ -185,11 +166,27 @@ export class DoctorDashboardComponent implements OnInit {
   }
 
   //?-------------------------------Add Appointment--------------------------------?//
-  // addDepartment(){
-  //   this.stdSer.add(this.newDepartment).subscribe({
-  //     next:a=>{this.newDepartment=a}
-  //   })
-  //   this.router.navigate(["./department"])
-  // }
+  // Modal
+  closeResult = '';
+
+  open(content: any) {
+    
+    this.modalService.open(content, {backdrop: false,size: 'lg', keyboard: true, centered: true, ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+  // end of modal
 
 }
