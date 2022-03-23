@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(public authser:AuthServiceService,public router:Router) { }
 
   ngOnInit(): void {
+    this.authser.isLogged=false;
   }
 
   login()
