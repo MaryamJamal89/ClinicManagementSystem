@@ -1,3 +1,3 @@
 export class Patient {
-    constructor(public _id:string, public name:string,public gender:string,public DOB:Date,public phone:number){}
+    constructor(public NID:string, public name:string,public gender:string,public DOB:Date,public phoneNumber:number,public _id?:string){}
 }
