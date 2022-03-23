@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
 
   userName:string="";
   password:string="";
+  token:any;
 
   constructor(public authser:AuthServiceService,public router:Router) { }
 
@@ -19,17 +20,20 @@ export class LoginComponent implements OnInit {
 
   login()
   {
+    this.token=localStorage.getItem('token');
     this.authser.login(this.userName,this.password)
     .subscribe((data:any)=>
     {
-      if(data.message==="Rescptionist")
+      if(data.message==="Doctor")
       {
         this.authser.isLogged=true;
+        localStorage.setItem('token',data.token);
         this.router.navigateByUrl("/doctor");
       }
       else if(data.message==="Rescptionist")
       {
         this.authser.isLogged=true;
+        localStorage.setItem('token',data.token);
         this.router.navigateByUrl("/receptionist");
       }
     });

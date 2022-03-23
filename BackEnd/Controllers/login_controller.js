@@ -32,8 +32,8 @@ exports.Login = (request, response, next) => {
                         else if (result2.password == insertedPassword) {
                             //JWT Auth......
                             let token = jwt.sign({
-                                userName: result2.body.userName,
-                                id: result2.body._id,
+                                userName: result2.userName,
+                                id: result2._id,
                                 role: "Rescptionist",
                             }, "ITI", { expiresIn: "1h" });
                             response.status(200).json({ message: "Rescptionist", object: result, token: token });
@@ -45,8 +45,8 @@ exports.Login = (request, response, next) => {
                 } else if (result.password == insertedPassword) {
                     //JWT Auth......
                     let token = jwt.sign({
-                        userName: result.body.userName,
-                        id: result.body._id,
+                        userName: result.userName,
+                        id: result._id,
                         role: "Doctor",
                     }, "ITI", { expiresIn: "1h" });
                     response.status(201).json({ message: "Doctor", object: result });

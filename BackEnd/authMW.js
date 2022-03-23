@@ -3,7 +3,8 @@ const jwt=require("jsonwebtoken");
 module.exports=(request,response,next)=>{
     let token,decode;
     try{
-        token=request.get("Authorization").split(" ")[1];
+        // token=request.get("Authorization").split(" ")[1];
+        token=request.header("Authorization").split(" ")[1];
         decode=jwt.verify(token,"ITI")
     }catch(error)
     {
