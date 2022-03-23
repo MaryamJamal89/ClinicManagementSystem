@@ -2,54 +2,140 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
-    <!-- Chart JS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+  <!-- Chart JS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <title>Doctor Dashboard</title>
+  <title>Doctor Dashboard</title>
 </head>
 
 <body>
-    <!-- Add Appointment-->
-    <h1>Add Appointment</h1>
-<form class="row g-3 needs-validation" #add="ngForm" >
-  <table class="table table-borderless">
-    <tbody>
-      <tr>
-        <td>
-          <label>Service name</label><input class="form-control" id="name" name="name" type="text" [(ngModel)]="newAppointment.service.name" #id="ngModel" placeholder="Name" required><br>
-        </td>
-        <td>
-            <label>Service fees</label><input class="form-control" id="id" name="id" type="number" [(ngModel)]="newAppointment.service.fees" #id="ngModel" placeholder="Fees" required><br>
-          </td>
-          <td>
-            <label>Start Date</label><input class="form-control" id="date" name="date" type="date" [(ngModel)]="newAppointment.startDate" #id="ngModel" placeholder="Start Date" required><br>
-          </td>
-          <td>
-            <label>Start Date</label><input class="form-control" id="date" name="date" type="date" [(ngModel)]="newAppointment.endDate" #id="ngModel" placeholder="End Date" required><br>
-          </td>
-          <td>
-            <label>Payment Method</label><input class="form-control" id="payment" name="payment" type="text" [(ngModel)]="newAppointment.paymentMethod" #id="ngModel" placeholder="Payment method" required><br>
-          </td>
-      </tr>
-      <!-- <tr>
-        <td colspan="3"><button class="btn btn-success" type="submit" (click)="handleDateSelect()" [disabled]="add.invalid" >
-            ADD <i class="fa fa-plus-square" aria-hidden="true"></i>
-          </button></td>
+  <pm-header></pm-header>
 
-      </tr> -->
-    </tbody>
+  
+  <full-calendar [options]="calendarOptions" class="m-4"></full-calendar>
+  <pm-doctor-footer></pm-doctor-footer>
+  
 
-  </table>
-</form>
-<!-- End Adding -->
-    <pm-header></pm-header>
-    <full-calendar [options]="calendarOptions"></full-calendar>
-    <pm-footer></pm-footer>
 </body>
+
+  <!-------------------Modal----------------------->
+  <!-- Modal -->
+  <div #myNameElem></div>
+  <button class="btn btn-lg btn-outline-primary m-5 d-block" (click)="open(content)">Launch demo modal</button>
+  <hr>
+  <pre>{{ closeResult }}</pre>
+  <ng-template #content let-modal >
+    <div class="modal-header" >
+      <p class="modal-title h5" id="modal-basic-title">New Appointment</p>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form class="row g-3 needs-validation" #add="ngForm">
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label>Patient ID</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-user-injured"></i></span>
+                    </div>
+                    <select class="form-control">
+                      <option>option 1</option>
+                      <option>option 2</option>
+                      <option>option 3</option>
+                      <option>option 4</option>
+                      <option>option 5</option>
+                    </select>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label for="InputName">Service Name:</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-server"></i></span>
+                    </div>
+                    <select class="form-control">
+                      <option>option 1</option>
+                      <option>option 2</option>
+                      <option>option 3</option>
+                      <option>option 4</option>
+                      <option>option 5</option>
+                    </select>
+                    <!-- <input class="form-control" id="InputName" name="InputName" type="text" placeholder="Service Name" required> -->
+                  </div>
+                  <!-- /.input group -->
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label for="InputFees">Service Fees:</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-money"></i></span>
+                    </div>
+                    <input class="form-control" id="InputFees" name="InputFees" type="number" placeholder="Service Fees"
+                      required disabled>
+                  </div>
+                  <!-- /.input group -->
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label for="InputPayedFees">Payed Fees:</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-money"></i></span>
+                    </div>
+                    <input class="form-control" id="InputFees" name="InputPayedFees" type="number"
+                      placeholder="Payed Fees" required>
+                  </div>
+                  <!-- /.input group -->
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label>Payment Method:</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PaymentMethod" value="VISA-Card">
+                    <label class="form-check-label">VISA Card</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PaymentMethod" value="Cash">
+                    <label class="form-check-label">Cash</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PaymentMethod" value="Insurance">
+                    <label class="form-check-label">Insurance</label>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          </table>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-info" (click)="modal.close('Save click')">SAVE</button>
+    </div>
+  </ng-template>
+  <!-- End of Modal -->
+  <!-------------------end of Modal----------------------->
 
 </html>
