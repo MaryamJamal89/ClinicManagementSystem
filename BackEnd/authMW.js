@@ -1,7 +1,7 @@
 const jwt=require("jsonwebtoken");
 
 module.exports=(request,response,next)=>{
-        let token,decode;
+    let token,decode;
     try{
         token=request.get("Authorization").split(" ")[1];
         decode=jwt.verify(token,"ITI")
@@ -15,8 +15,6 @@ module.exports=(request,response,next)=>{
     {
        request.id=token.id;
        request.userName=token.userName;
-      next();              
+       next();              
     }
-
-
 }
