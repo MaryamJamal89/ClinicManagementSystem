@@ -14,7 +14,6 @@ import * as $ from 'jquery';
 import { LoginComponent } from './login/login.component';
 import { ErrorComponent } from './error/error.component';
 import { DoctorDashboardComponent } from './doctor/doctor-dashboard/doctor-dashboard.component';
-import { PrescriptionAddComponent } from './doctor/prescription-add/prescription-add.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AddAppointmentComponent } from './receptionist/add-appointment/add-appointment.component';
 import { AddDoctorComponent } from './receptionist/add-doctor/add-doctor.component';
@@ -29,6 +28,8 @@ import { ReceptionistDashboardComponent } from './receptionist/receptionist-dash
 import { SearchPatientComponent } from './receptionist/search-patient/search-patient.component';
 import { AddAppointmentDoctorComponent } from './doctor/add-appointment-doctor/add-appointment-doctor.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddPrescriptionComponent } from './doctor/add-prescription/add-prescription.component';
+import { DoctorFooterComponent } from './doctor/doctor-footer/doctor-footer.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -43,7 +44,6 @@ FullCalendarModule.registerPlugins([
     LoginComponent,
     ErrorComponent,
     DoctorDashboardComponent,
-    PrescriptionAddComponent,
     HeaderComponent,
     AddAppointmentComponent,
     AddDoctorComponent,
@@ -56,6 +56,8 @@ FullCalendarModule.registerPlugins([
     ReceptionistDashboardComponent,
     SearchPatientComponent,
     AddAppointmentDoctorComponent,
+    AddPrescriptionComponent,
+    DoctorFooterComponent,
   ],
   imports: [
     BrowserModule,
