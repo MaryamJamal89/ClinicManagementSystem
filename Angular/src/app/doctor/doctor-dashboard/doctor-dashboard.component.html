@@ -42,17 +42,19 @@
                   <tr>
                     <td>
                       <div class="form-group">
-                        <label class="text-white">Patient ID:</label>
+                        <label class="text-white">Patient</label>
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user-injured"></i></span>
                           </div>
-                          <select class="form-control">
-                            <option>option 1</option>
-                            <option>option 2</option>
-                            <option>option 3</option>
-                            <option>option 4</option>
-                            <option>option 5</option>
+                          <select  class="form-control"
+                          id="pCategory"
+                          name="pCategory"
+                          
+                          >
+                          >
+                          <option value="" disabled>Choose a Patient</option>
+                          <option *ngFor="let c of patients" [ngValue]="c">{{ c.name }}</option>
                           </select>
                         </div>
                       </div>
@@ -205,17 +207,19 @@
           <tr>
             <td>
               <div class="form-group">
-                <label>Patient ID</label>
+                <label>Patients</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-user-injured"></i></span>
                   </div>
-                  <select class="form-control">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+
+                  <select  class="form-control"
+                    id="pCategory"
+                    name="pCategory"
+                    >
+                    >
+                    <option value="" disabled>Choose a Category</option>
+                    <option *ngFor="let c of patients" [ngValue]="c">{{ c.name }}</option>
                   </select>
                 </div>
               </div>
