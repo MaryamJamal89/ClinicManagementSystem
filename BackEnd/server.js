@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const path = require('path');
@@ -53,7 +54,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-
+//---- Routers (End points)
 app.use("/home", (request, response) => {
     response.send("HOME PAGE");
 });
@@ -74,10 +75,10 @@ app.get('/loggout', (req, res, next) => {
     }
 });
 
-app.use((request, response, next) => {
-    response.send("HELOo ");
-
-});
+//----- Not found MW
+app.use((request,response)=>{
+    response.status(404).json({data:"Page Not Found"});
+})
 
 //------------------------- Error MW
 app.use((error, request, response, next) => {

@@ -19,18 +19,15 @@ export class LoginComponent implements OnInit {
 
   login()
   {
-    console.log(`USER NAME ${this.userName}`);
-    console.log(this.password);
     this.authser.login(this.userName,this.password)
     .subscribe((data:any)=>
     {
-      console.log(data);
-      if(data.message==="Logged doc")
+      if(data.message==="Rescptionist")
       {
         this.authser.isLogged=true;
         this.router.navigateByUrl("/doctor");
       }
-      else if(data.message==="Logged res")
+      else if(data.message==="Rescptionist")
       {
         this.authser.isLogged=true;
         this.router.navigateByUrl("/receptionist");
