@@ -9,7 +9,7 @@ import { Service } from '../../_models/service';
 @Component({
   selector: 'pm-receptionist-dashboard',
   templateUrl: './receptionist-dashboard.component.html',
-  styleUrls: ['./receptionist-dashboard.component.css', '../../../../dist/css/adminlte.min.css']
+  styleUrls: ['./receptionist-dashboard.component.css', '../../../assets/css/adminlte.min.css']
 })
 export class ReceptionistDashboardComponent implements OnInit {
   appointments: Appointment[] = [];
