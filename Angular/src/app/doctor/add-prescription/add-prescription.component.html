@@ -43,37 +43,25 @@
                                 <!-- Doctor ID -->
                                 <!-- select -->
                                 <div class="form-group">
-                                    <label>Doctor ID</label>
+                                    <label>Doctor</label>
                                     
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-user-md"></i></span>
                                         </div>
-                                        <select class="form-control">
-                                            <option>option 1</option>
-                                            <option>option 2</option>
-                                            <option>option 3</option>
-                                            <option>option 4</option>
-                                            <option>option 5</option>
-                                        </select>
+                                        <input class="form-control" type="text" disabled>
                                     </div>
                                 </div>
 
                                 <!-- Patient ID -->
                                 <div class="form-group">
-                                    <label>Patient ID</label>
+                                    <label>Patient</label>
                                     
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-user-injured"></i></span>
                                         </div>
-                                        <select class="form-control">
-                                            <option>option 1</option>
-                                            <option>option 2</option>
-                                            <option>option 3</option>
-                                            <option>option 4</option>
-                                            <option>option 5</option>
-                                        </select>
+                                        <input class="form-control" type="text" disabled>
                                     </div>
                                 </div>
                                 
@@ -84,7 +72,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-pills"></i></span>
                                         </div>
-                                        <input type="text" class="form-control masked" id="InputMedicineName">
+                                        <input type="text" class="form-control masked" id="InputMedicineName" [(ngModel)]="newPrescription.medicineName" #id="ngModel">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -97,23 +85,23 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-pills"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" id="InputAmount">
+                                        <input type="text" class="form-control" id="InputAmount" [(ngModel)]="newPrescription.amountDescription" #id="ngModel">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
                                 <!-- /.form group -->
 
                                 <!-- Dose -->
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="InputDose">Dose:</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-pills"></i></span>
                                         </div>
                                         <input type="text" class="form-control" id="InputDose">
-                                    </div>
+                                    </div> -->
                                     <!-- /.input group -->
-                                </div>
+                                <!-- </div> -->
                                 <!-- /.form group -->
                             </div>
                             <!-- /.card-body -->

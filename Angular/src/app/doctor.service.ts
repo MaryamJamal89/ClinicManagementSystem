@@ -6,6 +6,7 @@ import { Doctor } from './_models/doctor';
 import { Patient } from './_models/patient';
 import { Prescription } from './_models/prescription';
 import { Service } from './_models/service';
+import { Clinic } from './_models/clinic';
 
 
 @Injectable({
@@ -20,8 +21,8 @@ export class DoctorService {
   ]
 
   private prescription:Prescription[]=[
-    new Prescription("4","1","1","Kotifan","2 Days","2 tabs"),
-    new Prescription("5","2","2","Painkiller","5 Days","5 tabs"),
+    new Prescription("4","1","1","Kotifan","2 Days"),
+    new Prescription("5","2","2","Painkiller","5 Days"),
   ]
 
   private appointment:Appointment[]=[
@@ -33,8 +34,8 @@ export class DoctorService {
 
   //?----------------------------Prescription------------------------------?//
 
-  addPrescription(newPres : Prescription){
-    this.prescription.push(new Prescription(newPres._id,newPres.doctorId,newPres.patientID,newPres.medicineName,newPres.amountDesc,newPres.dose))
+  addPrescription(newPresc : Prescription){
+    return this.http.post<Prescription>("http://localhost:8080/prescription",newPresc)
   }
   getAllPrescription():Prescription[]{
     return this.prescription;
@@ -58,6 +59,11 @@ export class DoctorService {
 
   deleteAppointment(id:string){
     return this.http.delete<Appointment>(`http://localhost:8080/appointments/${id}`);
+  }
+  //?----------------------------Clinic------------------------------?//
+
+  getServicesByClinicId(id:string){
+    return this.http.get<Clinic>(`http://localhost:8080/clinic/service/${id}`);
   }
   //?----------------------------Temp------------------------------?//
 

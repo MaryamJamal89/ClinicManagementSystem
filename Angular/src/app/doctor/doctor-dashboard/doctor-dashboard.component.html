@@ -45,13 +45,17 @@
                                                 <label class="text-white">Patient</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-user-injured"></i></span>
+                                                        <span class="input-group-text"><i
+                                                                class="fas fa-user-injured"></i></span>
                                                     </div>
-                                                    <select class="form-control" id="pCategory" name="pCategory" (change)="selectChangeHandler($event)">
-                          >
-                          <option value="" selected="true" disabled="disabled" >Choose a Patient</option>
-                          <option *ngFor="let c of patients" value={{c._id}}>{{ c.name }}</option>
-                          </select>
+                                                    <select class="form-control" id="pCategory" name="pCategory"
+                                                        (change)="selectChangeHandler($event)">
+                                                        >
+                                                        <option value="" selected="true" disabled="disabled">Choose a
+                                                            Patient</option>
+                                                        <option *ngFor="let c of patients"  value={{c._id}}>{{ c.name }}
+                                                        </option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </td>
@@ -62,15 +66,17 @@
                                                 <label for="InputName" class="text-white">Service Name:</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-server"></i></span>
+                                                        <span class="input-group-text"><i
+                                                                class="fas fa-server"></i></span>
                                                     </div>
-                                                    <select class="form-control">
-                            <option>option 1</option>
-                            <option>option 2</option>
-                            <option>option 3</option>
-                            <option>option 4</option>
-                            <option>option 5</option>
-                          </select>
+                                                    <select class="form-control" id="pCategory" name="pCategory"
+                                                        (change)="selectChangeServices($event)">
+                                                        >
+                                                        <option value="" selected="true" disabled="disabled">Choose a
+                                                            Service</option>
+                                                        <option *ngFor="let c of newClinic.services" value={{c._id}}>{{ c.name }}
+                                                        </option>
+                                                    </select>
                                                     <!-- <input class="form-control" id="InputName" name="InputName" type="text" placeholder="Service Name" required> -->
                                                 </div>
                                                 <!-- /.input group -->
@@ -83,9 +89,11 @@
                                                 <label for="InputFees" class="text-white">Service Fees:</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-money"></i></span>
+                                                        <span class="input-group-text"><i
+                                                                class="fas fa-money"></i></span>
                                                     </div>
-                                                    <input class="form-control" id="InputFees" name="InputFees" type="number" placeholder="Service Fees" required disabled>
+                                                    <input value={{selectedServFees}} class="form-control" id="InputFees" name="InputFees"
+                                                        type="number" placeholder="Service Fees" required disabled>
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -97,9 +105,11 @@
                                                 <label for="InputPayedFees" class="text-white">Payed Fees:</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-money"></i></span>
+                                                        <span class="input-group-text"><i
+                                                                class="fas fa-money"></i></span>
                                                     </div>
-                                                    <input class="form-control" id="InputFees" name="InputPayedFees" type="number" placeholder="Payed Fees" required>
+                                                    <input [(ngModel)]="FeesAmount" class="form-control" id="InputFees" name="InputPayedFees"
+                                                        type="number" placeholder="Payed Fees" required>
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -110,15 +120,18 @@
                                             <div class="form-group">
                                                 <label class="text-white">Payment Method:</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="PaymentMethod" value="VISA-Card">
+                                                    <input class="form-check-input" type="radio" value="visa" 
+                                                    [(ngModel)]="paymentMethod" name="PaymentMethod">
                                                     <label class="form-check-label text-white">VISA Card</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="PaymentMethod" value="Cash">
+                                                    <input class="form-check-input" type="radio" value="cash" 
+                                                    [(ngModel)]="paymentMethod" name="PaymentMethod">
                                                     <label class="form-check-label text-white">Cash</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="PaymentMethod" value="Insurance">
+                                                    <input class="form-check-input" type="radio" value="insurance" 
+                                                    [(ngModel)]="paymentMethod" name="PaymentMethod">
                                                     <label class="form-check-label text-white">Insurance</label>
                                                 </div>
                                             </div>

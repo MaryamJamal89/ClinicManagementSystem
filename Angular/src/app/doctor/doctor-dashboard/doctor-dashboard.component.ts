@@ -21,6 +21,7 @@ import { Service } from '../../_models/service';
 import { DOCUMENT } from '@angular/common';
 import { ReceptionistService } from '../../receptionist.service';
 import { Patient } from '../../_models/patient';
+import { Clinic } from '../../_models/clinic';
 
 
 @Component({
@@ -30,35 +31,54 @@ import { Patient } from '../../_models/patient';
 })
 export class DoctorDashboardComponent implements OnInit {
   contentFromHtml: any;
-  constructor(private docSrv: DoctorService, private modalService: NgbModal, private docSrvP: ReceptionistService) {
+  constructor(private docSrv: DoctorService, private docSrvP: ReceptionistService) {
   }
 
-  // constructor(private modalService: NgbModal) { }  
-
   appointments: Appointment[] = [];
-  newAppointment: Appointment = new Appointment("62345f2086e4b9494d6237a4", "", new Date(), new Date(), "cash", 1000, new Service("x", 0));
+  newAppointment: Appointment = new Appointment("62345f2086e4b9494d6237a4", "", new Date(), new Date(), "", 0, new Service("", 0));
   deleteAppointment: Appointment = new Appointment("", "", new Date(), new Date(), "cash", 0, new Service("", 0));
   calendarPlugins = [dayGridPlugin]; // important!
-  //INITIAL_EVENTS: EventInput[] = [];
   calendarVisible = true;
   calendarOptions: CalendarOptions = {}
   currentEvents: EventApi[] = [];
   arr: any = [];
   patients: Patient[] = [];
-
   selectedPatID: string = '';
+  selectedServId: string ='';
+  selectedServFees: number=0;
+  patName: string="";
+  FeesAmount: number=0;
+  paymentMethod: string="";
+  serviceObj:any//Service= new Service("",0);
+  patObj:any//Service= new Service("",0);
+  services: Service[] = [];
+  newClinic: Clinic = new Clinic("", this.services);
+
+
 
   //event handler for the select element's change event
   selectChangeHandler(event: any) {
     //update the ui
     this.selectedPatID = event.target.value;
-    console.log(event)
-    console.log(this.selectedPatID)
+    this.patObj=this.patients.find(ele => ele._id == this.selectedPatID)
+    this.patName=this.patObj.name
+  }
+
+  selectChangeServices(event: any) {
+    //update the ui
+    this.selectedServId = event.target.value;
+    this.serviceObj=this.newClinic.services.find(ele => ele._id == this.selectedServId)
+    this.selectedServFees=this.serviceObj.fees
+    console.log("HEY",this.serviceObj.fees)
+    console.log("HEY",this.serviceObj)
+    console.log("Payment ",this.selectedServFees)
+
   }
 
   ngOnInit(): void {
-    this.getData();
     this.getPatients();
+    this.getData();
+    this.getServices("62345f2086e4b9494d6237a4");
     // console.log(new mongoose.types.objectId)
   }
 
@@ -67,9 +87,12 @@ export class DoctorDashboardComponent implements OnInit {
       next: a => {
         this.appointments = a;
         this.arr = [];
+        
         for (let i = 0; i < this.appointments.length; i++) {
+          this.patObj=this.patients.find(ele => ele._id == this.appointments[i].patientID)
+          this.patName=this.patObj.name
           this.arr.push({
-            title: this.appointments[i].service.name,
+            title: this.patName + " - " + this.appointments[i].service.name,
             date: this.appointments[i].startDate,
             end: this.appointments[i].endDate,
             id: this.appointments[i]._id,
@@ -127,28 +150,34 @@ export class DoctorDashboardComponent implements OnInit {
   handleDateSelect(selectInfo: DateSelectArg) {
     if(confirm("Add event?") == false)
     return
-    const title = this.newAppointment.service.name;
+    // const title = this.serviceObj.name;
     const calendarApi = selectInfo.view.calendar;
-
+// console.log("1st",this.serviceObj.name)
+// console.log("1st",this.selectedPatID)
+// console.log("1st",this.serviceObj.fees)
+console.log("1st",this.FeesAmount)
+console.log("1st",this.paymentMethod)
     calendarApi.unselect(); // clear date selection
 
-    if (title) {
-      if (this.selectedPatID == "" || title == "") {
-        alert("You have to choose a Patient!")
+    if (true) {
+      if (this.selectedPatID == "" || this.serviceObj==undefined || this.FeesAmount == 0 || this.paymentMethod=="") {
+        alert("Please, Complete the appointment info!")
         return
       }
+      console.log("2nd",this.serviceObj.name)
 
       this.newAppointment.patientID = this.selectedPatID
-      this.newAppointment.service.name = title
+      this.newAppointment.service = this.serviceObj
       this.newAppointment.startDate = new Date(selectInfo.start)
       this.newAppointment.endDate = new Date(selectInfo.end)
-
+      this.newAppointment.fees = this.FeesAmount
+      this.newAppointment.paymentMethod = this.paymentMethod
       this.docSrv.addAppointment(this.newAppointment).subscribe({
         next: a => {
           this.newAppointment = a
           calendarApi.addEvent(
             {
-              title,
+              title:this.patName + " - " + this.serviceObj.name,
               start: selectInfo.startStr,
               end: selectInfo.endStr,
               allDay: selectInfo.allDay,
@@ -190,7 +219,18 @@ export class DoctorDashboardComponent implements OnInit {
     })
   }
 
-  // //?-------------------------------Add Appointment--------------------------------?//
+  //?----------------------Clinic Services-----------------------------//
+    getServices(clinicId:string) {
+      this.docSrv.getServicesByClinicId(clinicId).subscribe({
+        next: a => {
+          this.newClinic = a;
+          console.log(this.newClinic)
+          console.log(this.newClinic.services)
+        }
+      })
+    }
+
+  //?-------------------------------Add Appointment--------------------------------?//
   // // Modal
   // closeResult = '';
 
