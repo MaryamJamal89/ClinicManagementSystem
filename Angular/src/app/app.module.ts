@@ -10,6 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import jsPDF from 'jspdf';  
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
