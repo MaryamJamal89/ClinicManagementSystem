@@ -45,6 +45,10 @@ addPatient(newPatient : Patient){
 }
 
 
+getAllPatient(){
+  return this.http.get<Patient[]>("http://localhost:8080/patient");
+}
+
 //?----------------------------Temp------------------------------?//
 
 //   getAppointmentByDate(date:Data):Appointment{

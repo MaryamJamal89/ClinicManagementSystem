@@ -1,3 +1,5 @@
+import { Service } from "./service";
+
 export class Clinic {
-    constructor(public _id:string, public location:string,public clinicServices:[]){}
+    constructor(public location:string,public services:Service[],public _id?:string){}
 }

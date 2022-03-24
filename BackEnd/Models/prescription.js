@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const prescriptionSchema = new mongoose.Schema({
-    medecineName: {
+    medicineName: {
         type: String,
         required: true
     },
@@ -8,17 +8,11 @@ const prescriptionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    doctorID: {
+    appointmentID: {
         type: mongoose.Types.ObjectId,
         required: true,
-        ref: "doctor"
-
+        ref: "appointment"
     },
-    patientID: {
-        type: mongoose.Types.ObjectId,
-        required: true,
-        ref: "patient"
-    }
 });
 
 const prescription = mongoose.model('prescription', prescriptionSchema);
