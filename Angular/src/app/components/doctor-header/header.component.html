@@ -17,11 +17,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">Prescription</a>
-                <a class="nav-item nav-link" href="#">About</a>
+                <a class="nav-item nav-link active" [routerLink]="['/doctor']">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" [routerLink]="['/doctor/prescription']">Prescription</a>
+                <a class="nav-item nav-link" [routerLink]="['/doctor/about']">About</a>
             </div>
-            <a class="nav-item nav-link link-light ms-auto" href="#">Logout</a>
+            <a class="nav-item nav-link link-light ms-auto" [routerLink]="['']">Logout</a>
         </div>
     </nav>
 

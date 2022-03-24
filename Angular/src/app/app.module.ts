@@ -43,6 +43,14 @@ const routes:Routes=
   {path:"login",component:LoginComponent},
   {path:"doctor",component:DoctorDashboardComponent,canActivate:[LoginGuard]},
   {path:"receptionist",component:ReceptionistDashboardComponent,canActivate:[LoginGuard]},
+  {path:"doctor/prescription",component:AddPrescriptionComponent,canActivate:[LoginGuard]},
+  {path:"doctor/about",component:AboutComponent,canActivate:[LoginGuard]},
+  {path:"receptionist/patient",component:AddPatientComponent,canActivate:[LoginGuard]},
+  {path:"receptionist/appointment",component:AddAppointmentComponent,canActivate:[LoginGuard]},
+  {path:"receptionist/doctor",component:AddDoctorComponent,canActivate:[LoginGuard]},
+  {path:"receptionist/addReceptionist",component:AddReceptionistComponent,canActivate:[LoginGuard]},
+  {path:"receptionist/invoice",component:PrintInvoiceComponent,canActivate:[LoginGuard]},
+  {path:"receptionist/about",component:AboutUsReceptionistComponent,canActivate:[LoginGuard]},
   {path:"",redirectTo:"/login",pathMatch:"full"}
 ]
 
