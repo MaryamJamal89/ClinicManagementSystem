@@ -12,7 +12,7 @@ exports.getAppoints = function(request, response, next) {
 }
 
 exports.getAppointsByID = function(req, res) {
-    appoint.find({ _id: req.params.id })
+    appoint.findOne({ _id: req.params.id })
         .then((doctors) => res.send(doctors))
         .catch((error) => console.log(error));
 }

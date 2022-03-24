@@ -1,37 +1,37 @@
 export class Doctor {
-    constructor(public clinicId:string, public username:string,public password:string, public rating:number,public _id?:string){}
+    constructor(public clinic_id:string, public userName:string,public password:string, public rating:number,public _id?:string){}
 
-    get Id(){
-        return this._id;
-    }
+    // get Id(){
+    //     return this._id;
+    // }
 
-    get ClinicId(){
-        return this.clinicId;
-    }
+    // get ClinicId(){
+    //     return this.clinicId;
+    // }
 
-    set Username(Username:string){
-        this.username=Username;
-    }
+    // set Username(Username:string){
+    //     this.username=Username;
+    // }
 
-    get Username(){
-        return this.username;
-    }
+    // get Username(){
+    //     return this.username;
+    // }
 
-    set Password(Password:string){
-        this.password=Password;
-    }
+    // set Password(Password:string){
+    //     this.password=Password;
+    // }
 
-    get Password(){
-        return this.password;
-    }
+    // get Password(){
+    //     return this.password;
+    // }
 
 
-    set Rating(Rating:number){
-        this.rating=Rating;
-    }
+    // set Rating(Rating:number){
+    //     this.rating=Rating;
+    // }
 
-    get Rating(){
-        return this.rating;
-    }
+    // get Rating(){
+    //     return this.rating;
+    // }
 
 }

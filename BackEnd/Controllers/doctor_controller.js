@@ -13,7 +13,7 @@ exports.getDoctors = function(request, response, next) {
 
 }
 exports.getDoctorsByID = function(request, response, next) {
-    Doctor.find({_id:request.params.id})
+    Doctor.findOne({_id:request.params.id})
         .then(result => {
             response.status(200).json(result)
         })

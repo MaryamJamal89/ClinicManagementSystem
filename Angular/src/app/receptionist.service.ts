@@ -45,6 +45,9 @@ addPatient(newPatient : Patient){
 }
 
 
+getPatientByID(id:string){
+  return this.http.get<Patient>(`http://localhost:8080/patient/${id}`);
+}
 getAllPatient(){
   return this.http.get<Patient[]>("http://localhost:8080/patient");
 }
