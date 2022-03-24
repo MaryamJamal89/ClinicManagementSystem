@@ -3,7 +3,8 @@ const router = express.Router()
 const controller = require("./../Controllers/doctor_controller")
 isAuth=require("./../authMW");
 
-router.get(isAuth, controller.getDoctors);
-router.post(isAuth, controller.createDoctor);
+router.get("", controller.getDoctors);
+router.get("/:id", controller.getDoctorsByID);
+router.post("", controller.createDoctor);
 
 module.exports = router;
