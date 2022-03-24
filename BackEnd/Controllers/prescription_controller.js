@@ -18,10 +18,9 @@ exports.getbyDoctor = function(request, response, next) {
 exports.postPrescription = (req, res) => {
     (
         new prescription({
-            'medecineName': req.body.medecineName,
+            'medicineName': req.body.medicineName,
             'amountDescription': req.body.amountDescription,
-            'doctorID': req.body.doctorID,
-            'patientID': req.body.patientID
+            'appointmentID': req.body.appointmentID,
         }))
     .save()
         .then((prescription) => res.send(prescription))

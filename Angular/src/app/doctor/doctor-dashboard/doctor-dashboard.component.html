@@ -2,304 +2,207 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
-  <!-- Chart JS -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <title>Doctor Dashboard</title>
+    <title>Doctor Dashboard</title>
 </head>
 
 <body>
-  <pm-header></pm-header>
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4 d-none d-lg-block" style="height: 1000px;">
-    <!-- Brand Logo -->
-    <a class="brand-link ml-2 mr-2" href="#">
-      <i class="fa fa-solid fa-stethoscope fa-2x"></i>
-      <span class="brand-text font-weight-light">CMS</span>
-    </a>
+    <pm-header></pm-header>
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4 d-none d-lg-block" style="height: 1000px;">
+        <!-- Brand Logo -->
+        <a class="brand-link ml-2 mr-2" href="#">
+            <i class="fa fa-solid fa-stethoscope fa-2x"></i>
+            <span class="brand-text font-weight-light">CMS</span>
+        </a>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel mt-2 pb-2 mb-2 d-flex">
-        <div class="info">
-          <p href="#" class="d-block h5 text-white">New Appointment</p>
-        </div>
-      </div>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel mt-2 pb-2 mb-2 d-flex">
+                <div class="info">
+                    <p href="#" class="d-block h5 text-white">New Appointment</p>
+                </div>
+            </div>
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-          <li class="nav-item">
-            <form class="row g-3 needs-validation" #add="ngForm">
-              <table class="table table-borderless">
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="form-group">
-                        <label class="text-white">Patient ID:</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-user-injured"></i></span>
-                          </div>
-                          <select class="form-control">
-                            <option>option 1</option>
-                            <option>option 2</option>
-                            <option>option 3</option>
-                            <option>option 4</option>
-                            <option>option 5</option>
-                          </select>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-group">
-                        <label for="InputName" class="text-white">Service Name:</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-server"></i></span>
-                          </div>
-                          <select class="form-control">
-                            <option>option 1</option>
-                            <option>option 2</option>
-                            <option>option 3</option>
-                            <option>option 4</option>
-                            <option>option 5</option>
-                          </select>
-                          <!-- <input class="form-control" id="InputName" name="InputName" type="text" placeholder="Service Name" required> -->
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-group">
-                        <label for="InputFees" class="text-white">Service Fees:</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-money"></i></span>
-                          </div>
-                          <input class="form-control" id="InputFees" name="InputFees" type="number"
-                            placeholder="Service Fees" required disabled>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-group">
-                        <label for="InputPayedFees" class="text-white">Payed Fees:</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-money"></i></span>
-                          </div>
-                          <input class="form-control" id="InputFees" name="InputPayedFees" type="number"
-                            placeholder="Payed Fees" required>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-group">
-                        <label class="text-white">Payment Method:</label>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="PaymentMethod" value="VISA-Card">
-                          <label class="form-check-label text-white">VISA Card</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="PaymentMethod" value="Cash">
-                          <label class="form-check-label text-white">Cash</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="PaymentMethod" value="Insurance">
-                          <label class="form-check-label text-white">Insurance</label>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- <tr>
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                    <li class="nav-item">
+                        <form class="row g-3 needs-validation" #add="ngForm">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label class="text-white">Patient</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i
+                                                                class="fas fa-user-injured"></i></span>
+                                                    </div>
+                                                    <select class="form-control" id="pCategory" name="pCategory"
+                                                        (change)="selectChangeHandler($event)">
+                                                        >
+                                                        <option value="" selected="true" disabled="disabled">Choose a
+                                                            Patient</option>
+                                                        <option *ngFor="let c of patients"  value={{c._id}}>{{ c.name }}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label for="InputName" class="text-white">Service Name:</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i
+                                                                class="fas fa-server"></i></span>
+                                                    </div>
+                                                    <select class="form-control" id="pCategory" name="pCategory"
+                                                        (change)="selectChangeServices($event)">
+                                                        >
+                                                        <option value="" selected="true" disabled="disabled">Choose a
+                                                            Service</option>
+                                                        <option *ngFor="let c of newClinic.services" value={{c._id}}>{{ c.name }}
+                                                        </option>
+                                                    </select>
+                                                    <!-- <input class="form-control" id="InputName" name="InputName" type="text" placeholder="Service Name" required> -->
+                                                </div>
+                                                <!-- /.input group -->
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label for="InputFees" class="text-white">Service Fees:</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i
+                                                                class="fas fa-money"></i></span>
+                                                    </div>
+                                                    <input value={{selectedServFees}} class="form-control" id="InputFees" name="InputFees"
+                                                        type="number" placeholder="Service Fees" required disabled>
+                                                </div>
+                                                <!-- /.input group -->
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label for="InputPayedFees" class="text-white">Payed Fees:</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i
+                                                                class="fas fa-money"></i></span>
+                                                    </div>
+                                                    <input [(ngModel)]="FeesAmount" class="form-control" id="InputFees" name="InputPayedFees"
+                                                        type="number" placeholder="Payed Fees" required>
+                                                </div>
+                                                <!-- /.input group -->
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label class="text-white">Payment Method:</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" value="visa" 
+                                                    [(ngModel)]="paymentMethod" name="PaymentMethod">
+                                                    <label class="form-check-label text-white">VISA Card</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" value="cash" 
+                                                    [(ngModel)]="paymentMethod" name="PaymentMethod">
+                                                    <label class="form-check-label text-white">Cash</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" value="insurance" 
+                                                    [(ngModel)]="paymentMethod" name="PaymentMethod">
+                                                    <label class="form-check-label text-white">Insurance</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- <tr>
                     <td>
                       <button type="button" class="btn btn-outline-light w-100">Submit</button>
                     </td>
                   </tr> -->
-                </tbody>
-              </table>
-            </form>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
+                                </tbody>
+                            </table>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-      <div class="p-3">
-        <h5>Title</h5>
-        <p>Sidebar content</p>
-      </div>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+            <div class="p-3">
+                <h5>Title</h5>
+                <p>Sidebar content</p>
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
     </aside>
-    <!-- /.control-sidebar -->
-  </aside>
 
-  <!-- Main Content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Welcome, User Name</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <!-- <ol class="breadcrumb float-sm-right">
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Welcome, User Name</h1>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-6">
+                        <!-- <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
                   <li class="breadcrumb-item active">Starter Page</li>
                 </ol> -->
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <div class="content">
-      <div class="c">
-        <div class="row g-0">
-          <div class="col-12">
-            <full-calendar [options]="calendarOptions" class="m-4"></full-calendar>
-          </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
         </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="c">
+                <div class="row g-0">
+                    <div class="col-12">
+                        <full-calendar [options]="calendarOptions" class="m-4"></full-calendar>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
     </div>
-    <!-- /.content -->
-  </div>
-  <pm-footer></pm-footer>
+    <pm-footer></pm-footer>
 </body>
 
-<!-------------------Modal----------------------->
-<!-- Modal -->
-<div #myNameElem></div>
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <p class="modal-title h5" id="modal-basic-title">New Appointment</p>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-  </div>
-  <div class="modal-body">
-    <form class="row g-3 needs-validation" #add="ngForm">
-      <table class="table table-borderless">
-        <tbody>
-          <tr>
-            <td>
-              <div class="form-group">
-                <label>Patient ID</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-user-injured"></i></span>
-                  </div>
-                  <select class="form-control">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
-                  </select>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="form-group">
-                <label for="InputName">Service Name:</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-server"></i></span>
-                  </div>
-                  <select class="form-control">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
-                  </select>
-                  <!-- <input class="form-control" id="InputName" name="InputName" type="text" placeholder="Service Name" required> -->
-                </div>
-                <!-- /.input group -->
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="form-group">
-                <label for="InputFees">Service Fees:</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-money"></i></span>
-                  </div>
-                  <input class="form-control" id="InputFees" name="InputFees" type="number" placeholder="Service Fees"
-                    required disabled>
-                </div>
-                <!-- /.input group -->
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="form-group">
-                <label for="InputPayedFees">Payed Fees:</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-money"></i></span>
-                  </div>
-                  <input class="form-control" id="InputFees" name="InputPayedFees" type="number"
-                    placeholder="Payed Fees" required>
-                </div>
-                <!-- /.input group -->
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="form-group">
-                <label>Payment Method:</label>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="PaymentMethod" value="VISA-Card">
-                  <label class="form-check-label">VISA Card</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="PaymentMethod" value="Cash">
-                  <label class="form-check-label">Cash</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="PaymentMethod" value="Insurance">
-                  <label class="form-check-label">Insurance</label>
-                </div>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-info" (click)="modal.close('Save click')">SAVE</button>
-  </div>
-</ng-template>
-<!-- End of Modal -->
-<!-------------------end of Modal----------------------->
 
 </html>

@@ -11,28 +11,30 @@ export class LoginComponent implements OnInit {
 
   userName:string="";
   password:string="";
+  token:any;
 
   constructor(public authser:AuthServiceService,public router:Router) { }
 
   ngOnInit(): void {
+    this.authser.isLogged=false;
   }
 
   login()
   {
-    console.log(`USER NAME ${this.userName}`);
-    console.log(this.password);
+    this.token=localStorage.getItem('token');
     this.authser.login(this.userName,this.password)
     .subscribe((data:any)=>
     {
-      console.log(data);
-      if(data.message==="Logged doc")
+      if(data.message==="Doctor")
       {
         this.authser.isLogged=true;
+        localStorage.setItem('token',data.token);
         this.router.navigateByUrl("/doctor");
       }
-      else if(data.message==="Logged res")
+      else if(data.message==="Rescptionist")
       {
         this.authser.isLogged=true;
+        localStorage.setItem('token',data.token);
         this.router.navigateByUrl("/receptionist");
       }
     });

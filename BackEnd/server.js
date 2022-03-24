@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const path = require('path');
@@ -13,7 +14,7 @@ const receptionistroute = require('./Routers/recep_router');
 const patientroute = require('./Routers/patient_router');
 const loginroute = require('./Routers/login_router');
 const appointroute = require('./Routers/appointment_router');
-// const prescription = require('./database/models/prescription');
+const prescriptionroute = require('./Routers/prescription_router');
 
 // session
 app.use(session({
@@ -34,6 +35,18 @@ mongoose.connect("mongodb+srv://Randa:1234@cluster0.e3oxq.mongodb.net/myFirstDat
 
 
 //************************* MiddleWares */
+// app.use(function(req, res, next) {
+//     if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT') {
+//       jsonwebtoken.verify(req.headers.authorization.split(' ')[1], 'RESTFULAPIs', function(err, decode) {
+//         if (err) req.user = undefined;
+//         req.user = decode;
+//         next();
+//       });
+//     } else {
+//       req.user = undefined;
+//       next();
+//     }
+//   });
 app.use((request,response,next)=>{
 
     response.header("Access-Control-Allow-Origin","*");
@@ -53,7 +66,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-
+//---- Routers (End points)
 app.use("/home", (request, response) => {
     response.send("HOME PAGE");
 });
@@ -63,6 +76,7 @@ app.use("/receptionist", receptionistroute);
 app.use("/patient", patientroute);
 app.use("/login", loginroute);
 app.use("/appointments", appointroute);
+app.use("/prescription", prescriptionroute);
 
 app.get('/loggout', (req, res, next) => {
     // Check if the session is exist
@@ -74,10 +88,10 @@ app.get('/loggout', (req, res, next) => {
     }
 });
 
-app.use((request, response, next) => {
-    response.send("HELOo ");
-
-});
+//----- Not found MW
+app.use((request,response)=>{
+    response.status(404).json({data:"Page Not Found"});
+})
 
 //------------------------- Error MW
 app.use((error, request, response, next) => {

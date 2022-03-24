@@ -15,7 +15,7 @@ const clinicSchema = new mongoose.Schema({
     },
     services: [{
         name: String,
-        price: Number
+        fees: Number
     }]
 });
 
