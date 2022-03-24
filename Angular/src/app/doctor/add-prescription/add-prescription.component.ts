@@ -30,12 +30,12 @@ export class AddPrescriptionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAppointments("623c6abbfa1129ddbbb8062d");
-    console.log(this.appointments)
+    console.log(this.appointment)
 
 
-    this.findAppointments("623c6abbfa1129ddbbb8062d");
-    this.findPatient(this.appObj?.patientID);
-    this.findDocotor(this.appObj?.doctorID)
+    // this.findAppointments("623c6abbfa1129ddbbb8062d");
+    // this.findPatient(this.appObj?.patientID);
+    // this.findDocotor(this.appObj?.doctorID)
   }
 
   
@@ -66,12 +66,12 @@ export class AddPrescriptionComponent implements OnInit {
 }
   //?----------------------Patient-----------------------------//
   getPatients(id:string) {
-    this.recepServ.getAllPatient(id).subscribe({
-      next: a => {
-        console.log(a)
-        // this.patient = a;
-      }
-    })
+    // this.recepServ.getAllPatient(id).subscribe({
+    //   next: a => {
+    //     console.log(a)
+    //     // this.patient = a;
+    //   }
+    // })
   }
   
     //?----------------------Doctor-----------------------------//
