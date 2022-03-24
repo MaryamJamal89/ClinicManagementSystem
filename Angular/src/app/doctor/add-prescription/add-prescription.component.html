@@ -34,24 +34,12 @@
         <div class="content">
             <div class="c">
                 <div class="row g-0">
-                    <div class="offset-2 col-10 m-5">
+                    <div class="offset-1 col-10">
                         <div class="card card-info">
                             <div class="card-header">
                                 <h3 class="card-title">New Prescription</h3>
                             </div>
-                            <div class="card-body">
-                                <!-- Doctor ID -->
-                                <!-- select -->
-                                <div class="form-group">
-                                    <label>Doctor</label>
-                                    
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user-md"></i></span>
-                                        </div>
-                                        <input class="form-control" type="text" disabled>
-                                    </div>
-                                </div>
+                            <div class="card-body">                               
 
                                 <!-- Patient ID -->
                                 <div class="form-group">
@@ -70,7 +58,7 @@
                                     <label for="InputMedicineName">Medicine Name:</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-pills"></i></span>
+                                            <span class="input-group-text"><i class="fas fa-capsules"></i></span>
                                         </div>
                                         <input type="text" class="form-control masked" id="InputMedicineName" [(ngModel)]="newPrescription.medicineName" #id="ngModel">
                                     </div>
@@ -83,7 +71,7 @@
                                     <label for="InputAmount">Amount:</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-pills"></i></span>
+                                            <span class="input-group-text"><i class="fas fa-tablets"></i></span>
                                         </div>
                                         <input type="text" class="form-control" id="InputAmount" [(ngModel)]="newPrescription.amountDescription" #id="ngModel">
                                     </div>
@@ -96,7 +84,7 @@
                                     <label for="InputDose">Dose:</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-pills"></i></span>
+                                            <span class="input-group-text"><i class="fas fa-capsules"></i></span>
                                         </div>
                                         <input type="text" class="form-control" id="InputDose">
                                     </div> -->
