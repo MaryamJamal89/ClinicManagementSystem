@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReceptionistService } from '../../receptionist.service';
 
 @Component({
   selector: 'pm-main-slidebar',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainSlidebarComponent implements OnInit {
 
-  constructor() { }
+  
+  constructor(public recSrv: ReceptionistService) {
+  }
 
   ngOnInit(): void {
+    
   }
+
+  showApp(){
+    this.recSrv.showAppointment = !this.recSrv.showAppointment
+  }
+
 
 }
