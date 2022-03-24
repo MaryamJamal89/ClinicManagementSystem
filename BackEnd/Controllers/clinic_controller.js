@@ -9,8 +9,8 @@ exports.getClinic = function (request, response, next) {
     })
     .catch((error) => next(error));
 };
-exports.getService = function (request, response, next) {
-  Clinic.findOne({ _id: request.params.id }, {services})
+exports.getServiceName = function (request, response, next) {
+  Clinic.findOne({ _id: request.param.id }, {services})
     .then((result) => {
       response.status(200).json(result);
     })

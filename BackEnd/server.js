@@ -14,7 +14,7 @@ const receptionistroute = require('./Routers/recep_router');
 const patientroute = require('./Routers/patient_router');
 const loginroute = require('./Routers/login_router');
 const appointroute = require('./Routers/appointment_router');
-// const prescription = require('./database/models/prescription');
+const prescriptionroute = require('./Routers/prescription_router');
 
 // session
 app.use(session({
@@ -76,6 +76,7 @@ app.use("/receptionist", receptionistroute);
 app.use("/patient", patientroute);
 app.use("/login", loginroute);
 app.use("/appointments", appointroute);
+app.use("/prescription", prescriptionroute);
 
 app.get('/loggout', (req, res, next) => {
     // Check if the session is exist
