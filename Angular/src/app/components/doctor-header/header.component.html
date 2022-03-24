@@ -11,15 +11,13 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
         <a class="navbar-brand" href="#"><i class="fa fa-solid fa-stethoscope fa-2x"></i>CMS</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" [routerLink]="['/doctor']">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" [routerLink]="['/doctor/prescription']">Prescription</a>
-                <!-- TODO: Remove Prescription Tab -->
+                <!-- <a class="nav-item nav-link" [routerLink]="['/doctor/prescription']">Prescription</a> -->
                 <a class="nav-item nav-link" [routerLink]="['/doctor/about']">About</a>
             </div>
             <a class="nav-item nav-link link-light ms-auto" [routerLink]="['']">Logout</a>

@@ -13,7 +13,7 @@ import { Service } from './_models/service';
 export class ReceptionistService {
 
  //?----------------------------Temp Objects------------------------------?//
-
+showAppointment:boolean=false;
 constructor(public http:HttpClient) { }
 
 

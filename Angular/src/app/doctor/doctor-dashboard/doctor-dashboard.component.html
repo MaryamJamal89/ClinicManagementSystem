@@ -14,14 +14,14 @@
 </head>
 
 <body>
-  <pm-doctor-header-sideform></pm-doctor-header-sideform>
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4 d-none d-lg-block" style="height: 1000px;">
-    <!-- Brand Logo -->
-    <a class="brand-link ml-2 mr-2" [routerLink]="['/doctor']">
-      <i class="fa fa-solid fa-stethoscope fa-2x"></i>
-      <span class="brand-text font-weight-light">CMS</span>
-    </a>
+    <pm-doctor-header-sideform></pm-doctor-header-sideform>
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4 d-none d-lg-block" style="height: 1000px;">
+        <!-- Brand Logo -->
+        <a class="brand-link ml-2 mr-2" [routerLink]="['/doctor']">
+            <i class="fa fa-solid fa-stethoscope fa-2x"></i>
+            <span class="brand-text font-weight-light">CMS</span>
+        </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
@@ -48,8 +48,7 @@
                                                         <span class="input-group-text"><i
                                                                 class="fas fa-user-injured"></i></span>
                                                     </div>
-                                                    <select class="form-control" id="pCategory" name="pCategory"
-                                                        (change)="selectChangeHandler($event)">
+                                                    <select class="form-control" id="pCategory" name="pCategory" (change)="selectChangeHandler($event)">
                                                         >
                                                         <option value="" selected="true" disabled="disabled">Choose a
                                                             Patient</option>
@@ -69,8 +68,7 @@
                                                         <span class="input-group-text"><i
                                                                 class="fas fa-server"></i></span>
                                                     </div>
-                                                    <select class="form-control" id="pCategory" name="pCategory"
-                                                        (change)="selectChangeServices($event)">
+                                                    <select class="form-control" id="pCategory" name="pCategory" (change)="selectChangeServices($event)">
                                                         >
                                                         <option value="" selected="true" disabled="disabled">Choose a
                                                             Service</option>
@@ -92,8 +90,7 @@
                                                         <span class="input-group-text"><i
                                                                 class="fas fa-money"></i></span>
                                                     </div>
-                                                    <input value={{selectedServFees}} class="form-control" id="InputFees" name="InputFees"
-                                                        type="number" placeholder="Service Fees" required disabled>
+                                                    <input value={{selectedServFees}} class="form-control" id="InputFees" name="InputFees" type="number" placeholder="Service Fees" required disabled>
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -108,8 +105,7 @@
                                                         <span class="input-group-text"><i
                                                                 class="fas fa-money"></i></span>
                                                     </div>
-                                                    <input [(ngModel)]="FeesAmount" class="form-control" id="InputFees" name="InputPayedFees"
-                                                        type="number" placeholder="Payed Fees" required>
+                                                    <input [(ngModel)]="FeesAmount" class="form-control" id="InputFees" name="InputPayedFees" type="number" placeholder="Payed Fees" required>
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -120,18 +116,15 @@
                                             <div class="form-group">
                                                 <label class="text-white">Payment Method:</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" value="visa" 
-                                                    [(ngModel)]="paymentMethod" name="PaymentMethod">
+                                                    <input class="form-check-input" type="radio" value="visa" [(ngModel)]="paymentMethod" name="PaymentMethod">
                                                     <label class="form-check-label text-white">VISA Card</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" value="cash" 
-                                                    [(ngModel)]="paymentMethod" name="PaymentMethod">
+                                                    <input class="form-check-input" type="radio" value="cash" [(ngModel)]="paymentMethod" name="PaymentMethod">
                                                     <label class="form-check-label text-white">Cash</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" value="insurance" 
-                                                    [(ngModel)]="paymentMethod" name="PaymentMethod">
+                                                    <input class="form-check-input" type="radio" value="insurance" [(ngModel)]="paymentMethod" name="PaymentMethod">
                                                     <label class="form-check-label text-white">Insurance</label>
                                                 </div>
                                             </div>
@@ -165,28 +158,6 @@
 
     <!-- Main Content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Welcome, User Name</h1>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-6">
-                        <!-- <ol class="breadcrumb float-sm-right">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active">Starter Page</li>
-                </ol> -->
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
-            </div>
-            <!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
-
         <!-- Main content -->
         <div class="content">
             <div class="c">
@@ -203,6 +174,5 @@
     </div>
     <pm-footer></pm-footer>
 </body>
-
 
 </html>
