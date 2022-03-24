@@ -21,17 +21,17 @@ export class LoginComponent implements OnInit {
 
   login()
   {
-    this.token=localStorage.getItem('token');
     this.authser.login(this.userName,this.password)
     .subscribe((data:any)=>
     {
-      if(data.message==="Doctor")
+      console.log(data);
+      if(data.massage==="Doctor")
       {
         this.authser.isLogged=true;
         localStorage.setItem('token',data.token);
         this.router.navigateByUrl("/doctor");
       }
-      else if(data.message==="Rescptionist")
+      else if(data.massage==="Rescptionist")
       {
         this.authser.isLogged=true;
         localStorage.setItem('token',data.token);
