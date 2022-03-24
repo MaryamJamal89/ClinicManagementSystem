@@ -6,7 +6,7 @@ import { Patient } from 'src/app/_models/patient';
 @Component({
   selector: 'pm-add-patient',
   templateUrl: './add-patient.component.html',
-  styleUrls: ['./add-patient.component.css', '../../../../dist/css/adminlte.min.css']
+  styleUrls: ['./add-patient.component.css', '../../../assets/css/adminlte.min.css']
 })
 export class AddPatientComponent implements OnInit {
 

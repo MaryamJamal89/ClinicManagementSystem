@@ -5,7 +5,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'pm-add-appointment-doctor',
   templateUrl: './add-appointment-doctor.component.html',
-  styleUrls: ['./add-appointment-doctor.component.css', '../../../../dist/css/adminlte.min.css']
+  styleUrls: ['./add-appointment-doctor.component.css', '../../../assets/css/adminlte.min.css']
 })
 export class AddAppointmentDoctorComponent implements OnInit {
 
