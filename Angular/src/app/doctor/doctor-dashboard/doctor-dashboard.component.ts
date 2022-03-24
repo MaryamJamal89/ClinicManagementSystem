@@ -22,6 +22,7 @@ import { DOCUMENT } from '@angular/common';
 import { ReceptionistService } from '../../receptionist.service';
 import { Patient } from '../../_models/patient';
 import { Clinic } from '../../_models/clinic';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -30,8 +31,8 @@ import { Clinic } from '../../_models/clinic';
   styleUrls: ['./doctor-dashboard.component.css', '../../../../dist/css/adminlte.min.css']
 })
 export class DoctorDashboardComponent implements OnInit {
-  contentFromHtml: any;
-  constructor(private docSrv: DoctorService, private docSrvP: ReceptionistService) {
+  
+  constructor(private docSrv: DoctorService, private docSrvP: ReceptionistService,public router:Router) {
   }
 
   appointments: Appointment[] = [];
@@ -177,7 +178,7 @@ console.log("1st",this.paymentMethod)
           this.newAppointment = a
           calendarApi.addEvent(
             {
-              title:this.patName + " - " + this.serviceObj.name,
+              title:this.patName + " | " + this.serviceObj.name,
               start: selectInfo.startStr,
               end: selectInfo.endStr,
               allDay: selectInfo.allDay,
@@ -202,6 +203,7 @@ console.log("1st",this.paymentMethod)
       clickInfo.event.remove();
     } else {
       //!Redirect to prescription page
+      this.router.navigateByUrl("/doctor/prescription");
     }
   }
 
