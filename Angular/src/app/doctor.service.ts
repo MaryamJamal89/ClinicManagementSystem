@@ -15,10 +15,7 @@ import { Clinic } from './_models/clinic';
 export class DoctorService {
   //?----------------------------Temp Objects------------------------------?//
 
-  private doctor:Doctor[]=[
-    new Doctor("1","2","Nader","123",5),
-    new Doctor("2","3","Bassem","1234",4),
-  ]
+  private doctor:Doctor[]=[]
 
   private prescription:Prescription[]=[]
 
@@ -53,6 +50,9 @@ export class DoctorService {
   getAllAppointments(){
     return this.http.get<Appointment[]>("http://localhost:8080/appointments");
   }
+  getAppointmentByID(id:string){
+    return this.http.get<Appointment[]>(`http://localhost:8080/appointments/${id}`);
+  }
 
   deleteAppointment(id:string){
     return this.http.delete<Appointment>(`http://localhost:8080/appointments/${id}`);
@@ -62,7 +62,14 @@ export class DoctorService {
   getServicesByClinicId(id:string){
     return this.http.get<Clinic>(`http://localhost:8080/clinic/service/${id}`);
   }
-  //?----------------------------Temp------------------------------?//
+  //?----------------------------Doctors------------------------------?//
+  getAllDoctors(){
+    return this.http.get<Doctor[]>("http://localhost:8080/doctor");
+  }
+  getDocotrByID(id:string){
+    return this.http.get<Appointment>(`http://localhost:8080/doctor/${id}`);
+  }
+
 
   //   getAppointmentByDate(date:Data):Appointment{
   //   for (let i = 0; i < this.appointment.length; i++) {

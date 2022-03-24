@@ -68,10 +68,6 @@ export class DoctorDashboardComponent implements OnInit {
     this.selectedServId = event.target.value;
     this.serviceObj=this.newClinic.services.find(ele => ele._id == this.selectedServId)
     this.selectedServFees=this.serviceObj.fees
-    console.log("HEY",this.serviceObj.fees)
-    console.log("HEY",this.serviceObj)
-    console.log("Payment ",this.selectedServFees)
-
   }
 
   ngOnInit(): void {

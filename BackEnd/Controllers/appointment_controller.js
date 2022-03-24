@@ -11,8 +11,8 @@ exports.getAppoints = function(request, response, next) {
         .catch(error => next(error));
 }
 
-exports.getAppointsId = function(req, res) {
-    appointment.find({ date: req.params.app_date, doctorID: req.params.doctor_id })
+exports.getAppointsByID = function(req, res) {
+    appoint.find({ _id: req.params.id })
         .then((doctors) => res.send(doctors))
         .catch((error) => console.log(error));
 }
