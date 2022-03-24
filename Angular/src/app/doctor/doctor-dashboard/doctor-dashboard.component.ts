@@ -1,6 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, Inject, VERSION } from '@angular/core';
+import {Input, Component, ElementRef, OnInit, ViewChild, AfterViewInit, Inject, VERSION } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 declare let $: any;
 
@@ -22,6 +21,7 @@ import { ReceptionistService } from '../../receptionist.service';
 import { Patient } from '../../_models/patient';
 import { Clinic } from '../../_models/clinic';
 import { Router } from '@angular/router';
+import { ConfirmationService } from 'src/app/confirmation.service';
 
 
 @Component({
@@ -30,8 +30,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./doctor-dashboard.component.css', '../../../assets/css/adminlte.min.css']
 })
 export class DoctorDashboardComponent implements OnInit {
-  
-  constructor(private docSrv: DoctorService, private docSrvP: ReceptionistService,public router:Router) {
+  @Input() title: string="";
+  @Input() message: string="";
+  @Input() btnOkText: string="";
+  @Input() btnCancelText: string="";
+  constructor(private docSrv: DoctorService, private docSrvP: ReceptionistService,public router:Router, public conf:ConfirmationService ) {
   }
 
   appointments: Appointment[] = [];
@@ -54,8 +57,6 @@ export class DoctorDashboardComponent implements OnInit {
   services: Service[] = [];
   newClinic: Clinic = new Clinic("", this.services);
 
-
-
   //event handler for the select element's change event
   selectChangeHandler(event: any) {
     //update the ui
@@ -72,6 +73,7 @@ export class DoctorDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("hereeeeeeeeeeeeeeeeeeee")
     this.getPatients();
     this.getData();
     this.getServices("62345f2086e4b9494d6237a4");
@@ -86,6 +88,7 @@ export class DoctorDashboardComponent implements OnInit {
         
         for (let i = 0; i < this.appointments.length; i++) {
           this.patObj=this.patients.find(ele => ele._id == this.appointments[i].patientID)
+          if(this.patObj!=undefined)
           this.patName=this.patObj.name
           this.arr.push({
             title: this.patName + " - " + this.appointments[i].service.name,
@@ -144,6 +147,7 @@ export class DoctorDashboardComponent implements OnInit {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
+    
     if(confirm("Add event?") == false)
     return
     // const title = this.serviceObj.name;
@@ -189,18 +193,56 @@ console.log("1st",this.paymentMethod)
     }
   }
 
+  openConfirmationDialog(clickInfo : EventClickArg) {
+    this.conf.confirm('Adding prescription', `Do you really Want to add prescription ?
+     
+    Confirm to add prescription\nDelete to Delete Appointment
+     
+     Press ESC to cancel`)
+    .then((confirmed) => {if(confirmed){this.redirectToPresc(clickInfo)}else{this.DeleteAppointment(clickInfo)}})
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+  }
+
+
+  
+  
   handleEventClick(clickInfo: EventClickArg) {
-    if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+    
+    this.openConfirmationDialog(clickInfo);
+    
+      // this.deleteAppointment._id = clickInfo.event.id
+      // this.docSrv.deleteAppointment(this.deleteAppointment._id).subscribe({
+      //   next: a => { this.deleteAppointment = a; }
+      // })
+      // clickInfo.event.remove();
+  }
+
+  redirectToPresc(clickInfo: EventClickArg){
+    console.log("recscsccs")
+    this.router.navigateByUrl(`/doctor/prescription/${clickInfo.event.id}`);
+  }
+  DeleteAppointment(clickInfo: EventClickArg){
       this.deleteAppointment._id = clickInfo.event.id
       this.docSrv.deleteAppointment(this.deleteAppointment._id).subscribe({
         next: a => { this.deleteAppointment = a; }
       })
-      clickInfo.event.remove();
-    } else {
-      //!Redirect to prescription page
-      this.router.navigateByUrl(`/doctor/prescription/${clickInfo.event.id}`);
+      clickInfo.event.remove();  
     }
-  }
+  
+  // handleEventClick(clickInfo: EventClickArg) {
+    
+  //   this.openConfirmationDialog();
+  //   if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+  //     this.deleteAppointment._id = clickInfo.event.id
+  //     this.docSrv.deleteAppointment(this.deleteAppointment._id).subscribe({
+  //       next: a => { this.deleteAppointment = a; }
+  //     })
+  //     clickInfo.event.remove();
+  //   } else {
+  //     //!Redirect to prescription page
+  //     this.router.navigateByUrl(`/doctor/prescription/${clickInfo.event.id}`);
+  //   }
+  // }
 
   handleEvents(events: EventApi[]) {
     this.currentEvents = events;

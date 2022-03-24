@@ -37,6 +37,7 @@ import { AboutComponent } from './about/about.component';
 import { AboutUsReceptionistComponent } from './receptionist/about-us-receptionist/about-us-receptionist.component';
 import { DoctorHeaderSideformComponent } from './components/doctor-header-sideform/doctor-header-sideform.component';
 import { SimpleFooterComponent } from './components/simple-footer/simple-footer.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 const routes:Routes=
 [
@@ -85,6 +86,7 @@ FullCalendarModule.registerPlugins([
     AboutUsReceptionistComponent,
     DoctorHeaderSideformComponent,
     SimpleFooterComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,

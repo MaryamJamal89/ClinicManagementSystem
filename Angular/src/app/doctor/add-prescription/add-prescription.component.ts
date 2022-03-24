@@ -79,9 +79,11 @@ export class AddPrescriptionComponent implements OnInit {
     console.log(this.newPrescription)
     this.docServ.addPrescription(this.newPrescription).subscribe({
       next:a=>{this.newPrescription=a
+        this.backToDash()
       console.log(a)
       console.log(this.newPrescription)
       }
+
     })
   }
 
