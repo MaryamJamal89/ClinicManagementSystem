@@ -30,15 +30,12 @@ import { ConfirmationService } from 'src/app/confirmation.service';
   styleUrls: ['./doctor-dashboard.component.css', '../../../assets/css/adminlte.min.css']
 })
 export class DoctorDashboardComponent implements OnInit {
-  @Input() title: string="";
-  @Input() message: string="";
-  @Input() btnOkText: string="";
-  @Input() btnCancelText: string="";
+
   constructor(private docSrv: DoctorService, private docSrvP: ReceptionistService,public router:Router, public conf:ConfirmationService ) {
   }
 
   appointments: Appointment[] = [];
-  newAppointment: Appointment = new Appointment("62345f2086e4b9494d6237a4", "", new Date(), new Date(), "", 0, new Service("", 0));
+  newAppointment: Appointment = new Appointment("62345fe486e4b9494d6237c3", "", new Date(), new Date(), "", 0, new Service("", 0));
   deleteAppointment: Appointment = new Appointment("", "", new Date(), new Date(), "cash", 0, new Service("", 0));
   calendarPlugins = [dayGridPlugin]; // important!
   calendarVisible = true;
