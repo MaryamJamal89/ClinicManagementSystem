@@ -46,7 +46,15 @@ export class DoctorDashboardComponent implements OnInit  {
   arr: any = [];
   patients: Patient[] = [];
 
- 
+  selectedDay: string = '';
+
+  //event handler for the select element's change event
+  selectChangeHandler (event: any) {
+    //update the ui
+    this.selectedDay = event.target.value;
+    console.log(event)
+    console.log(this.selectedDay)
+  }
 
   ngOnInit(): void {
     this.getData();
