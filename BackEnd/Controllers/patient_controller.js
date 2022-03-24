@@ -10,7 +10,7 @@ exports.getPatients = function(request, response, next) {
         .catch(error => next(error));
 }
 exports.getPatientsbyID = function(request, response, next) {
-    Patient.find({_id:request.params.id})
+    Patient.findOne({_id:request.params.id})
         .then(result => {
             response.status(200).json(result)
         })

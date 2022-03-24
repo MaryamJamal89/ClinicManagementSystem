@@ -51,7 +51,7 @@ export class DoctorService {
     return this.http.get<Appointment[]>("http://localhost:8080/appointments");
   }
   getAppointmentByID(id:string){
-    return this.http.get<Appointment[]>(`http://localhost:8080/appointments/${id}`);
+    return this.http.get<Appointment>(`http://localhost:8080/appointments/${id}`);
   }
 
   deleteAppointment(id:string){
@@ -67,7 +67,7 @@ export class DoctorService {
     return this.http.get<Doctor[]>("http://localhost:8080/doctor");
   }
   getDocotrByID(id:string){
-    return this.http.get<Appointment>(`http://localhost:8080/doctor/${id}`);
+    return this.http.get<Doctor>(`http://localhost:8080/doctor/${id}`);
   }
 
 

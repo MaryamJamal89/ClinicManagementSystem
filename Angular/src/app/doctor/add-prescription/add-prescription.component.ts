@@ -15,42 +15,28 @@ import { Prescription } from '../../_models/prescription';
 })
 export class AddPrescriptionComponent implements OnInit {
 
-  appointment: Appointment[] = []//new Appointment("","",new Date(),new Date ,"",0,new Service("",0));
-
-  patName: string="";
-  patient:Patient|undefined =new Patient("","","",new Date(),0)
-  
-
-  docName: string="";
-  doctor:Doctor|undefined =new Doctor("","","",0)
-
-
-
-  id:any
   newPrescription:Prescription= new Prescription("","","");
-  constructor(public docServ: DoctorService, private route:ActivatedRoute,public router:Router) { }
 
+  constructor(public docServ: DoctorService, public recepServ: ReceptionistService,private route:ActivatedRoute,public router:Router ) { }
+
+
+
+  appointment: Appointment =new Appointment("","",new Date(),new Date ,"",0,new Service("",0));
+  
+  patName: string="";
+  patient:Patient|undefined=new Patient("","","",new Date(),0)
+  
+  docName: string="";
+  doctor:Doctor =new Doctor("","","",0)
+  
+  id:any
+  
   ngOnInit(): void {
     this.id=this.route.snapshot.paramMap.get('id')
     this.newPrescription.appointmentID=this.id
     console.log(this.id)
+    this.getAppointments("6238697221778b957aff7d26");
   }
-
-  
-
-  /////////////////Find a spacific patient
-  // findAppointments(appID:string) {
-  //   console.log(this.appointment)
-  //   this.appObj =this.appointment.find(ele => ele._id == appID)
-  // }
-  // findPatient(patientID?:string) {
-  //   console.log(this.patients)
-  //   this.patObj =this.patients.find(ele => ele._id == patientID)
-  // }
-  // findDocotor(DocotoID?:string) {
-  //   console.log(this.doctors)
-  //   this.docObj =this.doctors.find(ele => ele._id == DocotoID)
-  // }
 
  //?----------------------Appointments-----------------------------//
  getAppointments(id:string) {
@@ -58,26 +44,32 @@ export class AddPrescriptionComponent implements OnInit {
     next: a => {
       console.log(a)
        this.appointment = a;
-      // getPatients(this.appointment)
+       console.log(this.appointment.doctorID)
+       this.getDoctors("62345fe486e4b9494d6237c3")
+       this.getPatients(this.appointment.patientID)
     }
   })
 }
   //?----------------------Patient-----------------------------//
   getPatients(id:string) {
-    // this.recepServ.getAllPatient(id).subscribe({
-    //   next: a => {
-    //     console.log(a)
-    //     // this.patient = a;
-    //   }
-    // })
+    this.recepServ.getPatientByID(id).subscribe({
+      next: a => {
+        console.log(a)
+         this.patient = a;
+         if(this.patient==null) return;
+         this.patName=this.patient.name
+      }
+    })
   }
   
     //?----------------------Doctor-----------------------------//
     getDoctors(id:string) {
       this.docServ.getDocotrByID(id).subscribe({
         next: a => {
-          console.log(a)
-          // this.doctor = a;
+          console.log("doctor",a)
+          this.doctor = a;
+          if(this.doctor==null) return; 
+          this.docName=this.doctor.userName
         }
       })
     }
