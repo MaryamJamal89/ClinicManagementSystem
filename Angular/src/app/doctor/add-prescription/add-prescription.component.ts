@@ -35,7 +35,7 @@ export class AddPrescriptionComponent implements OnInit {
     this.id=this.route.snapshot.paramMap.get('id')
     this.newPrescription.appointmentID=this.id
     console.log(this.id)
-    this.getAppointments("623c6abbfa1129ddbbb8062d");
+    this.getAppointments("6238697221778b957aff7d26");
   }
 
  //?----------------------Appointments-----------------------------//
@@ -45,7 +45,7 @@ export class AddPrescriptionComponent implements OnInit {
       console.log(a)
        this.appointment = a;
        console.log(this.appointment.doctorID)
-       this.getDoctors(this.appointment.doctorID)
+       this.getDoctors("62345fe486e4b9494d6237c3")
        this.getPatients(this.appointment.patientID)
     }
   })
