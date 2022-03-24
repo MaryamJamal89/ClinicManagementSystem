@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'pm-print-invoice',
@@ -10,23 +11,17 @@ export class PrintInvoiceComponent implements OnInit {
   @ViewChild('content')
   content!: ElementRef;
 
-
-  public SavePDF(): void {
-    let content = this.content.nativeElement;
-    let doc = new jsPDF('p', 'pt', 'a4');
-    let _elementHandlers =
-    {
-      '#editor': function (element: any, renderer: any) {
-        return true;
-      }
-    };
-
-    doc.html(content.innerHTML, {
-      'width': 190,
-      //'elementHandlers': _elementHandlers
+  public openPDF(): void {
+    let DATA: any = document.getElementById('content');
+    html2canvas(DATA).then((canvas) => {
+      let fileWidth = 208;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 10;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      PDF.save('Inovice.pdf');
     });
-    doc.text(content.innerHTML, 10, 10);
-    doc.save('invoice.pdf');
   }
 
   @ViewChild('print-btn')
