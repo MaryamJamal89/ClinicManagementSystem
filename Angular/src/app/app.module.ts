@@ -50,7 +50,7 @@ const routes:Routes=
   {path:"receptionist/appointment",component:AddAppointmentComponent,canActivate:[LoginGuard]},
   {path:"receptionist/doctor",component:AddDoctorComponent,canActivate:[LoginGuard]},
   {path:"receptionist/addReceptionist",component:AddReceptionistComponent,canActivate:[LoginGuard]},
-  {path:"receptionist/invoice",component:PrintInvoiceComponent,canActivate:[LoginGuard]},
+  {path:"receptionist/invoice/:id",component:PrintInvoiceComponent,canActivate:[LoginGuard]},
   {path:"receptionist/about",component:AboutUsReceptionistComponent,canActivate:[LoginGuard]},
   {path:"",redirectTo:"/login",pathMatch:"full"}
 ]

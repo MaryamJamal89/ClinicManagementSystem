@@ -8,6 +8,8 @@ import { Service } from '../../_models/service';
 import { DoctorService } from '../../doctor.service';
 import { Patient } from '../../_models/patient';
 import { Clinic } from '../../_models/clinic';
+import { Router } from '@angular/router';
+import { ConfirmationService } from 'src/app/confirmation.service';
 
 @Component({
   selector: 'pm-receptionist-dashboard',
@@ -15,13 +17,13 @@ import { Clinic } from '../../_models/clinic';
   styleUrls: ['./receptionist-dashboard.component.css', '../../../assets/css/adminlte.min.css']
 })
 export class ReceptionistDashboardComponent implements OnInit {
-  constructor(public docSrv: DoctorService, public recSrv: ReceptionistService) {
+
+  
+  constructor(private docSrv: DoctorService, public recSrv: ReceptionistService,public router:Router, public conf:ConfirmationService ) {
   }
-
-
   showApp(){
     this.recSrv.showAppointment = !this.recSrv.showAppointment
-  }
+  } 
 
   appointments: Appointment[] = [];
   newAppointment: Appointment = new Appointment("62345f2086e4b9494d6237a4", "", new Date(), new Date(), "", 0, new Service("", 0));
@@ -43,8 +45,6 @@ export class ReceptionistDashboardComponent implements OnInit {
   services: Service[] = [];
   newClinic: Clinic = new Clinic("", this.services);
 
-
-
   //event handler for the select element's change event
   selectChangeHandler(event: any) {
     //update the ui
@@ -58,13 +58,10 @@ export class ReceptionistDashboardComponent implements OnInit {
     this.selectedServId = event.target.value;
     this.serviceObj=this.newClinic.services.find(ele => ele._id == this.selectedServId)
     this.selectedServFees=this.serviceObj.fees
-    console.log("HEY",this.serviceObj.fees)
-    console.log("HEY",this.serviceObj)
-    console.log("Payment ",this.selectedServFees)
-
   }
 
   ngOnInit(): void {
+    console.log("hereeeeeeeeeeeeeeeeeeee")
     this.getPatients();
     this.getData();
     this.getServices("62345f2086e4b9494d6237a4");
@@ -79,9 +76,10 @@ export class ReceptionistDashboardComponent implements OnInit {
         
         for (let i = 0; i < this.appointments.length; i++) {
           this.patObj=this.patients.find(ele => ele._id == this.appointments[i].patientID)
+          if(this.patObj!=undefined)
           this.patName=this.patObj.name
           this.arr.push({
-            title: this.patName + " | " + this.appointments[i].service.name,
+            title: this.patName + " - " + this.appointments[i].service.name,
             date: this.appointments[i].startDate,
             end: this.appointments[i].endDate,
             id: this.appointments[i]._id,
@@ -137,6 +135,7 @@ export class ReceptionistDashboardComponent implements OnInit {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
+    
     if(confirm("Add event?") == false)
     return
     // const title = this.serviceObj.name;
@@ -166,39 +165,72 @@ console.log("1st",this.paymentMethod)
           this.newAppointment = a
           calendarApi.addEvent(
             {
-              title:this.patName + " - " + this.serviceObj.name,
+              title:this.patName + " | " + this.serviceObj.name,
               start: selectInfo.startStr,
               end: selectInfo.endStr,
               allDay: selectInfo.allDay,
               id: this.newAppointment._id,
             });
         }
-      }
-      
-
-      )
+      })
       // //this.docSrv.addAppointment(new Appointment("0","0", "0", new Date(selectInfo.startStr), 1, paymentMethod, fees, title));
       // this.appointments.forEach(element => {
       //   console.log(element)
       // });
 
     }
-      // this.serviceObj = undefined
-      this.FeesAmount = 0
-      this.paymentMethod = ""
   }
 
+  openConfirmationDialog(clickInfo : EventClickArg) {
+    this.conf.confirm('Adding prescription', `Do you really Want to add prescription ?
+     
+    Confirm to add prescription\nDelete to Delete Appointment
+     
+     Press ESC to cancel`)
+    .then((confirmed) => {if(confirmed){this.redirectToPresc(clickInfo)}else{this.DeleteAppointment(clickInfo)}})
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+  }
+
+
+  
+  
   handleEventClick(clickInfo: EventClickArg) {
-    if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+    
+    this.openConfirmationDialog(clickInfo);
+    
+      // this.deleteAppointment._id = clickInfo.event.id
+      // this.docSrv.deleteAppointment(this.deleteAppointment._id).subscribe({
+      //   next: a => { this.deleteAppointment = a; }
+      // })
+      // clickInfo.event.remove();
+  }
+
+  redirectToPresc(clickInfo: EventClickArg){
+    console.log("recscsccs")
+    this.router.navigateByUrl(`receptionist/invoice/${clickInfo.event.id}`);
+  }
+  DeleteAppointment(clickInfo: EventClickArg){
       this.deleteAppointment._id = clickInfo.event.id
       this.docSrv.deleteAppointment(this.deleteAppointment._id).subscribe({
         next: a => { this.deleteAppointment = a; }
       })
-      clickInfo.event.remove();
-    } else {
-      //!Redirect to prescription page
+      clickInfo.event.remove();  
     }
-  }
+  
+  // handleEventClick(clickInfo: EventClickArg) {
+    
+  //   this.openConfirmationDialog();
+  //   if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+  //     this.deleteAppointment._id = clickInfo.event.id
+  //     this.docSrv.deleteAppointment(this.deleteAppointment._id).subscribe({
+  //       next: a => { this.deleteAppointment = a; }
+  //     })
+  //     clickInfo.event.remove();
+  //   } else {
+  //     //!Redirect to prescription page
+  //     this.router.navigateByUrl(`/doctor/prescription/${clickInfo.event.id}`);
+  //   }
+  // }
 
   handleEvents(events: EventApi[]) {
     this.currentEvents = events;
@@ -224,7 +256,6 @@ console.log("1st",this.paymentMethod)
         }
       })
     }
-
   //?-------------------------------Add Appointment--------------------------------?//
   // addDepartment(){
   //   this.stdSer.add(this.newDepartment).subscribe({
