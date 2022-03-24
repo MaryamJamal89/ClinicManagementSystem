@@ -12,7 +12,7 @@ import { Clinic } from '../../_models/clinic';
 @Component({
   selector: 'pm-receptionist-dashboard',
   templateUrl: './receptionist-dashboard.component.html',
-  styleUrls: ['./receptionist-dashboard.component.css', '../../../../dist/css/adminlte.min.css']
+  styleUrls: ['./receptionist-dashboard.component.css', '../../../assets/css/adminlte.min.css']
 })
 export class ReceptionistDashboardComponent implements OnInit {
   constructor(public docSrv: DoctorService, public recSrv: ReceptionistService) {

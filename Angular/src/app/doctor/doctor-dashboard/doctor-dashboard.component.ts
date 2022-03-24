@@ -12,7 +12,6 @@ import { DoctorService } from '../../doctor.service';
 
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; //< import. it
-
 import { EventInput } from '@fullcalendar/angular';
 
 import { arrow } from '@popperjs/core';
@@ -28,7 +27,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'pm-doctor-dashboard',
   templateUrl: './doctor-dashboard.component.html',
-  styleUrls: ['./doctor-dashboard.component.css', '../../../../dist/css/adminlte.min.css']
+  styleUrls: ['./doctor-dashboard.component.css', '../../../assets/css/adminlte.min.css']
 })
 export class DoctorDashboardComponent implements OnInit {
   
