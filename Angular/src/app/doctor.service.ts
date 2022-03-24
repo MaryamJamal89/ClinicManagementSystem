@@ -20,10 +20,7 @@ export class DoctorService {
     new Doctor("2","3","Bassem","1234",4),
   ]
 
-  private prescription:Prescription[]=[
-    new Prescription("4","1","1","Kotifan","2 Days"),
-    new Prescription("5","2","2","Painkiller","5 Days"),
-  ]
+  private prescription:Prescription[]=[]
 
   private appointment:Appointment[]=[
     new Appointment("1","1",new Date(2022,2,22,10,30),new Date(2022,2,22,11,30),"Cash",1000,new Service("ssss",0)),

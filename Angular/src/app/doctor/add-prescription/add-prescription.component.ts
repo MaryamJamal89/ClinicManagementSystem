@@ -9,7 +9,7 @@ import { Prescription } from '../../_models/prescription';
 })
 export class AddPrescriptionComponent implements OnInit {
 
-  newPrescription:Prescription= new Prescription("","","","","");
+  newPrescription:Prescription= new Prescription("623c6abbfa1129ddbbb8062d","","");
 
   constructor(public docServ: DoctorService) { }
 
@@ -17,8 +17,12 @@ export class AddPrescriptionComponent implements OnInit {
   }
 
   addPresc(){
+    console.log(this.newPrescription)
     this.docServ.addPrescription(this.newPrescription).subscribe({
-      next:a=>{this.newPrescription=a}
+      next:a=>{this.newPrescription=a
+      console.log(a)
+      console.log(this.newPrescription)
+      }
     })
   }
 
