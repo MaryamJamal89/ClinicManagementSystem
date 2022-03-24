@@ -12,7 +12,6 @@ import { DoctorService } from '../../doctor.service';
 
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; //< import. it
-
 import { EventInput } from '@fullcalendar/angular';
 
 import { arrow } from '@popperjs/core';
@@ -20,12 +19,10 @@ import { arrow } from '@popperjs/core';
 import { Service } from '../../_models/service';
 import { DOCUMENT } from '@angular/common';
 
-
-
 @Component({
   selector: 'pm-doctor-dashboard',
   templateUrl: './doctor-dashboard.component.html',
-  styleUrls: ['./doctor-dashboard.component.css', '../../../../dist/css/adminlte.min.css']
+  styleUrls: ['./doctor-dashboard.component.css', '../../../assets/css/adminlte.min.css']
 })
 export class DoctorDashboardComponent implements OnInit  {
   contentFromHtml:any;
@@ -43,7 +40,6 @@ export class DoctorDashboardComponent implements OnInit  {
   calendarOptions: CalendarOptions = {}
   currentEvents: EventApi[] = [];
   arr: any = [];
- 
 
   ngOnInit(): void {
     this.getData();

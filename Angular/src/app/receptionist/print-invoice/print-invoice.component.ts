@@ -4,7 +4,7 @@ import jsPDF from 'jspdf';
 @Component({
   selector: 'pm-print-invoice',
   templateUrl: './print-invoice.component.html',
-  styleUrls: ['./print-invoice.component.css', '../../../../dist/css/adminlte.min.css']
+  styleUrls: ['./print-invoice.component.css', '../../../assets/css/adminlte.min.css']
 })
 export class PrintInvoiceComponent implements OnInit {
   @ViewChild('content')
