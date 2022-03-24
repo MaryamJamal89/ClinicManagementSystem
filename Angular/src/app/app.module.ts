@@ -43,7 +43,7 @@ const routes:Routes=
   {path:"login",component:LoginComponent},
   {path:"doctor",component:DoctorDashboardComponent,canActivate:[LoginGuard]},
   {path:"receptionist",component:ReceptionistDashboardComponent,canActivate:[LoginGuard]},
-  {path:"doctor/prescription",component:AddPrescriptionComponent,canActivate:[LoginGuard]},
+  {path:"doctor/prescription/:id",component:AddPrescriptionComponent,canActivate:[LoginGuard]},
   {path:"doctor/about",component:AboutComponent,canActivate:[LoginGuard]},
   {path:"receptionist/patient",component:AddPatientComponent,canActivate:[LoginGuard]},
   {path:"receptionist/appointment",component:AddAppointmentComponent,canActivate:[LoginGuard]},

@@ -202,7 +202,7 @@ console.log("1st",this.paymentMethod)
       clickInfo.event.remove();
     } else {
       //!Redirect to prescription page
-      this.router.navigateByUrl("/doctor/prescription");
+      this.router.navigateByUrl(`/doctor/prescription/${clickInfo.event.id}`);
     }
   }
 

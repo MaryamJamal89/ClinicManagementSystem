@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DoctorService } from 'src/app/doctor.service';
 import { Prescription } from '../../_models/prescription';
 
@@ -9,11 +10,14 @@ import { Prescription } from '../../_models/prescription';
 })
 export class AddPrescriptionComponent implements OnInit {
 
-  newPrescription:Prescription= new Prescription("623c6abbfa1129ddbbb8062d","","");
-
-  constructor(public docServ: DoctorService) { }
+  id:any
+  newPrescription:Prescription= new Prescription("","","");
+  constructor(public docServ: DoctorService, private route:ActivatedRoute,public router:Router) { }
 
   ngOnInit(): void {
+    this.id=this.route.snapshot.paramMap.get('id')
+    this.newPrescription.appointmentID=this.id
+    console.log(this.id)
   }
 
   addPresc(){
@@ -24,6 +28,10 @@ export class AddPrescriptionComponent implements OnInit {
       console.log(this.newPrescription)
       }
     })
+  }
+
+  backToDash(){
+    this.router.navigateByUrl(`/doctor`);
   }
 
 }
