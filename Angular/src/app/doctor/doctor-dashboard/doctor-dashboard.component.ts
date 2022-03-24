@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild,AfterViewInit, Inject, VERSION } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, Inject, VERSION } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -28,16 +28,16 @@ import { Patient } from '../../_models/patient';
   templateUrl: './doctor-dashboard.component.html',
   styleUrls: ['./doctor-dashboard.component.css', '../../../../dist/css/adminlte.min.css']
 })
-export class DoctorDashboardComponent implements OnInit  {
-  contentFromHtml:any;
-  constructor(private docSrv: DoctorService, private modalService: NgbModal,private docSrvP: ReceptionistService) {
+export class DoctorDashboardComponent implements OnInit {
+  contentFromHtml: any;
+  constructor(private docSrv: DoctorService, private modalService: NgbModal, private docSrvP: ReceptionistService) {
   }
 
   // constructor(private modalService: NgbModal) { }  
-  
+
   appointments: Appointment[] = [];
-  newAppointment: Appointment = new Appointment("62345f2086e4b9494d6237a4", "", new Date(), new Date(), "cash", 1000, new Service("x",0));
-  deleteAppointment: Appointment = new Appointment("", "", new Date(), new Date(), "cash", 0, new Service("",0));
+  newAppointment: Appointment = new Appointment("62345f2086e4b9494d6237a4", "", new Date(), new Date(), "cash", 1000, new Service("x", 0));
+  deleteAppointment: Appointment = new Appointment("", "", new Date(), new Date(), "cash", 0, new Service("", 0));
   calendarPlugins = [dayGridPlugin]; // important!
   //INITIAL_EVENTS: EventInput[] = [];
   calendarVisible = true;
@@ -46,14 +46,14 @@ export class DoctorDashboardComponent implements OnInit  {
   arr: any = [];
   patients: Patient[] = [];
 
-  selectedDay: string = '';
+  selectedPatID: string = '';
 
   //event handler for the select element's change event
-  selectChangeHandler (event: any) {
+  selectChangeHandler(event: any) {
     //update the ui
-    this.selectedDay = event.target.value;
+    this.selectedPatID = event.target.value;
     console.log(event)
-    console.log(this.selectedDay)
+    console.log(this.selectedPatID)
   }
 
   ngOnInit(): void {
@@ -66,15 +66,16 @@ export class DoctorDashboardComponent implements OnInit  {
     this.docSrv.getAllAppointments().subscribe({
       next: a => {
         this.appointments = a;
-        this.arr=[];
+        this.arr = [];
         for (let i = 0; i < this.appointments.length; i++) {
           this.arr.push({
-            title:this.appointments[i].service.name,
-            date:this.appointments[i].startDate,
-            end:this.appointments[i].endDate,
-            id:this.appointments[i]._id,
-          })}
-        setTimeout(()=>{
+            title: this.appointments[i].service.name,
+            date: this.appointments[i].startDate,
+            end: this.appointments[i].endDate,
+            id: this.appointments[i]._id,
+          })
+        }
+        setTimeout(() => {
           this.calendarOptions = {
             headerToolbar: {
               left: 'prev,next today',
@@ -124,60 +125,53 @@ export class DoctorDashboardComponent implements OnInit  {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
+    if(confirm("Add event?") == false)
+    return
     const title = this.newAppointment.service.name;
-    // const paymentMethod = prompt('Please enter paymentMethod');
-    // let s = prompt('Please enter Fees') || 0;
-    // let fees: number = +s;
-
     const calendarApi = selectInfo.view.calendar;
 
     calendarApi.unselect(); // clear date selection
 
     if (title) {
-      // this.newAppointment.serviceName=title
-    
-      // const selectedCategoryArray = this.patients.filter(
-      //   (itemCategory) =>
-      //     this.prtl.category.id === itemCategory.id &&
-      //     this.prtl.category.name === itemCategory.name
-      // );
-  
-      // this.selectedCategory = selectedCategoryArray[0];
+      if (this.selectedPatID == "" || title == "") {
+        alert("You have to choose a Patient!")
+        return
+      }
 
-        this.newAppointment.service.name = title 
-        this.newAppointment.patientID =  
-        this.newAppointment.startDate =  new Date(selectInfo.start)
-        this.newAppointment.endDate =  new Date(selectInfo.end)
-        // this.open(this.contentFromHtml)
+      this.newAppointment.patientID = this.selectedPatID
+      this.newAppointment.service.name = title
+      this.newAppointment.startDate = new Date(selectInfo.start)
+      this.newAppointment.endDate = new Date(selectInfo.end)
 
-        this.docSrv.addAppointment(this.newAppointment).subscribe({
-          next:a=>{this.newAppointment=a
-            calendarApi.addEvent(
-              {
-                title,
-                start: selectInfo.startStr,
-                end: selectInfo.endStr,
-                allDay: selectInfo.allDay,
-                id:this.newAppointment._id,
-              });
-          }
-        })
-      //this.docSrv.addAppointment(new Appointment("0","0", "0", new Date(selectInfo.startStr), 1, paymentMethod, fees, title));
-      this.appointments.forEach(element => {
-        console.log(element)
-      });
+      this.docSrv.addAppointment(this.newAppointment).subscribe({
+        next: a => {
+          this.newAppointment = a
+          calendarApi.addEvent(
+            {
+              title,
+              start: selectInfo.startStr,
+              end: selectInfo.endStr,
+              allDay: selectInfo.allDay,
+              id: this.newAppointment._id,
+            });
+        }
+      })
+      // //this.docSrv.addAppointment(new Appointment("0","0", "0", new Date(selectInfo.startStr), 1, paymentMethod, fees, title));
+      // this.appointments.forEach(element => {
+      //   console.log(element)
+      // });
 
     }
   }
 
   handleEventClick(clickInfo: EventClickArg) {
     if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      this.deleteAppointment._id= clickInfo.event.id
+      this.deleteAppointment._id = clickInfo.event.id
       this.docSrv.deleteAppointment(this.deleteAppointment._id).subscribe({
         next: a => { this.deleteAppointment = a; }
       })
       clickInfo.event.remove();
-    }else {
+    } else {
       //!Redirect to prescription page
     }
   }
@@ -187,12 +181,13 @@ export class DoctorDashboardComponent implements OnInit  {
   }
 
   //?----------------------Patient-----------------------------//
-  getPatients(){
+  getPatients() {
     this.docSrvP.getAllPatient().subscribe({
       next: a => {
         this.patients = a;
         console.log(this.patients)
-          }})
+      }
+    })
   }
 
   // //?-------------------------------Add Appointment--------------------------------?//
@@ -200,7 +195,7 @@ export class DoctorDashboardComponent implements OnInit  {
   // closeResult = '';
 
   // open(content: any) {
-    
+
   //   this.modalService.open(content, {backdrop: false,size: 'lg', keyboard: true, centered: true, ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
   //     this.closeResult = `Closed with: ${result}`;
   //   }, (reason) => {

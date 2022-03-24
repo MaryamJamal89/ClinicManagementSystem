@@ -49,7 +49,7 @@
                                                     </div>
                                                     <select class="form-control" id="pCategory" name="pCategory" (change)="selectChangeHandler($event)">
                           >
-                          <option value="" disabled>Choose a Patient</option>
+                          <option value="" selected="true" disabled="disabled" >Choose a Patient</option>
                           <option *ngFor="let c of patients" value={{c._id}}>{{ c.name }}</option>
                           </select>
                                                 </div>
