@@ -9,8 +9,8 @@ exports.getPrescription = function(request, response, next) {
 }
 
 exports.getbyDoctor = function(request, response, next) {
-    prescription.find({ doctorID: req.params.doctor_id })
-        .then((prescription) => res.send(prescription))
+    prescription.find({ doctorID: request.params.doctor_id })
+        .then((prescription) => response.send(prescription))
         .catch((error) => console.log(error));
 }
 

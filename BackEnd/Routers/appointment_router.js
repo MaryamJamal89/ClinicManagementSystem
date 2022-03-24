@@ -9,6 +9,8 @@ const controller = require("./../Controllers/appointment_controller")
 //get all appointments 
 router.get("", controller.getAppoints);
 
+router.get("/:id", controller.getAppointsByID);
+
 router.post("", controller.createAppoints);
 
 router.put("/update", controller.updAteappoints);

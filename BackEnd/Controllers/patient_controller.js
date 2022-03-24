@@ -9,7 +9,13 @@ exports.getPatients = function(request, response, next) {
         })
         .catch(error => next(error));
 }
-
+exports.getPatientsbyID = function(request, response, next) {
+    Patient.find({_id:request.params.id})
+        .then(result => {
+            response.status(200).json(result)
+        })
+        .catch(error => next(error));
+}
 ////////////////////////////////////////POST//////////////////////////////////////////////////////////
 exports.createPatient = (request, response, next) => {
     //validation result

@@ -1,5 +1,5 @@
 export class Doctor {
-    constructor(public _id:string,public clinicId:string, public username:string,public password:string, public rating:number){}
+    constructor(public clinicId:string, public username:string,public password:string, public rating:number,public _id?:string){}
 
     get Id(){
         return this._id;
