@@ -5,6 +5,9 @@ import { EventInput } from '@fullcalendar/angular';
 import { Appointment } from '../../_models/appointment';
 import { ReceptionistService } from '../../receptionist.service';
 import { Service } from '../../_models/service';
+import { DoctorService } from '../../doctor.service';
+import { Patient } from '../../_models/patient';
+import { Clinic } from '../../_models/clinic';
 
 @Component({
   selector: 'pm-receptionist-dashboard',
@@ -12,35 +15,79 @@ import { Service } from '../../_models/service';
   styleUrls: ['./receptionist-dashboard.component.css', '../../../../dist/css/adminlte.min.css']
 })
 export class ReceptionistDashboardComponent implements OnInit {
+  constructor(public docSrv: DoctorService, public recSrv: ReceptionistService) {
+  }
+
+
+  showApp(){
+    this.recSrv.showAppointment = !this.recSrv.showAppointment
+  }
+
   appointments: Appointment[] = [];
-  newAppointment: Appointment = new Appointment("62345f2086e4b9494d6237a4", "6235f4d9571875cdd3317bb4", new Date(), new Date(), "cash", 1000, new Service("x",0));
-  deleteAppointment: Appointment = new Appointment("", "", new Date(), new Date(), "cash", 0, new Service("",0));
+  newAppointment: Appointment = new Appointment("62345f2086e4b9494d6237a4", "", new Date(), new Date(), "", 0, new Service("", 0));
+  deleteAppointment: Appointment = new Appointment("", "", new Date(), new Date(), "cash", 0, new Service("", 0));
   calendarPlugins = [dayGridPlugin]; // important!
-  //INITIAL_EVENTS: EventInput[] = [];
   calendarVisible = true;
   calendarOptions: CalendarOptions = {}
   currentEvents: EventApi[] = [];
-  arr:any =[];
-  constructor(private recSrv: ReceptionistService) { }
-  
+  arr: any = [];
+  patients: Patient[] = [];
+  selectedPatID: string = '';
+  selectedServId: string ='';
+  selectedServFees: number=0;
+  patName: string="";
+  FeesAmount: number=0;
+  paymentMethod: string="";
+  serviceObj:any//Service= new Service("",0);
+  patObj:any//Service= new Service("",0);
+  services: Service[] = [];
+  newClinic: Clinic = new Clinic("", this.services);
+
+
+
+  //event handler for the select element's change event
+  selectChangeHandler(event: any) {
+    //update the ui
+    this.selectedPatID = event.target.value;
+    this.patObj=this.patients.find(ele => ele._id == this.selectedPatID)
+    this.patName=this.patObj.name
+  }
+
+  selectChangeServices(event: any) {
+    //update the ui
+    this.selectedServId = event.target.value;
+    this.serviceObj=this.newClinic.services.find(ele => ele._id == this.selectedServId)
+    this.selectedServFees=this.serviceObj.fees
+    console.log("HEY",this.serviceObj.fees)
+    console.log("HEY",this.serviceObj)
+    console.log("Payment ",this.selectedServFees)
+
+  }
+
   ngOnInit(): void {
+    this.getPatients();
     this.getData();
+    this.getServices("62345f2086e4b9494d6237a4");
     // console.log(new mongoose.types.objectId)
   }
 
-  getData(){
-    this.recSrv.getAllAppointments().subscribe({
+  getData() {
+    this.docSrv.getAllAppointments().subscribe({
       next: a => {
         this.appointments = a;
-        this.arr=[];
+        this.arr = [];
+        
         for (let i = 0; i < this.appointments.length; i++) {
+          this.patObj=this.patients.find(ele => ele._id == this.appointments[i].patientID)
+          this.patName=this.patObj.name
           this.arr.push({
-            title:this.appointments[i].service.name,
-            date:this.appointments[i].startDate,
-            end:this.appointments[i].endDate,
-            id:this.appointments[i]._id,
-          })}
-        setTimeout(()=>{
+            title: this.patName + " | " + this.appointments[i].service.name,
+            date: this.appointments[i].startDate,
+            end: this.appointments[i].endDate,
+            id: this.appointments[i]._id,
+          })
+        }
+        setTimeout(() => {
           this.calendarOptions = {
             headerToolbar: {
               left: 'prev,next today',
@@ -57,8 +104,7 @@ export class ReceptionistDashboardComponent implements OnInit {
             select: this.handleDateSelect.bind(this),
             eventClick: this.handleEventClick.bind(this),
             eventsSet: this.handleEvents.bind(this),
-            events:this.arr, 
-            
+            events: this.arr,
             // [
             //   {
             //     title:this.appointments[0].service.name,
@@ -73,7 +119,7 @@ export class ReceptionistDashboardComponent implements OnInit {
           };
         }
         )
-        
+
         console.log(this.appointments)
       }
     })
@@ -91,51 +137,65 @@ export class ReceptionistDashboardComponent implements OnInit {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
-    const title =this.newAppointment.service.name;
-    // const paymentMethod = prompt('Please enter paymentMethod');
-    // let s = prompt('Please enter Fees') || 0;
-    // let fees: number = +s;
-
+    if(confirm("Add event?") == false)
+    return
+    // const title = this.serviceObj.name;
     const calendarApi = selectInfo.view.calendar;
-
+// console.log("1st",this.serviceObj.name)
+// console.log("1st",this.selectedPatID)
+// console.log("1st",this.serviceObj.fees)
+console.log("1st",this.FeesAmount)
+console.log("1st",this.paymentMethod)
     calendarApi.unselect(); // clear date selection
 
-    if (title) {
-      // this.newAppointment.serviceName=title
-    
-        this.newAppointment.service.name = title 
-        this.newAppointment.startDate =  new Date(selectInfo.start)
-        this.newAppointment.endDate =  new Date(selectInfo.end)
-        
-        this.recSrv.addAppointment(this.newAppointment).subscribe({
-          next:a=>{this.newAppointment=a
-            calendarApi.addEvent(
-              {
-                title,
-                start: selectInfo.startStr,
-                end: selectInfo.endStr,
-                allDay: selectInfo.allDay,
-                id:this.newAppointment._id,
-              });
-          }
-        })
-        
-      //this.recSrv.addAppointment(new Appointment("0","0", "0", new Date(selectInfo.startStr), 1, paymentMethod, fees, title));
-      this.appointments.forEach(element => {
-        console.log(element)
-      });
+    if (true) {
+      if (this.selectedPatID == "" || this.serviceObj==undefined || this.FeesAmount == 0 || this.paymentMethod=="") {
+        alert("Please, Complete the appointment info!")
+        return
+      }
+      console.log("2nd",this.serviceObj.name)
+
+      this.newAppointment.patientID = this.selectedPatID
+      this.newAppointment.service = this.serviceObj
+      this.newAppointment.startDate = new Date(selectInfo.start)
+      this.newAppointment.endDate = new Date(selectInfo.end)
+      this.newAppointment.fees = this.FeesAmount
+      this.newAppointment.paymentMethod = this.paymentMethod
+      this.docSrv.addAppointment(this.newAppointment).subscribe({
+        next: a => {
+          this.newAppointment = a
+          calendarApi.addEvent(
+            {
+              title:this.patName + " - " + this.serviceObj.name,
+              start: selectInfo.startStr,
+              end: selectInfo.endStr,
+              allDay: selectInfo.allDay,
+              id: this.newAppointment._id,
+            });
+        }
+      }
+      
+
+      )
+      // //this.docSrv.addAppointment(new Appointment("0","0", "0", new Date(selectInfo.startStr), 1, paymentMethod, fees, title));
+      // this.appointments.forEach(element => {
+      //   console.log(element)
+      // });
 
     }
+      // this.serviceObj = undefined
+      this.FeesAmount = 0
+      this.paymentMethod = ""
   }
 
   handleEventClick(clickInfo: EventClickArg) {
     if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      this.deleteAppointment._id= clickInfo.event.id
-      this.recSrv.deleteAppointment(this.deleteAppointment._id).subscribe({
+      this.deleteAppointment._id = clickInfo.event.id
+      this.docSrv.deleteAppointment(this.deleteAppointment._id).subscribe({
         next: a => { this.deleteAppointment = a; }
       })
       clickInfo.event.remove();
-    }else {
+    } else {
       //!Redirect to prescription page
     }
   }
@@ -143,6 +203,27 @@ export class ReceptionistDashboardComponent implements OnInit {
   handleEvents(events: EventApi[]) {
     this.currentEvents = events;
   }
+
+  //?----------------------Patient-----------------------------//
+  getPatients() {
+    this.recSrv.getAllPatient().subscribe({
+      next: a => {
+        this.patients = a;
+        console.log(this.patients)
+      }
+    })
+  }
+
+  //?----------------------Clinic Services-----------------------------//
+    getServices(clinicId:string) {
+      this.docSrv.getServicesByClinicId(clinicId).subscribe({
+        next: a => {
+          this.newClinic = a;
+          console.log(this.newClinic)
+          console.log(this.newClinic.services)
+        }
+      })
+    }
 
   //?-------------------------------Add Appointment--------------------------------?//
   // addDepartment(){
