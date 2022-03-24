@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DoctorService } from 'src/app/doctor.service';
 import { ReceptionistService } from 'src/app/receptionist.service';
 import { Appointment } from 'src/app/_models/appointment';
@@ -14,10 +15,6 @@ import { Prescription } from '../../_models/prescription';
 })
 export class AddPrescriptionComponent implements OnInit {
 
-  newPrescription:Prescription= new Prescription("623c6abbfa1129ddbbb8062d","","");
-
-  constructor(public docServ: DoctorService, public recepServ: ReceptionistService ) { }
-
   appointment: Appointment[] = []//new Appointment("","",new Date(),new Date ,"",0,new Service("",0));
 
   patName: string="";
@@ -28,14 +25,15 @@ export class AddPrescriptionComponent implements OnInit {
   doctor:Doctor|undefined =new Doctor("","","",0)
 
 
+
+  id:any
+  newPrescription:Prescription= new Prescription("","","");
+  constructor(public docServ: DoctorService, private route:ActivatedRoute,public router:Router) { }
+
   ngOnInit(): void {
-    this.getAppointments("623c6abbfa1129ddbbb8062d");
-    console.log(this.appointment)
-
-
-    // this.findAppointments("623c6abbfa1129ddbbb8062d");
-    // this.findPatient(this.appObj?.patientID);
-    // this.findDocotor(this.appObj?.doctorID)
+    this.id=this.route.snapshot.paramMap.get('id')
+    this.newPrescription.appointmentID=this.id
+    console.log(this.id)
   }
 
   
@@ -93,6 +91,10 @@ export class AddPrescriptionComponent implements OnInit {
       console.log(this.newPrescription)
       }
     })
+  }
+
+  backToDash(){
+    this.router.navigateByUrl(`/doctor`);
   }
 
 }

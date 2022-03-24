@@ -34,12 +34,23 @@ import { DoctorFooterComponent } from './components/doctor-footer/doctor-footer.
 import { LoginGuard } from './guards/login.guard';
 import { DoctorService } from './doctor.service';
 import { AboutComponent } from './about/about.component';
+import { AboutUsReceptionistComponent } from './receptionist/about-us-receptionist/about-us-receptionist.component';
+import { DoctorHeaderSideformComponent } from './components/doctor-header-sideform/doctor-header-sideform.component';
+import { SimpleFooterComponent } from './components/simple-footer/simple-footer.component';
 
 const routes:Routes=
 [
   {path:"login",component:LoginComponent},
   {path:"doctor",component:DoctorDashboardComponent,canActivate:[LoginGuard]},
   {path:"receptionist",component:ReceptionistDashboardComponent,canActivate:[LoginGuard]},
+  {path:"doctor/prescription/:id",component:AddPrescriptionComponent,canActivate:[LoginGuard]},
+  {path:"doctor/about",component:AboutComponent,canActivate:[LoginGuard]},
+  {path:"receptionist/patient",component:AddPatientComponent,canActivate:[LoginGuard]},
+  {path:"receptionist/appointment",component:AddAppointmentComponent,canActivate:[LoginGuard]},
+  {path:"receptionist/doctor",component:AddDoctorComponent,canActivate:[LoginGuard]},
+  {path:"receptionist/addReceptionist",component:AddReceptionistComponent,canActivate:[LoginGuard]},
+  {path:"receptionist/invoice",component:PrintInvoiceComponent,canActivate:[LoginGuard]},
+  {path:"receptionist/about",component:AboutUsReceptionistComponent,canActivate:[LoginGuard]},
   {path:"",redirectTo:"/login",pathMatch:"full"}
 ]
 
@@ -71,6 +82,9 @@ FullCalendarModule.registerPlugins([
     AddPrescriptionComponent,
     DoctorFooterComponent,
     AboutComponent,
+    AboutUsReceptionistComponent,
+    DoctorHeaderSideformComponent,
+    SimpleFooterComponent,
   ],
   imports: [
     BrowserModule,
