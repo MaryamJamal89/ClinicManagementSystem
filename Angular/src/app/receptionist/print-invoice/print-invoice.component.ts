@@ -39,7 +39,7 @@ export class PrintInvoiceComponent implements OnInit {
     window.print();
   }
 
-  newPrescription:Prescription= new Prescription("","","");
+  //newPrescription:Prescription= new Prescription("","","");
 
   constructor(public docServ: DoctorService, public recepServ: ReceptionistService,private route:ActivatedRoute,public router:Router ) { }
 
@@ -47,19 +47,25 @@ export class PrintInvoiceComponent implements OnInit {
 
   appointment: Appointment =new Appointment("","",new Date(),new Date ,"",0,new Service("",0));
   
-  patName: string="";
   patient:Patient|undefined=new Patient("","","",new Date(),0)
-  
-  docName: string="";
+
+  ClinicLocation:string="";
+
   doctor:Doctor =new Doctor("","","",0)
   
   id:any
+  currentDate = new Date();
+  Tax:number=0
+  Total:number=0
   
   ngOnInit(): void {
     this.id=this.route.snapshot.paramMap.get('id')
     
     console.log(this.id)
     this.getAppointments(this.id);
+    
+    this.Tax=this.appointment.fees*(0.15);
+    this.Total=this.appointment.fees + this.Tax
   }
 
  //?----------------------Appointments-----------------------------//
@@ -67,49 +73,22 @@ export class PrintInvoiceComponent implements OnInit {
   this.docServ.getAppointmentByID(id).subscribe({
     next: a => {
       console.log(a)
-       this.appointment = a;
-       console.log(this.appointment.doctorID)
-       this.getDoctors(this.appointment.doctorID)
-       this.getPatients(this.appointment.patientID)
     }
   })
 }
-  //?----------------------Patient-----------------------------//
-  getPatients(id:string) {
-    this.recepServ.getPatientByID(id).subscribe({
-      next: a => {
-        console.log(a)
-         this.patient = a;
-         if(this.patient==null) return;
-         this.patName=this.patient.name
-      }
-    })
-  }
-  
-    //?----------------------Doctor-----------------------------//
-    getDoctors(id:string) {
-      this.docServ.getDocotrByID(id).subscribe({
-        next: a => {
-          console.log("doctor",a)
-          this.doctor = a;
-          if(this.doctor==null) return; 
-          this.docName=this.doctor.userName
-        }
-      })
-    }
 
-  //?----------------------Prescription-----------------------------//
-  addPresc(){
-    console.log(this.newPrescription)
-    this.docServ.addPrescription(this.newPrescription).subscribe({
-      next:a=>{this.newPrescription=a
-        this.backToDash()
-      console.log(a)
-      console.log(this.newPrescription)
-      }
+  // //?----------------------Prescription-----------------------------//
+  // addPresc(){
+  //   console.log(this.newPrescription)
+  //   this.docServ.addPrescription(this.newPrescription).subscribe({
+  //     next:a=>{this.newPrescription=a
+  //       this.backToDash()
+  //     console.log(a)
+  //     console.log(this.newPrescription)
+  //     }
 
-    })
-  }
+  //   })
+  // }
 
   backToDash(){
     this.router.navigateByUrl(`/doctor`);
