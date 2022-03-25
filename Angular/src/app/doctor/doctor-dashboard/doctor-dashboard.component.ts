@@ -14,15 +14,13 @@ import dayGridPlugin from '@fullcalendar/daygrid'; //< import. it
 import { EventInput } from '@fullcalendar/angular';
 
 import { arrow } from '@popperjs/core';
-
 import { Service } from '../../_models/service';
-import { DOCUMENT } from '@angular/common';
 import { ReceptionistService } from '../../receptionist.service';
 import { Patient } from '../../_models/patient';
 import { Clinic } from '../../_models/clinic';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'src/app/confirmation.service';
-import { Location } from 'src/app/_models/location.js';
+import { Location } from 'src/app/_models/location';
 
 
 @Component({
