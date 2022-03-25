@@ -9,13 +9,15 @@ exports.getClinic = function (request, response, next) {
     })
     .catch((error) => next(error));
 };
+
 exports.getService = function (request, response, next) {
-  Clinic.findOne({ _id: request.params.id },{services:1,_id:0})
+  Clinic.findOne({ _id: request.params.id },{services:1,_id:0,location:1})
     .then((result) => {
       response.status(200).json(result);
     })
     .catch((error) => next(error));
 };
+
 
 ////////////////////////////////////////POST//////////////////////////////////////////////////////////
 exports.createClinic = (request, response, next) => {

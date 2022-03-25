@@ -27,7 +27,8 @@
                         </ol>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.container-fluid -->
         </section>
 
         <section class="content" id="content" #content>
@@ -47,7 +48,7 @@
                                 <div class="col-12">
                                     <h4>
                                         <i class="fa fa-solid fa-stethoscope fa-2x"></i> CMS, Inc.
-                                        <small class="float-right">Date: Today's Date </small>
+                                        <small class="float-right">Date: {{currentDate | date:'yyyy-MM-dd'}} </small>
                                         <!-- TODO: Today's Date -->
                                     </h4>
                                 </div>
@@ -59,7 +60,8 @@
                                     From
                                     <address>
                                         <strong>CMS, Inc.</strong><br>
-                                        Clinic Location<br>
+                                        {{newClinic.location.city}}<br>
+                                        {{newClinic.location.street}}<br>
                                         <!-- TODO: Clinic Location -->
                                         Phone: (804) 123-5432<br>
                                         Email: info@CMS.com
@@ -69,11 +71,11 @@
                                 <div class="col-sm-4 invoice-col">
                                     To
                                     <address>
-                                        <strong>Patient Name</strong><br>
+                                        <strong>{{patient?.name}}</strong><br>
                                         <!-- TODO: Patient Name -->
-                                        795 Folsom Ave, Suite 600<br>
-                                        San Francisco, CA 94107<br>
-                                        Phone: (555) 539-1037<br>
+                                        795 Folsom Ave, Suite 600 <br>
+                                        Gender:{{patient?.gender}}<br>
+                                        Phone: {{patient?.phoneNumber}}<br>
                                         <!-- TODO: Patient Phone -->
                                         Email: patienName@example.com
                                     </address>
@@ -83,7 +85,7 @@
                                     <b>Invoice #007612</b><br>
                                     <br>
                                     <b>Order ID:</b> 4F3S8J<br>
-                                    <b>Payment Due:</b> Today's Date<br>
+                                    <b>Payment Due:</b>{{currentDate | date:'yyyy-MM-dd'}}<br>
                                     <!-- TODO: Today's Date -->
                                     <b>Account:</b> 968-34567
                                 </div>
@@ -108,10 +110,10 @@
                                             <!-- TODO: Table Data -->
                                             <tr>
                                                 <td>1</td>
-                                                <td>Service #1</td>
-                                                <td>455-981-221</td>
+                                                <td>{{appointment.service}}</td>
+                                                <td>{{appointment.service._id}}</td>
                                                 <td>El snort testosterone trophy driving gloves handsome</td>
-                                                <td>$64.50</td>
+                                                <td>{{appointment.service.fees}}</td>
                                             </tr>
                                             <tr>
                                                 <td>1</td>
@@ -130,17 +132,14 @@
                             <div class="row g-0 mb-4">
                                 <!-- accepted payments column -->
                                 <div class="col-6">
-                                    <p class="lead">Payment Methods:</p>
+                                    <p class="lead">Payment Methods:{{appointment.paymentMethod}}</p>
                                     <img src="../../../assets/img/credit/visa.png" alt="Visa">
                                     <img src="../../../assets/img/credit/mastercard.png" alt="Mastercard">
                                     <!-- <img src="../../../assets/img/credit/american-express.png" alt="American Express"> -->
                                     <img src="../../../assets/img/credit/paypal2.png" alt="Paypal">
 
                                     <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning
-                                        heekya handango imeem
-                                        plugg
-                                        dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+                                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
                                     </p>
                                 </div>
                                 <!-- /.col -->
@@ -152,19 +151,15 @@
                                         <table class="table">
                                             <tr>
                                                 <th style="width:50%">Subtotal:</th>
-                                                <td>$140.50</td>
+                                                <td>{{appointment.fees}}</td>
                                             </tr>
                                             <tr>
                                                 <th>Tax (15%)</th>
-                                                <td>$21.1</td>
+                                                <td>{{Tax}}</td>
                                             </tr>
-                                            <!-- <tr>
-                                                <th>Shipping:</th>
-                                                <td>$5.80</td>
-                                            </tr> -->
                                             <tr>
                                                 <th>Total:</th>
-                                                <td>$161.6</td>
+                                                <td>{{Total}}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -176,23 +171,24 @@
                             <!-- this row will not appear when printing -->
                             <div class="row no-print">
                                 <div class="col-12">
-                                    <a href="#" rel="noopener" target="_blank" (click)="Print()" id="print-btn"
-                                        class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                                    <a href="#" rel="noopener" target="_blank" (click)="Print()" id="print-btn" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
                                     <!-- <button type="button" class="btn btn-success float-right"><i
                                             class="far fa-credit-card"></i> Submit
                                         Payment
                                     </button> -->
-                                    <button type="button" class="btn btn-primary float-right" (click)="openPDF()"
-                                        style="margin-right: 5px;">
+                                    <button type="button" class="btn btn-primary float-right" (click)="openPDF()" style="margin-right: 5px;">
                                         <i class="fas fa-download"></i> Generate PDF
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <!-- /.invoice -->
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
     </div>
