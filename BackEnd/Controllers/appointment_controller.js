@@ -1,5 +1,9 @@
 ////////////////////////////////////////IMPORTS///////////////////////////////////////////////////////
+const { findOne } = require("./../Models/appointment");
 const appoint = require("./../Models/appointment");
+const Doctor = require("./../Models/doctor");
+const Patient = require("./../Models/patient");
+
 
 ////////////////////////////////////////GET///////////////////////////////////////////////////////////
 exports.getAppoints = function(request, response, next) {
@@ -13,7 +17,17 @@ exports.getAppoints = function(request, response, next) {
 
 exports.getAppointsByID = function(req, res) {
     appoint.findOne({ _id: req.params.id })
-        .then((doctors) => res.send(doctors))
+        .then((appoint) =>{
+            Doctor.findOne({_id:appoint.doctorID})
+            .then((doctor)=>{
+                Patient.findOne({_id:appoint.patientID})
+                .then((patient)=>{
+                    res.status(200).json({"Appointment":appoint,"Doctor":doctor,"Patient":patient})
+                })
+                .catch((error) => console.log(error));
+            })
+            .catch((error) => console.log(error));
+        })
         .catch((error) => console.log(error));
 }
 
