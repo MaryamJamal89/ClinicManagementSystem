@@ -13,12 +13,13 @@ import { Prescription } from '../../_models/prescription';
   templateUrl: './add-prescription.component.html',
   styleUrls: ['./add-prescription.component.css', '../../../assets/css/adminlte.min.css']
 })
+
 export class AddPrescriptionComponent implements OnInit {
 
   newPrescription:Prescription= new Prescription("","","");
 
   data:any 
-  appointment: Appointment =new Appointment("","",new Date(),new Date ,"",0,new Service("",0));
+  appointment: Appointment =new Appointment("" , "" , new Date() , new Date() ,"", 0 , new Service("",0));
   
   patName:string=""
   patient:Patient=new Patient("","","",new Date(),0)
@@ -65,9 +66,7 @@ export class AddPrescriptionComponent implements OnInit {
       next:a=>{
       this.newPrescription=a
       this.backToDash()
-      console.log(a)
       }
-
     })
   }
 

@@ -33,7 +33,7 @@ exports.getAppointsByID = function(req, res) {
 
 
 ////////////////////////////////////////POST//////////////////////////////////////////////////////////
-exports.createAppoints = (request, response, next) => {
+exports.createAppoints = (request, response) => {
     //validation result
     let appointObject = new appoint({
         doctorID: request.body.doctorID,

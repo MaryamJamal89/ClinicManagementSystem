@@ -22,6 +22,7 @@ import { Patient } from '../../_models/patient';
 import { Clinic } from '../../_models/clinic';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'src/app/confirmation.service';
+import { Location } from 'src/app/_models/location.js';
 
 
 @Component({
@@ -52,7 +53,7 @@ export class DoctorDashboardComponent implements OnInit {
   serviceObj:any//Service= new Service("",0);
   patObj:any//Service= new Service("",0);
   services: Service[] = [];
-  newClinic: Clinic = new Clinic("", this.services);
+  newClinic: Clinic = new Clinic(new Location("",""), this.services);
 
   //event handler for the select element's change event
   selectChangeHandler(event: any) {

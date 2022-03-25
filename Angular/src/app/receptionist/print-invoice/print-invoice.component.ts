@@ -7,8 +7,9 @@ import { ReceptionistService } from 'src/app/receptionist.service';
 import { Appointment } from 'src/app/_models/appointment';
 import { Doctor } from 'src/app/_models/doctor';
 import { Patient } from 'src/app/_models/patient';
-import { Prescription } from 'src/app/_models/prescription';
 import { Service } from 'src/app/_models/service';
+import { Clinic } from 'src/app/_models/clinic';
+import { Location } from 'src/app/_models/location';
 
 @Component({
   selector: 'pm-print-invoice',
@@ -20,6 +21,7 @@ export class PrintInvoiceComponent implements OnInit {
   content!: ElementRef;
 
   public openPDF(): void {
+
     let DATA: any = document.getElementById('content');
     html2canvas(DATA).then((canvas) => {
       let fileWidth = 208;
@@ -39,56 +41,58 @@ export class PrintInvoiceComponent implements OnInit {
     window.print();
   }
 
-  //newPrescription:Prescription= new Prescription("","","");
-
   constructor(public docServ: DoctorService, public recepServ: ReceptionistService,private route:ActivatedRoute,public router:Router ) { }
 
-
-
-  appointment: Appointment =new Appointment("","",new Date(),new Date ,"",0,new Service("",0));
-  
-  patient:Patient|undefined=new Patient("","","",new Date(),0)
-
-  ClinicLocation:string="";
-
-  doctor:Doctor =new Doctor("","","",0)
-  
-  id:any
-  currentDate = new Date();
-  Tax:number=0
-  Total:number=0
-  
-  ngOnInit(): void {
-    this.id=this.route.snapshot.paramMap.get('id')
+    data:any;
+    appointment: Appointment =new Appointment("","",new Date(),new Date ,"",0,new Service("",0));
     
-    console.log(this.id)
-    this.getAppointments(this.id);
+    patient:Patient|undefined=new Patient("","","",new Date(),0)
+
     
-    this.Tax=this.appointment.fees*(0.15);
-    this.Total=this.appointment.fees + this.Tax
+    newClinic: Clinic = new Clinic(new Location("",""),[new Service("",0)]);
+
+    doctor:Doctor =new Doctor("","","",0)
+    
+    id:any
+
+    currentDate = new Date();
+    Tax:number=0
+    Total:number=0
+    
+    ngOnInit(): void {
+      this.id=this.route.snapshot.paramMap.get('id')
+      
+      console.log(this.id)
+      this.getAppointments(this.id);
+
+      this.Tax=this.appointment.fees*(0.15);
+      this.Total=this.appointment.fees + this.Tax
   }
 
  //?----------------------Appointments-----------------------------//
  getAppointments(id:string) {
   this.docServ.getAppointmentByID(id).subscribe({
     next: a => {
-      console.log(a)
+      this.data= a
+      this.appointment = this.data.Appointment
+
+      this.doctor=this.data.Doctor
+      this.getServices(this.doctor.clinic_id)
+
+      this.patient=this.data.Patient 
+
     }
   })
 }
+ //?----------------------Clinic Services-----------------------------//
+    getServices(clinicId:string) {
+      this.docServ.getServicesByClinicId(clinicId).subscribe({
+        next: a => {
+          this.newClinic = a;
+        }
+      })
+    }
 
-  // //?----------------------Prescription-----------------------------//
-  // addPresc(){
-  //   console.log(this.newPrescription)
-  //   this.docServ.addPrescription(this.newPrescription).subscribe({
-  //     next:a=>{this.newPrescription=a
-  //       this.backToDash()
-  //     console.log(a)
-  //     console.log(this.newPrescription)
-  //     }
-
-  //   })
-  // }
 
   backToDash(){
     this.router.navigateByUrl(`/doctor`);
