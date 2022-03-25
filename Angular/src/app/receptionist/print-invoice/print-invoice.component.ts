@@ -65,8 +65,7 @@ export class PrintInvoiceComponent implements OnInit {
       console.log(this.id)
       this.getAppointments(this.id);
 
-      this.Tax=this.appointment.fees*(0.15);
-      this.Total=this.appointment.fees + this.Tax
+      
   }
 
  //?----------------------Appointments-----------------------------//
@@ -75,6 +74,9 @@ export class PrintInvoiceComponent implements OnInit {
     next: a => {
       this.data= a
       this.appointment = this.data.Appointment
+      
+      this.Tax=this.appointment.fees*(0.15);
+      this.Total=this.appointment.fees + this.Tax
 
       this.doctor=this.data.Doctor
       this.getServices(this.doctor.clinic_id)
