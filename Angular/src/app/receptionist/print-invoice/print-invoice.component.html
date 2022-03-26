@@ -82,7 +82,7 @@
                                 </div>
                                 <!-- /.col -->
                                 <div class="col-sm-4 invoice-col">
-                                    <b>Invoice #007612</b><br>
+                                    <b>Invoice code: {{invoiceNum}}</b><br>
                                     <br>
                                     <b>Order ID:</b> 4F3S8J<br>
                                     <b>Payment Due:</b>{{currentDate | date:'yyyy-MM-dd'}}<br>
@@ -110,7 +110,7 @@
                                             <!-- TODO: Table Data -->
                                             <tr>
                                                 <td>1</td>
-                                                <td>{{appointment.service}}</td>
+                                                <td>{{appointment.service.name}}</td>
                                                 <td>{{appointment.service._id}}</td>
                                                 <td>El snort testosterone trophy driving gloves handsome</td>
                                                 <td>{{appointment.service.fees}}</td>

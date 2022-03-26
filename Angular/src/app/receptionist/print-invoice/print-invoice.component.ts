@@ -58,13 +58,16 @@ export class PrintInvoiceComponent implements OnInit {
     currentDate = new Date();
     Tax:number=0
     Total:number=0
+    invoiceNum:string=""
+    
     
     ngOnInit(): void {
       this.id=this.route.snapshot.paramMap.get('id')
       
       console.log(this.id)
       this.getAppointments(this.id);
-
+      
+      this.invoiceNum= this.id.slice(14)
       
   }
 
@@ -97,7 +100,7 @@ export class PrintInvoiceComponent implements OnInit {
 
 
   backToDash(){
-    this.router.navigateByUrl(`/doctor`);
+    this.router.navigateByUrl(`/receptionist`);
   }
 
 

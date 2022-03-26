@@ -5,9 +5,13 @@
       </button>
     </div>
     <div class="modal-body">
-      {{ message }}
+      <h4>{{ message }}</h4>
+      <h5>{{ option1 }}</h5>
+      <h5>{{ option2 }}</h5>
+      
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-danger" (click)="decline()">{{ btnCancelText }}</button>
-      <button type="button" class="btn btn-info" (click)="accept()">{{ btnOkText }}</button>
+      <button type="button" class="btn btn-danger" (click)="delete()">{{ btnDeleteText }}</button>
+      <button type="button" class="btn btn-info" (click)="decline()">{{ btnCancelText }}</button>
+      <button type="button" class="btn btn-success" (click)="accept()">{{ btnOkText }}</button>
     </div>
