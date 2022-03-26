@@ -35,7 +35,7 @@ export class DoctorDashboardComponent implements OnInit {
 
   appointments: Appointment[] = [];
   newAppointment: Appointment = new Appointment("62345fe486e4b9494d6237c3", "", new Date(), new Date(), "", 0, new Service("", 0));
-  deleteAppointment: Appointment = new Appointment("", "", new Date(), new Date(), "cash", 0, new Service("", 0));
+  deleteAppointment: Appointment = new Appointment("", "", new Date(), new Date(), "cash", 0, new Service("", 0,""));
   calendarPlugins = [dayGridPlugin]; // important!
   calendarVisible = true;
   calendarOptions: CalendarOptions = {}
@@ -65,6 +65,7 @@ export class DoctorDashboardComponent implements OnInit {
     //update the ui
     this.selectedServId = event.target.value;
     this.serviceObj=this.newClinic.services.find(ele => ele._id == this.selectedServId)
+    console.log("ya rab ID",this.serviceObj)
     this.selectedServFees=this.serviceObj.fees
   }
 
@@ -143,7 +144,7 @@ export class DoctorDashboardComponent implements OnInit {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
-    
+    // this.openConfirmationDialog(selectInfo);
     if(confirm("Add event?") == false)
     return
     // const title = this.serviceObj.name;
@@ -163,7 +164,9 @@ console.log("1st",this.paymentMethod)
       console.log("2nd",this.serviceObj.name)
 
       this.newAppointment.patientID = this.selectedPatID
-      this.newAppointment.service = this.serviceObj
+      this.newAppointment.service.name = this.serviceObj.name
+      this.newAppointment.service.fees = this.serviceObj.fees
+      this.newAppointment.service._id = this.serviceObj._id
       this.newAppointment.startDate = new Date(selectInfo.start)
       this.newAppointment.endDate = new Date(selectInfo.end)
       this.newAppointment.fees = this.FeesAmount
@@ -190,14 +193,16 @@ console.log("1st",this.paymentMethod)
   }
 
   openConfirmationDialog(clickInfo : EventClickArg) {
-    this.conf.confirm('Adding prescription', `Do you really Want to add prescription ?
-     
-    Confirm to add prescription\nDelete to Delete Appointment
-     
-     Press ESC to cancel`)
-    .then((confirmed) => {if(confirmed){this.redirectToPresc(clickInfo)}else{this.DeleteAppointment(clickInfo)}})
+    this.conf.confirm('Do you Want to add prescription ?', 'Do you Want to add prescription ?', 'OK to add prescription', 'Press Cancel or ESC to cancel')
+    .then((confirmed) => {if(confirmed =="accept"){this.redirectToPresc(clickInfo)}else if (confirmed =="deleted"){this.DeleteAppointment(clickInfo)}})
     .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
+
+  // AddConfirmationDialog(selectInfo : EventClickArg) {
+  //   this.conf.confirm('Do you Want to add prescription ?', 'Do you Want to add prescription ?', 'OK to add prescription', 'Press Cancel or ESC to cancel')
+  //   .then((confirmed) => {if(confirmed =="accept"){this.redirectToPresc(clickInfo)}else if (confirmed =="deleted"){this.DeleteAppointment(clickInfo)}})
+  //   .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+  // }
 
 
   

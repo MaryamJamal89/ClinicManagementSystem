@@ -27,15 +27,16 @@ export class AddPrescriptionComponent implements OnInit {
   docName: string="";
   doctor:Doctor =new Doctor("","","",0)
   
-  id:any
+  appId:any
   
   constructor(public docServ: DoctorService, public recepServ: ReceptionistService,private route:ActivatedRoute,public router:Router ) { }
  
   ngOnInit(): void {
-    this.id=this.route.snapshot.paramMap.get('id')
+    this.appId=this.route.snapshot.paramMap.get('id')
     
-    console.log(this.id)
-    this.getAppointments("");
+    console.log(this.appId)
+    this.newPrescription.appointmentID=this.appId
+    this.getAppointments(this.appId);
   }
 
  //?----------------------Appointments-----------------------------//
@@ -54,7 +55,7 @@ export class AddPrescriptionComponent implements OnInit {
         if(this.patient)
         this.patName=this.patient.name
 
-        this.newPrescription.appointmentID=this.appointment._id
+        // this.newPrescription.appointmentID=this.appointment._id
     }
   })
 }

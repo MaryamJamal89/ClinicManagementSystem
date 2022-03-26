@@ -10,8 +10,11 @@ export class ConfirmationDialogComponent implements OnInit {
 
   @Input() title: string="";
   @Input() message: string="";
+  @Input() option1: string="";
+  @Input() option2: string="";
   @Input() btnOkText: string="";
   @Input() btnCancelText: string="";
+  @Input() btnDeleteText: string="";
 
   constructor(private activeModal: NgbActiveModal) { }
 
@@ -19,11 +22,15 @@ export class ConfirmationDialogComponent implements OnInit {
   }
 
   public decline() {
-    this.activeModal.close(false);
+    this.activeModal.close("decline");
+  }
+
+  public delete() {
+    this.activeModal.close("deleted");
   }
 
   public accept() {
-    this.activeModal.close(true);
+    this.activeModal.close("accept");
   }
 
   public dismiss() {
