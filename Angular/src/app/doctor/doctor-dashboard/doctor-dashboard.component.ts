@@ -35,7 +35,7 @@ export class DoctorDashboardComponent implements OnInit {
 
   appointments: Appointment[] = [];
   newAppointment: Appointment = new Appointment("62345fe486e4b9494d6237c3", "", new Date(), new Date(), "", 0, new Service("", 0));
-  deleteAppointment: Appointment = new Appointment("", "", new Date(), new Date(), "cash", 0, new Service("", 0));
+  deleteAppointment: Appointment = new Appointment("", "", new Date(), new Date(), "cash", 0, new Service("", 0,""));
   calendarPlugins = [dayGridPlugin]; // important!
   calendarVisible = true;
   calendarOptions: CalendarOptions = {}
@@ -146,8 +146,8 @@ export class DoctorDashboardComponent implements OnInit {
     
     if(confirm("Add event?") == false)
     return
-    // const title = this.serviceObj.name;
     const calendarApi = selectInfo.view.calendar;
+    // const title = this.serviceObj.name;
     //console.log("1st",this.selectedPatID)
     //console.log("1st",this.serviceObj.name)
     //console.log("1st",this.serviceObj.fees)
