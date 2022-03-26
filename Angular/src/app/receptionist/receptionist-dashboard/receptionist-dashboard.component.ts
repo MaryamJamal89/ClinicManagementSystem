@@ -184,13 +184,10 @@ console.log("1st",this.paymentMethod)
   }
 
   openConfirmationDialog(clickInfo : EventClickArg) {
-    this.conf.confirm('Adding prescription', 'Do you really Want to add prescription ?', 'Confirm to add prescription Delete to Delete Appointment', 'Press Cancel or ESC to cancel')
+    this.conf.confirm('Appointment Invoice', 'Do you want the appointment\'s invoice?', 'Confirm to show appointment\'s invoice, or Delete the appointment', 'Press Cancel or ESC to cancel')
     .then((confirmed) => {if(confirmed =="accept"){this.redirectToPresc(clickInfo)}else if (confirmed =="deleted"){this.DeleteAppointment(clickInfo)}})
     .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
-
-
-  
   
   handleEventClick(clickInfo: EventClickArg) {
     

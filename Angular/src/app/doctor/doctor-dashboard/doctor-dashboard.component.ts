@@ -193,7 +193,7 @@ export class DoctorDashboardComponent implements OnInit {
   }
 
   openConfirmationDialog(clickInfo : EventClickArg) {
-    this.conf.confirm('Do you Want to add prescription ?', 'Do you Want to add prescription ?', 'OK to add prescription', 'Press Cancel or ESC to cancel')
+    this.conf.confirm('New Prescription', 'Do you want to add naw prescription?', 'Confirm to add prescription to the appointment, or Delete the appointment', 'Press Cancel or ESC to cancel')
     .then((confirmed) => {if(confirmed =="accept"){this.redirectToPresc(clickInfo)}else if (confirmed =="deleted"){this.DeleteAppointment(clickInfo)}})
     .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
