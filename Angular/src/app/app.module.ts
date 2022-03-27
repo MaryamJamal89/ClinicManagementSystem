@@ -38,6 +38,7 @@ import { AboutUsReceptionistComponent } from './receptionist/about-us-receptioni
 import { DoctorHeaderSideformComponent } from './components/doctor-header-sideform/doctor-header-sideform.component';
 import { SimpleFooterComponent } from './components/simple-footer/simple-footer.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { PrintReportComponent } from './receptionist/print-report/print-report.component';
 
 const routes:Routes=
 [
@@ -50,7 +51,7 @@ const routes:Routes=
   {path:"receptionist/appointment",component:AddAppointmentComponent,canActivate:[LoginGuard]},
   {path:"receptionist/doctor",component:AddDoctorComponent,canActivate:[LoginGuard]},
   {path:"receptionist/addReceptionist",component:AddReceptionistComponent,canActivate:[LoginGuard]},
-  {path:"receptionist/invoice/:id",component:PrintInvoiceComponent,canActivate:[LoginGuard]},
+  {path:"receptionist/report",component:PrintReportComponent,canActivate:[LoginGuard]},
   {path:"receptionist/about",component:AboutUsReceptionistComponent,canActivate:[LoginGuard]},
   {path:"",redirectTo:"/login",pathMatch:"full"}
 ]
@@ -87,6 +88,7 @@ FullCalendarModule.registerPlugins([
     DoctorHeaderSideformComponent,
     SimpleFooterComponent,
     ConfirmationDialogComponent,
+    PrintReportComponent,
   ],
   imports: [
     BrowserModule,
