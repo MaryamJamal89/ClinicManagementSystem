@@ -7,7 +7,6 @@ import { ReceptionistService } from '../../receptionist.service';
   styleUrls: ['./main-slidebar.component.css', '../../../assets/css/adminlte.min.css']
 })
 export class MainSlidebarComponent implements OnInit {
-
   
   constructor(public recSrv: ReceptionistService) {
   }
