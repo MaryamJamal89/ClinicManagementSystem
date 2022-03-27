@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'pm-doctor-header-sideform',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoctorHeaderSideformComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cookieService:CookieService,private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  
+  deleteCookie(){
+    this.cookieService.delete('ID')
+    console.log("Cookie is deleted")
+    this.router.navigate(['/login'])
+  }
 }

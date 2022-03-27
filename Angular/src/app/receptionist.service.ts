@@ -58,7 +58,16 @@ getRecepByID(id:string){
   return this.http.get<Receptionist>(`http://localhost:8080/receptionist/${id}`);
 }
 
-//?----------------------------Temp------------------------------?//
+//?----------------------------Doctor------------------------------?//
+addDoctor(newDoc : Doctor){
+  return this.http.post<Doctor>("http://localhost:8080/doctor",newDoc)
+}
+
+//?----------------------------Recep------------------------------?//
+addRecep(newRecep : Receptionist){
+  return this.http.post<Receptionist>("http://localhost:8080/receptionist",newRecep)
+}
+
 
 //   getAppointmentByDate(date:Data):Appointment{
 //   for (let i = 0; i < this.appointment.length; i++) {

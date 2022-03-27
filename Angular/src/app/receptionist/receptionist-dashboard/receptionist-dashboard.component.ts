@@ -17,6 +17,8 @@ import { Router } from '@angular/router';
 import { ConfirmationService } from 'src/app/confirmation.service';
 import { Location } from 'src/app/_models/location';
 import { Doctor } from 'src/app/_models/doctor';
+import { Receptionist } from 'src/app/_models/receptionist';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'pm-receptionist-dashboard',
@@ -27,12 +29,17 @@ import { Doctor } from 'src/app/_models/doctor';
   ],
 })
 export class ReceptionistDashboardComponent implements OnInit {
+  cookieTemp="";
+  cookieRecep:Receptionist = new Receptionist("","","","")
+  
   constructor(
     private docSrv: DoctorService,
     public recSrv: ReceptionistService,
     public router: Router,
-    public conf: ConfirmationService
+    public conf: ConfirmationService,
+    public cookieService:CookieService
   ) {}
+
   showApp() {
     this.recSrv.showAppointment = !this.recSrv.showAppointment;
   }
@@ -103,6 +110,9 @@ export class ReceptionistDashboardComponent implements OnInit {
     this.getDoctors();
     this.getData();
     this.getServices('62345f2086e4b9494d6237a4');
+
+    // this.cookieTemp= this.cookieService.get("ID")
+    // this.getRecep(this.cookieTemp)
     // console.log(new mongoose.types.objectId)
   }
 
@@ -291,10 +301,12 @@ export class ReceptionistDashboardComponent implements OnInit {
   }
 
   //?-------------------------------Add Appointment--------------------------------?//
-  // addDepartment(){
-  //   this.stdSer.add(this.newDepartment).subscribe({
-  //     next:a=>{this.newDepartment=a}
-  //   })
-  //   this.router.navigate(["./department"])
-  // }
+  getRecep(id:string) {
+    this.recSrv.getRecepByID(id).subscribe({
+      next: a => {
+        this.cookieRecep = a;
+        console.log(this.cookieRecep)
+      }
+    })
+  }
 }

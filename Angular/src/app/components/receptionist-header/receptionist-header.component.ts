@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'pm-receptionist-header',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReceptionistHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cookieService:CookieService,private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  
+  deleteCookie(){
+    this.cookieService.delete('ID')
+    console.log("Cookie is deleted")
+    this.router.navigate(['/login'])
+  }
 }

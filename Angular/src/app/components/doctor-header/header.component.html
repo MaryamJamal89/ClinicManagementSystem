@@ -20,7 +20,7 @@
                 <!-- <a class="nav-item nav-link" [routerLink]="['/doctor/prescription']">Prescription</a> -->
                 <a class="nav-item nav-link" [routerLink]="['/doctor/about']">About</a>
             </div>
-            <a class="nav-item nav-link link-light ms-auto" [routerLink]="['']">Logout</a>
+            <a class="nav-item nav-link link-light ms-auto" (click)="deleteCookie()">Logout</a>
         </div>
     </nav>
 
