@@ -18,8 +18,6 @@ exports.getDoctorsByID = function(request, response, next) {
             response.status(200).json(result)
         })
         .catch(error => next(error));
-
-
 }
 
 ////////////////////////////////////////POST//////////////////////////////////////////////////////////

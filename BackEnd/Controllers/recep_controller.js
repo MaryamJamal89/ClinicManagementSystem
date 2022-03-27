@@ -11,7 +11,13 @@ exports.getRecep = function(request, response, next) {
         })
         .catch(error => next(error));
 
-
+}
+exports.getRecepByID = function(request, response, next) {
+    Recep.findOne({_id:request.params.id})
+        .then(result => {
+            response.status(200).json(result)
+        })
+        .catch(error => next(error));
 }
 
 ////////////////////////////////////////POST//////////////////////////////////////////////////////////
