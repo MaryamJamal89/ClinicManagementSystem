@@ -39,7 +39,7 @@ export class ReceptionistDashboardComponent implements OnInit {
 
   appointments: Appointment[] = [];
   newAppointment: Appointment = new Appointment(
-    '62345f2086e4b9494d6237a4',
+    '',
     '',
     new Date(),
     new Date(),
@@ -85,7 +85,6 @@ export class ReceptionistDashboardComponent implements OnInit {
   selectChangeDoctor(event: any) {
     //update the ui
     this.selectedDocID = event.target.value;
-    
   }
 
   selectChangeServices(event: any) {
@@ -101,7 +100,7 @@ export class ReceptionistDashboardComponent implements OnInit {
     this.getPatients();
     this.getDoctors();
     this.getData();
-    this.getServices("62345f2086e4b9494d6237a4");
+    this.getServices('62345f2086e4b9494d6237a4');
     // console.log(new mongoose.types.objectId)
   }
 
@@ -173,7 +172,7 @@ export class ReceptionistDashboardComponent implements OnInit {
     // const title = this.serviceObj.name;
     const calendarApi = selectInfo.view.calendar;
 
-    calendarApi.unselect(); 
+    calendarApi.unselect();
 
     if (true) {
       if (
@@ -238,7 +237,6 @@ export class ReceptionistDashboardComponent implements OnInit {
 
   handleEventClick(clickInfo: EventClickArg) {
     this.openConfirmationDialog(clickInfo);
-
   }
 
   redirectToPresc(clickInfo: EventClickArg) {
