@@ -65,6 +65,7 @@ export class DoctorDashboardComponent implements OnInit {
     //update the ui
     this.selectedServId = event.target.value;
     this.serviceObj=this.newClinic.services.find(ele => ele._id == this.selectedServId)
+    console.log("ya rab ID",this.serviceObj)
     this.selectedServFees=this.serviceObj.fees
   }
 
@@ -143,7 +144,7 @@ export class DoctorDashboardComponent implements OnInit {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
-    
+    // this.openConfirmationDialog(selectInfo);
     if(confirm("Add event?") == false)
     return
     const calendarApi = selectInfo.view.calendar;
@@ -163,7 +164,9 @@ export class DoctorDashboardComponent implements OnInit {
       console.log("2nd",this.serviceObj.name)
 
       this.newAppointment.patientID = this.selectedPatID
-      this.newAppointment.service = this.serviceObj
+      this.newAppointment.service.name = this.serviceObj.name
+      this.newAppointment.service.fees = this.serviceObj.fees
+      this.newAppointment.service._id = this.serviceObj._id
       this.newAppointment.startDate = new Date(selectInfo.start)
       this.newAppointment.endDate = new Date(selectInfo.end)
       this.newAppointment.fees = this.FeesAmount
@@ -190,14 +193,16 @@ export class DoctorDashboardComponent implements OnInit {
   }
 
   openConfirmationDialog(clickInfo : EventClickArg) {
-    this.conf.confirm('Adding prescription', `Do you really Want to add prescription ?
-     
-    Confirm to add prescription\nDelete to Delete Appointment
-     
-     Press ESC to cancel`)
-    .then((confirmed) => {if(confirmed){this.redirectToPresc(clickInfo)}else{this.DeleteAppointment(clickInfo)}})
+    this.conf.confirm('New Prescription', 'Do you want to add naw prescription?', 'Confirm to add prescription to the appointment, or Delete the appointment', 'Press Cancel or ESC to cancel')
+    .then((confirmed) => {if(confirmed =="accept"){this.redirectToPresc(clickInfo)}else if (confirmed =="deleted"){this.DeleteAppointment(clickInfo)}})
     .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
+
+  // AddConfirmationDialog(selectInfo : EventClickArg) {
+  //   this.conf.confirm('Do you Want to add prescription ?', 'Do you Want to add prescription ?', 'OK to add prescription', 'Press Cancel or ESC to cancel')
+  //   .then((confirmed) => {if(confirmed =="accept"){this.redirectToPresc(clickInfo)}else if (confirmed =="deleted"){this.DeleteAppointment(clickInfo)}})
+  //   .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+  // }
 
 
   

@@ -211,30 +211,12 @@ export class ReceptionistDashboardComponent implements OnInit {
     }
   }
 
-  openConfirmationDialog(clickInfo: EventClickArg) {
-    this.conf
-      .confirm(
-        'Adding prescription',
-        `Do you really Want to add prescription ?
-     
-    Confirm to add prescription\nDelete to Delete Appointment
-     
-     Press ESC to cancel`
-      )
-      .then((confirmed) => {
-        if (confirmed) {
-          this.redirectToPresc(clickInfo);
-        } else {
-          this.DeleteAppointment(clickInfo);
-        }
-      })
-      .catch(() =>
-        console.log(
-          'User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'
-        )
-      );
+  openConfirmationDialog(clickInfo : EventClickArg) {
+    this.conf.confirm('Appointment Invoice', 'Do you want the appointment\'s invoice?', 'Confirm to show appointment\'s invoice, or Delete the appointment', 'Press Cancel or ESC to cancel')
+    .then((confirmed) => {if(confirmed =="accept"){this.redirectToPresc(clickInfo)}else if (confirmed =="deleted"){this.DeleteAppointment(clickInfo)}})
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
-
+  
   handleEventClick(clickInfo: EventClickArg) {
     this.openConfirmationDialog(clickInfo);
   }

@@ -15,14 +15,20 @@ export class ConfirmationService {
   public confirm(
     title: string,
     message: string,
+    option1:string,
+    option2:string,
     btnOkText: string = 'OK',
-    btnCancelText: string = 'Delete',
-    dialogSize: 'sm'|'lg' = 'lg'): Promise<boolean> {
+    btnCancelText: string = 'Cancel',
+    btnDeleteText: string = 'Delete',
+    dialogSize: 'sm'|'lg' = 'lg'): Promise<string> {
     const modalRef = this.modalService.open(ConfirmationDialogComponent, {backdrop:false, size: dialogSize });
     modalRef.componentInstance.title = title;
     modalRef.componentInstance.message = message;
-    modalRef.componentInstance.btnOkText = btnOkText;
+    modalRef.componentInstance.option1 = option1;
+    modalRef.componentInstance.option2 = option2;
+    modalRef.componentInstance.btnDeleteText = btnDeleteText;
     modalRef.componentInstance.btnCancelText = btnCancelText;
+    modalRef.componentInstance.btnOkText = btnOkText;
 
     return modalRef.result;
   }
