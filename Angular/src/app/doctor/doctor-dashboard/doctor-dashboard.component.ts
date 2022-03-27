@@ -147,8 +147,8 @@ export class DoctorDashboardComponent implements OnInit {
     // this.openConfirmationDialog(selectInfo);
     if(confirm("Add event?") == false)
     return
-    // const title = this.serviceObj.name;
     const calendarApi = selectInfo.view.calendar;
+    // const title = this.serviceObj.name;
     //console.log("1st",this.selectedPatID)
     //console.log("1st",this.serviceObj.name)
     //console.log("1st",this.serviceObj.fees)
