@@ -10,6 +10,7 @@ import { ReceptionistService } from '../../receptionist.service';
 })
 export class MainSlidebarComponent implements OnInit {
 
+
   cookieTemp="";
   cookieRecep:Receptionist = new Receptionist("","","","")
   constructor(public recSrv: ReceptionistService,private cookieService:CookieService) {

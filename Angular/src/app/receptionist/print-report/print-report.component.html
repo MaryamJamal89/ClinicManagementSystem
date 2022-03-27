@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <pm-receptionist-header></pm-receptionist-header>
+    <pm-main-slidebar></pm-main-slidebar>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2 g-0">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Report</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a [routerLink]="['/receptionist']">Home</a></li>
+                            <li class="breadcrumb-item active">Report</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Small boxes (Stat box) -->
+                <div class="row g-0">
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>150</h3>
+                                <!-- TODO: Appointment count -->
+                                <p>Appointment</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <a [routerLink]="['/receptionist']" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                                <p>Income Rate</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-percent"></i>
+                            </div>
+                            <a class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>44</h3>
+                                <!-- TODO: Patient count -->
+                                <p>Patient Profile</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-user-injured"></i>
+                            </div>
+                            <a [routerLink]="['receptionist/patient']" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>65</h3>
+                                <!-- TODO: Doctor count -->
+                                <p>Doctor Profiles</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <a [routerLink]="['receptionist/doctor']" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                </div>
+                <!-- /.row -->
+                <!-- Main row -->
+                <div class="row g-0" id="content">
+                    <!-- Left col -->
+                    <section class="col-lg-5 connectedSortable">
+                        <!-- Custom tabs (Charts with tabs)-->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-chart-pie mr-1"></i>
+                                    Patient Gender
+                                </h3>
+                            </div><!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="tab-content p-0">
+                                    <!-- Morris chart - Sales -->
+                                    <div class="chart tab-pane active" id="revenue-chart"
+                                        style="position: relative; height: 350px;">
+                                        <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
+                                    </div>
+                                </div>
+                            </div><!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+
+                    </section>
+                    <!-- /.Left col -->
+                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                    <section class="col-lg-7 connectedSortable">
+                        <!-- solid sales graph -->
+                        <div class="card bg-gradient-light">
+                            <div class="card-header border-0">
+                                <h3 class="card-title">
+                                    <i class="fas fa-th mr-1"></i>
+                                    Income Rate per Month
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <canvas class="chart" id="bar-chart"
+                                    style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+
+                    </section>
+                    <!-- right col -->
+                </div>
+                <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+
+        <!-- this row will not appear when printing -->
+        <div class="row no-print g-0 m-1">
+            <div class="col-12 m-1 pb-4">
+                <a rel="noopener" target="_blank" (click)="Print()" id="print-btn" class="btn btn-default"><i
+                        class="fas fa-print"></i> Print</a>
+                <!-- <button type="button" class="btn btn-success float-right"><i
+                        class="far fa-credit-card"></i> Submit
+                    Payment
+                </button> -->
+                <button type="button" class="btn btn-primary float-right" (click)="openPDF()"
+                    style="margin-right: 5px;">
+                    <i class="fas fa-download"></i> Generate PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <pm-footer></pm-footer>
+</body>
+
+</html>
