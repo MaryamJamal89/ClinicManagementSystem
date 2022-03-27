@@ -59,6 +59,7 @@ export class PrintInvoiceComponent implements OnInit {
     Tax:number=0
     Total:number=0
     invoiceNum:string=""
+    serviceNum:string|undefined=""
     
     
     ngOnInit(): void {
@@ -85,6 +86,12 @@ export class PrintInvoiceComponent implements OnInit {
       this.getServices(this.doctor.clinic_id)
 
       this.patient=this.data.Patient 
+      this.serviceNum=this.appointment.service._id
+
+
+      if (this.serviceNum!=undefined) {
+        this.serviceNum=this.serviceNum.slice(18)
+      }
 
     }
   })

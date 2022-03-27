@@ -74,6 +74,8 @@ export class ReceptionistDashboardComponent implements OnInit {
   services: Service[] = [];
   newClinic: Clinic = new Clinic(new Location('', ''), this.services);
   docotrs: Doctor[] = [];
+  initialized = false; // I added this to stop fullcalender component rendering
+
 
   //event handler for the select element's change event
   selectChangeHandler(event: any) {
@@ -120,7 +122,9 @@ export class ReceptionistDashboardComponent implements OnInit {
             end: this.appointments[i].endDate,
             id: this.appointments[i]._id,
           });
+         
         }
+        if(this.appointments.length!=0){
         setTimeout(() => {
           this.calendarOptions = {
             headerToolbar: {
@@ -128,10 +132,10 @@ export class ReceptionistDashboardComponent implements OnInit {
               center: 'title',
               right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
             },
-            initialView: 'dayGridMonth',
+            initialView: 'timeGridWeek',
             //initialEvents: this.INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
             weekends: true,
-            editable: true,
+            editable: false,
             selectable: true,
             selectMirror: true,
             dayMaxEvents: true,
@@ -150,8 +154,10 @@ export class ReceptionistDashboardComponent implements OnInit {
             eventChange:
             eventRemove:
             */
-          };
-        });
+          }
+          this.initialized=true;
+        })
+      }
       },
     });
   }

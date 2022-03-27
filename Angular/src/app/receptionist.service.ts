@@ -6,6 +6,7 @@ import { Doctor } from './_models/doctor';
 import { Patient } from './_models/patient';
 import { Prescription } from './_models/prescription';
 import { Service } from './_models/service';
+import { Receptionist } from './_models/receptionist';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,11 @@ getPatientByID(id:string){
 }
 getAllPatient(){
   return this.http.get<Patient[]>("http://localhost:8080/patient");
+}
+
+//?----------------------------Patient------------------------------?//
+getRecepByID(id:string){
+  return this.http.get<Receptionist>(`http://localhost:8080/receptionist/${id}`);
 }
 
 //?----------------------------Temp------------------------------?//

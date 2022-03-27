@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import {CookieService} from 'ngx-cookie-service'
 import { AuthServiceService } from '../auth-service.service'
 import { Router } from '@angular/router';
 
@@ -11,24 +12,30 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  validatingForm: FormGroup;
+  // validatingForm: FormGroup;
 
-  constructor(public authser:AuthServiceService,public router:Router) {
-    this.validatingForm = new FormGroup({
-      required: new FormControl(null, Validators.required)
-    });
-  }
+  // constructor(public authser:AuthServiceService,public router:Router) {
+  //   this.validatingForm = new FormGroup({
+  //     required: new FormControl(null, Validators.required)
+  //   });
+  // }
 
-  get input() { return this.validatingForm.get('required'); }
+  // get input() { return this.validatingForm.get('required'); }
 
   userName:string="";
   password:string="";
   token:any;
+  private cookieName="";
+  
+  constructor(public authser:AuthServiceService,public router:Router, private cookieService:CookieService) { }
 
   ngOnInit(): void {
     this.authser.isLogged=false;
   }
 
+  setCookie(_id:string){
+    this.cookieService.set('ID',_id)
+  }
   login()
   {
     this.authser.login(this.userName,this.password)
@@ -40,14 +47,20 @@ export class LoginComponent implements OnInit {
         this.authser.isLogged=true;
         localStorage.setItem('token',data.token);
         this.router.navigateByUrl("/doctor");
+        this.setCookie(data.id)
       }
       else if(data.massage==="Rescptionist")
       {
         this.authser.isLogged=true;
         localStorage.setItem('token',data.token);
         this.router.navigateByUrl("/receptionist");
+        this.setCookie(data.id)
+      }else{
+        alert("Please enter a valid data")
       }
-    });
+    }
+
+    );
   }
 
 }

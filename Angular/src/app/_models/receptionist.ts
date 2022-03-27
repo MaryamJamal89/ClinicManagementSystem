@@ -1,3 +1,3 @@
 export class Receptionist {
-    constructor(public _id:number,public clinicId:number, public username:string,public password:string,public permissions:string){}
+    constructor(public clinic_id:string, public userName:string,public password:string,public permissions:string, public _id?:string){}
 }
