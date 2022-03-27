@@ -23,7 +23,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a [routerLink]="['/receptionist']">Home</a></li>
                             <li class="breadcrumb-item active">Report</li>
                         </ol>
                     </div><!-- /.col -->
@@ -48,8 +48,7 @@
                             <div class="icon">
                                 <i class="fas fa-calendar-check"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            <!-- TODO: route to dashboard -->
+                            <a [routerLink]="['/receptionist']" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -79,8 +78,7 @@
                             <div class="icon">
                                 <i class="fas fa-user-injured"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            <!-- TODO: Route to search patient -->
+                            <a [routerLink]="['receptionist/patient']" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -95,8 +93,7 @@
                             <div class="icon">
                                 <i class="fas fa-user-md"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            <!-- TODO: Route to add Doctor -->
+                            <a [routerLink]="['receptionist/doctor']" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
