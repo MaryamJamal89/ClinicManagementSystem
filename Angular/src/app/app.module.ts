@@ -1,5 +1,6 @@
 import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {CookieService} from 'ngx-cookie-service'
 import { HttpClientModule } from '@angular/common/http'
 // full-calender
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -38,6 +39,8 @@ import { AboutUsReceptionistComponent } from './receptionist/about-us-receptioni
 import { DoctorHeaderSideformComponent } from './components/doctor-header-sideform/doctor-header-sideform.component';
 import { SimpleFooterComponent } from './components/simple-footer/simple-footer.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { ReceptionistService } from './receptionist.service';
+import { ConfirmationService } from './confirmation.service';
 
 const routes:Routes=
 [
@@ -52,7 +55,8 @@ const routes:Routes=
   {path:"receptionist/addReceptionist",component:AddReceptionistComponent,canActivate:[LoginGuard]},
   {path:"receptionist/invoice/:id",component:PrintInvoiceComponent,canActivate:[LoginGuard]},
   {path:"receptionist/about",component:AboutUsReceptionistComponent,canActivate:[LoginGuard]},
-  {path:"",redirectTo:"/login",pathMatch:"full"}
+  {path:"",redirectTo:"/login",pathMatch:"full"},
+  {path:"**",component:ErrorComponent},
 ]
 
 FullCalendarModule.registerPlugins([
@@ -100,7 +104,7 @@ FullCalendarModule.registerPlugins([
     MatDatepickerModule,
     FormsModule,
   ],
-  providers: [DoctorService],
+  providers: [ConfirmationService,CookieService],
   bootstrap: [AppComponent]
 })
 

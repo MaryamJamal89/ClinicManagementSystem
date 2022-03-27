@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReceptionistService } from 'src/app/receptionist.service';
 import { Patient } from 'src/app/_models/patient';
 
@@ -12,7 +13,7 @@ export class AddPatientComponent implements OnInit {
 
   newPatient:Patient= new Patient("","","male",new Date(),0);
 
-  constructor(public patSer:ReceptionistService) { }
+  constructor(public patSer:ReceptionistService,private route:ActivatedRoute,public router:Router) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +22,10 @@ export class AddPatientComponent implements OnInit {
     this.patSer.addPatient(this.newPatient).subscribe({
       next:a=>{this.newPatient=a}
     })
+  }
+
+  backToDash(){
+    this.router.navigateByUrl(`/receptionist`);
   }
 
 }
