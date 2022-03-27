@@ -26,6 +26,14 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user panel -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="../../../assets/img/icons8_wear_laboratory_coat_400px.png" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a [routerLink]="['/doctor']" class="d-block">{{cookieDoc.userName}}</a>
+                </div>
+            </div>
             <div class="user-panel mt-2 pb-2 mb-2 d-flex">
                 <div class="info">
                     <p href="#" class="d-block h5 text-white">New Appointment</p>
@@ -164,7 +172,8 @@
             <div class="c">
                 <div class="row g-0">
                     <div class="col-12">
-                        <full-calendar [options]="calendarOptions" class="m-4"></full-calendar>
+                        <full-calendar *ngIf="initialized" [options]="calendarOptions" class="m-4"></full-calendar>
+                        <ng-template #elseBlock>Content to render when condition is false.</ng-template>
                     </div>
                 </div>
                 <!-- /.row -->

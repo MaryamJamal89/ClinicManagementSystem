@@ -40,7 +40,7 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i
-                                                        class="fas fa-user-injured"></i></span>
+                                                        class="fas fa-user-md"></i></span>
                                                     </div>
                                                     <select class="form-control" id="pCategory" name="pCategory" (change)="selectChangeDoctor($event)">
                                                 >
@@ -184,7 +184,7 @@
             <div class="c">
                 <div class="row g-0">
                     <div class="col-12">
-                        <full-calendar [options]="calendarOptions" class="m-4"></full-calendar>
+                        <full-calendar *ngIf="initialized" [options]="calendarOptions" class="m-4"></full-calendar>
                     </div>
                 </div>
                 <!-- /.row -->

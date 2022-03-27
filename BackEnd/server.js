@@ -90,7 +90,8 @@ app.get('/loggout', (req, res, next) => {
 
 //----- Not found MW
 app.use((request,response)=>{
-    response.status(404).json({data:"Page Not Found"});
+    // response.status(404).json({data:"Page Not Found"});
+    response.redirect("/error")
 })
 
 //------------------------- Error MW

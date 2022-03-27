@@ -21,6 +21,8 @@ import { Clinic } from '../../_models/clinic';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'src/app/confirmation.service';
 import { Location } from 'src/app/_models/location';
+import { CookieService } from 'ngx-cookie-service';
+import { Doctor } from 'src/app/_models/doctor';
 
 
 @Component({
@@ -30,12 +32,13 @@ import { Location } from 'src/app/_models/location';
 })
 export class DoctorDashboardComponent implements OnInit {
 
-  constructor(private docSrv: DoctorService, private docSrvP: ReceptionistService,public router:Router, public conf:ConfirmationService ) {
+  constructor(private docSrv: DoctorService, private docSrvP: ReceptionistService,public router:Router, public conf:ConfirmationService,private cookieService:CookieService ) {
   }
 
   appointments: Appointment[] = [];
-  newAppointment: Appointment = new Appointment("62345fe486e4b9494d6237c3", "", new Date(), new Date(), "", 0, new Service("", 0));
+  newAppointment: Appointment = new Appointment("", "", new Date(), new Date(), "", 0, new Service("", 0));
   deleteAppointment: Appointment = new Appointment("", "", new Date(), new Date(), "cash", 0, new Service("", 0,""));
+  cookieDoc: Doctor = new Doctor("", "", "", 0, "");
   calendarPlugins = [dayGridPlugin]; // important!
   calendarVisible = true;
   calendarOptions: CalendarOptions = {}
@@ -48,8 +51,10 @@ export class DoctorDashboardComponent implements OnInit {
   patName: string="";
   FeesAmount: number=0;
   paymentMethod: string="";
+  cookieTemp="";
   serviceObj:any//Service= new Service("",0);
   patObj:any//Service= new Service("",0);
+  initialized = false; // I added this to stop fullcalender component rendering
   services: Service[] = [];
   newClinic: Clinic = new Clinic(new Location("",""), this.services);
 
@@ -74,7 +79,8 @@ export class DoctorDashboardComponent implements OnInit {
     this.getPatients();
     this.getData();
     this.getServices("62345f2086e4b9494d6237a4");
-    // console.log(new mongoose.types.objectId)
+    this.cookieTemp= this.cookieService.get("ID")
+    this.getDocotr(this.cookieTemp)
   }
 
   getData() {
@@ -85,52 +91,43 @@ export class DoctorDashboardComponent implements OnInit {
         
         for (let i = 0; i < this.appointments.length; i++) {
           this.patObj=this.patients.find(ele => ele._id == this.appointments[i].patientID)
-          if(this.patObj!=undefined)
-          this.patName=this.patObj.name
-          this.arr.push({
-            title: this.patName + " - " + this.appointments[i].service.name,
-            date: this.appointments[i].startDate,
-            end: this.appointments[i].endDate,
-            id: this.appointments[i]._id,
+          if (this.appointments[i].doctorID == this.cookieTemp ) {
+            if(this.patObj!=undefined)
+            this.patName=this.patObj.name
+            this.arr.push({
+              title: this.patName + " - " + this.appointments[i].service.name,
+              date: this.appointments[i].startDate,
+              end: this.appointments[i].endDate,
+              id: this.appointments[i]._id,
+            })
+          }
+        }
+        if(this.appointments.length!=0){
+          setTimeout(() => {
+            this.calendarOptions = {
+              headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
+              },
+              initialView: 'timeGridWeek',
+              //initialEvents: this.INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+              weekends: true,
+              editable: false,
+              selectable: true,
+              selectMirror: true,
+              dayMaxEvents: true,
+              select: this.handleDateSelect.bind(this),
+              eventClick: this.handleEventClick.bind(this),
+              eventsSet: this.handleEvents.bind(this),
+              events: this.arr,
+            }
+            this.initialized=true;
           })
         }
-        setTimeout(() => {
-          this.calendarOptions = {
-            headerToolbar: {
-              left: 'prev,next today',
-              center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-            },
-            initialView: 'dayGridMonth',
-            //initialEvents: this.INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
-            weekends: true,
-            editable: true,
-            selectable: true,
-            selectMirror: true,
-            dayMaxEvents: true,
-            select: this.handleDateSelect.bind(this),
-            eventClick: this.handleEventClick.bind(this),
-            eventsSet: this.handleEvents.bind(this),
-            events: this.arr,
-            // [
-            //   {
-            //     title:this.appointments[0].service.name,
-            //   start: this.appointments[0].date,
-            //  }
-            // ],
-            /* you can update a remote database when these fire:
-            eventAdd:
-            eventChange:
-            eventRemove:
-            */
-          };
-        }
-        )
-
-        console.log(this.appointments)
-      }
-    })
-  }
+        },
+      });
+    }
 
   //TODAY_STR = new Date().toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
 
@@ -164,6 +161,7 @@ export class DoctorDashboardComponent implements OnInit {
       console.log("2nd",this.serviceObj.name)
 
       this.newAppointment.patientID = this.selectedPatID
+      this.newAppointment.doctorID = this.cookieTemp
       this.newAppointment.service.name = this.serviceObj.name
       this.newAppointment.service.fees = this.serviceObj.fees
       this.newAppointment.service._id = this.serviceObj._id
@@ -255,6 +253,15 @@ export class DoctorDashboardComponent implements OnInit {
       next: a => {
         this.patients = a;
         console.log(this.patients)
+      }
+    })
+  }
+  //?----------------------Patient-----------------------------//
+  getDocotr(id:string) {
+    this.docSrv.getDocotrByID(id).subscribe({
+      next: a => {
+        this.cookieDoc = a;
+        console.log(this.cookieDoc)
       }
     })
   }
