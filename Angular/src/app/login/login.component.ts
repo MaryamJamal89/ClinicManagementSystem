@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 import { AuthServiceService } from '../auth-service.service'
 import { Router } from '@angular/router';
 
@@ -9,11 +11,19 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  validatingForm: FormGroup;
+
+  constructor(public authser:AuthServiceService,public router:Router) {
+    this.validatingForm = new FormGroup({
+      required: new FormControl(null, Validators.required)
+    });
+  }
+
+  get input() { return this.validatingForm.get('required'); }
+
   userName:string="";
   password:string="";
   token:any;
-
-  constructor(public authser:AuthServiceService,public router:Router) { }
 
   ngOnInit(): void {
     this.authser.isLogged=false;
