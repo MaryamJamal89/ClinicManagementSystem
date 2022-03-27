@@ -37,7 +37,7 @@
                 <a [routerLink]="['/receptionist/about']" class="nav-link">About</a>
             </li>
         </ul>
-        <a class="nav-item nav-link link-light ms-auto" [routerLink]="['']">Logout</a>
+        <a class="nav-item nav-link link-light ms-auto"  (click)="deleteCookie()">Logout</a>
 
     </nav>
     <!-- /.navbar -->
