@@ -5,7 +5,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 const session = require('express-session');
-
+const multer = require("multer");
 
 
 const clinicroute = require('./Routers/clinic_router');
@@ -25,7 +25,6 @@ app.use(session({
         maxAge: 60 * 1000 * 30
     }
 }));
-
 ////////////////////////////////////////////////////////////////
 mongoose.connect("mongodb+srv://Randa:1234@cluster0.e3oxq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority").then(() => {
     app.listen(8080, () => {

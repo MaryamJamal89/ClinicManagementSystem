@@ -68,6 +68,9 @@ export class DoctorService {
   }
   getDocotrByID(id:string){
     return this.http.get<Doctor>(`http://localhost:8080/doctor/${id}`);
+  }  
+  imageDoctor(username:string){
+    return this.http.get(`http://localhost:8080/doctor/image/${username}.jpg`)
   }
 
 

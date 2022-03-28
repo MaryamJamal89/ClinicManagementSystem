@@ -68,6 +68,9 @@ addRecep(newRecep : Receptionist){
   return this.http.post<Receptionist>("http://localhost:8080/receptionist",newRecep)
 }
 
+imageRecep(username:string){
+ return this.http.get(`http://localhost:8080/receptionist/image/${username}`) 
+}
 
 //   getAppointmentByDate(date:Data):Appointment{
 //   for (let i = 0; i < this.appointment.length; i++) {
