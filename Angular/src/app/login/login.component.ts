@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import {CookieService} from 'ngx-cookie-service'
+import { CookieService } from 'ngx-cookie-service'
 import { AuthServiceService } from '../auth-service.service'
 import { Router } from '@angular/router';
+import { style } from '@angular/animations';
 
 @Component({
   selector: 'pm-login',
@@ -12,55 +13,45 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  // validatingForm: FormGroup;
+  // @ViewChild('idValidation')
+  // idValidation!: ElementRef;
 
-  // constructor(public authser:AuthServiceService,public router:Router) {
-  //   this.validatingForm = new FormGroup({
-  //     required: new FormControl(null, Validators.required)
-  //   });
-  // }
+  userName: string = "";
+  password: string = "";
+  token: any;
+  private cookieName = "";
+  idValidation: boolean = false;
 
-  // get input() { return this.validatingForm.get('required'); }
-
-  userName:string="";
-  password:string="";
-  token:any;
-  private cookieName="";
-  
-  constructor(public authser:AuthServiceService,public router:Router, private cookieService:CookieService) { }
+  constructor(public authser: AuthServiceService, public router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    this.authser.isLogged=false;
+    this.authser.isLogged = false;
   }
 
-  setCookie(_id:string){
-    this.cookieService.set('ID',_id)
+  setCookie(_id: string) {
+    this.cookieService.set('ID', _id)
   }
-  login()
-  {
-    this.authser.login(this.userName,this.password)
-    .subscribe((data:any)=>
-    {
-      console.log(data);
-      if(data.massage==="Doctor")
-      {
-        this.authser.isLogged=true;
-        localStorage.setItem('token',data.token);
-        this.router.navigateByUrl("/doctor");
-        this.setCookie(data.id)
+  login() {
+    this.authser.login(this.userName, this.password)
+      .subscribe((data: any) => {
+        console.log(data);
+        if (data.massage === "Doctor") {
+          this.authser.isLogged = true;
+          localStorage.setItem('token', data.token);
+          this.router.navigateByUrl("/doctor");
+          this.setCookie(data.id)
+        }
+        else if (data.massage === "Rescptionist") {
+          this.authser.isLogged = true;
+          localStorage.setItem('token', data.token);
+          this.router.navigateByUrl("/receptionist");
+          this.setCookie(data.id)
+        } else {
+          this.idValidation = true;
+        }
       }
-      else if(data.massage==="Rescptionist")
-      {
-        this.authser.isLogged=true;
-        localStorage.setItem('token',data.token);
-        this.router.navigateByUrl("/receptionist");
-        this.setCookie(data.id)
-      }else{
-        alert("Please enter a valid data")
-      }
-    }
 
-    );
+      );
   }
 
 }
