@@ -1,6 +1,6 @@
-import { NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {CookieService} from 'ngx-cookie-service'
+import { CookieService } from 'ngx-cookie-service'
 import { HttpClientModule } from '@angular/common/http'
 // full-calender
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -44,22 +44,22 @@ import { ConfirmationService } from './confirmation.service';
 import { PrintReportComponent } from './receptionist/print-report/print-report.component';
 
 
-const routes:Routes=
-[
-  {path:"login",component:LoginComponent},
-  {path:"doctor",component:DoctorDashboardComponent,canActivate:[LoginGuard]},
-  {path:"receptionist",component:ReceptionistDashboardComponent,canActivate:[LoginGuard]},
-  {path:"doctor/prescription/:id",component:AddPrescriptionComponent,canActivate:[LoginGuard]},
-  {path:"doctor/about",component:AboutComponent,canActivate:[LoginGuard]},
-  {path:"receptionist/patient",component:AddPatientComponent,canActivate:[LoginGuard]},
-  {path:"receptionist/appointment",component:AddAppointmentComponent,canActivate:[LoginGuard]},
-  {path:"receptionist/doctor",component:AddDoctorComponent,canActivate:[LoginGuard]},
-  {path:"receptionist/addReceptionist",component:AddReceptionistComponent,canActivate:[LoginGuard]},
-  {path:"receptionist/report",component:PrintReportComponent,canActivate:[LoginGuard]},
-  {path:"receptionist/about",component:AboutUsReceptionistComponent,canActivate:[LoginGuard]},
-  {path:"",redirectTo:"/login",pathMatch:"full"},
-  {path:"**",component:ErrorComponent},
-]
+const routes: Routes =
+  [
+    { path: "login", component: LoginComponent },
+    { path: "doctor", component: DoctorDashboardComponent, canActivate: [LoginGuard] },
+    { path: "receptionist", component: ReceptionistDashboardComponent, canActivate: [LoginGuard] },
+    { path: "doctor/prescription/:id", component: AddPrescriptionComponent, canActivate: [LoginGuard] },
+    { path: "doctor/about", component: AboutComponent, canActivate: [LoginGuard] },
+    { path: "receptionist/patient", component: AddPatientComponent, canActivate: [LoginGuard] },
+    { path: "receptionist/appointment", component: AddAppointmentComponent, canActivate: [LoginGuard] },
+    { path: "receptionist/doctor", component: AddDoctorComponent, canActivate: [LoginGuard] },
+    { path: "receptionist/addReceptionist", component: AddReceptionistComponent, canActivate: [LoginGuard] },
+    { path: "receptionist/report", component: PrintReportComponent, canActivate: [LoginGuard] },
+    { path: "receptionist/about", component: AboutUsReceptionistComponent, canActivate: [LoginGuard] },
+    { path: "", redirectTo: "/login", pathMatch: "full" },
+    { path: "**", component: ErrorComponent },
+  ]
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -102,12 +102,12 @@ FullCalendarModule.registerPlugins([
     MatDatepickerModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    ],
+  ],
   exports: [
     MatDatepickerModule,
     FormsModule,
   ],
-  providers: [ConfirmationService,CookieService],
+  providers: [ConfirmationService, CookieService],
   bootstrap: [AppComponent]
 })
 
