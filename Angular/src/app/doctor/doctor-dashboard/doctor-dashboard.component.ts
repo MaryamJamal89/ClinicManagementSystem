@@ -75,7 +75,6 @@ export class DoctorDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("hereeeeeeeeeeeeeeeeeeee")
     this.getPatients();
     this.getData();
     this.getServices("62345f2086e4b9494d6237a4");
