@@ -10,7 +10,8 @@
 
 <body>
     <pm-receptionist-header></pm-receptionist-header>
-    <aside *ngIf="recSrv.showAppointment" class="main-sidebar sidebar-dark-primary elevation-4 d-none d-lg-block" style="height: 1000px;">
+    <aside *ngIf="recSrv.showAppointment" class="main-sidebar sidebar-dark-primary elevation-4 d-none d-lg-block"
+        style="height: 1000px;">
         <!-- Brand Logo -->
         <a class="brand-link ml-2 mr-2" href="#">
             <i class="fa fa-solid fa-stethoscope fa-2x"></i>
@@ -22,7 +23,7 @@
             <!-- Sidebar user panel -->
             <div class="user-panel mt-2 pb-2 mb-2 d-flex">
                 <div class="info">
-                    <p href="#" class="d-block h5 text-white">New Appointment</p>
+                    <p href="#" class="d-block h6 text-white">New Appointment</p>
                 </div>
             </div>
 
@@ -40,15 +41,17 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i
-                                                        class="fas fa-user-md"></i></span>
+                                                                class="fas fa-user-md"></i></span>
                                                     </div>
-                                                    <select class="form-control" id="pCategory" name="pCategory" (change)="selectChangeDoctor($event)">
-                                                >
-                                                <option value="" selected="true" disabled="disabled">Choose a
-                                                    Doctor</option>
-                                                <option *ngFor="let c of doctors"  value={{c._id}}>{{ c.userName }}
-                                                </option>
-                                            </select>
+                                                    <select class="form-control" id="pCategory" name="pCategory"
+                                                        (change)="selectChangeDoctor($event)">
+                                                        >
+                                                        <option value="" selected="true" disabled="disabled">Choose a
+                                                            Doctor</option>
+                                                        <option *ngFor="let c of doctors" value={{c._id}}>{{ c.userName
+                                                            }}
+                                                        </option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </td>
@@ -60,15 +63,16 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i
-                                                            class="fas fa-user-injured"></i></span>
+                                                                class="fas fa-user-injured"></i></span>
                                                     </div>
-                                                    <select class="form-control" id="pCategory" name="pCategory" (change)="selectChangeHandler($event)">
-                                                    >
-                                                    <option value="" selected="true" disabled="disabled">Choose a
-                                                        Patient</option>
-                                                    <option *ngFor="let c of patients"  value={{c._id}}>{{ c.name }}
-                                                    </option>
-                                                </select>
+                                                    <select class="form-control" id="pCategory" name="pCategory"
+                                                        (change)="selectChangeHandler($event)">
+                                                        >
+                                                        <option value="" selected="true" disabled="disabled">Choose a
+                                                            Patient</option>
+                                                        <option *ngFor="let c of patients" value={{c._id}}>{{ c.name }}
+                                                        </option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </td>
@@ -80,15 +84,17 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i
-                                                            class="fas fa-server"></i></span>
+                                                                class="fas fa-server"></i></span>
                                                     </div>
-                                                    <select class="form-control" id="pCategory" name="pCategory" (change)="selectChangeServices($event)">
-                                                    >
-                                                    <option value="" selected="true" disabled="disabled">Choose a
-                                                        Service</option>
-                                                    <option *ngFor="let c of newClinic.services" value={{c._id}}>{{ c.name }}
-                                                    </option>
-                                                </select>
+                                                    <select class="form-control" id="pCategory" name="pCategory"
+                                                        (change)="selectChangeServices($event)">
+                                                        >
+                                                        <option value="" selected="true" disabled="disabled">Choose a
+                                                            Service</option>
+                                                        <option *ngFor="let c of newClinic.services" value={{c._id}}>{{
+                                                            c.name }}
+                                                        </option>
+                                                    </select>
                                                     <!-- <input class="form-control" id="InputName" name="InputName" type="text" placeholder="Service Name" required> -->
                                                 </div>
                                                 <!-- /.input group -->
@@ -102,9 +108,11 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i
-                                                            class="fas fa-money"></i></span>
+                                                                class="fas fa-money"></i></span>
                                                     </div>
-                                                    <input [(ngModel)]="selectedServFees" class="form-control" id="InputFees" name="InputFees" type="number" placeholder="Service Fees" required disabled>
+                                                    <input [(ngModel)]="selectedServFees" class="form-control"
+                                                        id="InputFees" name="InputFees" type="number"
+                                                        placeholder="Service Fees" required disabled>
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -117,9 +125,11 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i
-                                                            class="fas fa-money"></i></span>
+                                                                class="fas fa-money"></i></span>
                                                     </div>
-                                                    <input [(ngModel)]="FeesAmount" class="form-control" id="InputFees" name="InputPayedFees" type="number" placeholder="Payed Fees" required>
+                                                    <input [(ngModel)]="FeesAmount" class="form-control" id="InputFees"
+                                                        name="InputPayedFees" type="number" placeholder="Payed Fees"
+                                                        required>
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -130,15 +140,18 @@
                                             <div class="form-group">
                                                 <label class="text-white">Payment Method:</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" value="visa" [(ngModel)]="paymentMethod" name="PaymentMethod">
+                                                    <input class="form-check-input" type="radio" value="visa"
+                                                        [(ngModel)]="paymentMethod" name="PaymentMethod">
                                                     <label class="form-check-label text-white">VISA Card</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" value="cash" [(ngModel)]="paymentMethod" name="PaymentMethod">
+                                                    <input class="form-check-input" type="radio" value="cash"
+                                                        [(ngModel)]="paymentMethod" name="PaymentMethod">
                                                     <label class="form-check-label text-white">Cash</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" value="insurance" [(ngModel)]="paymentMethod" name="PaymentMethod">
+                                                    <input class="form-check-input" type="radio" value="insurance"
+                                                        [(ngModel)]="paymentMethod" name="PaymentMethod">
                                                     <label class="form-check-label text-white">Insurance</label>
                                                 </div>
                                             </div>
@@ -146,14 +159,15 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <button (click)="showApp()" class="btn btn-outline-light w-100">Back</button>
+                                            <button (click)="showApp()"
+                                                class="btn btn-outline-light w-100">Back</button>
                                         </td>
                                     </tr>
                                     <!-- <tr>
-                <td>
-                  <button type="button" class="btn btn-outline-light w-100">Submit</button>
-                </td>
-              </tr> -->
+                                            <td>
+                                            <button type="button" class="btn btn-outline-light w-100">Submit</button>
+                                            </td>
+                                        </tr> -->
                                 </tbody>
                             </table>
                         </form>
@@ -178,15 +192,15 @@
 
     <div class="content-wrapper">
 
-
         <!-- Main content -->
         <div class="content">
             <div class="c">
                 <div class="row g-0">
                     <div class="col-12" style="min-height: 300px;">
                         <full-calendar *ngIf="initialized" [options]="calendarOptions" class="m-4"></full-calendar>
-                        <div *ngIf="!initialized">
-                            <div class="spinner-border center" role="status" style="text-align: center;">
+                        <div *ngIf="!initialized" class="text-center pt-5 mt-5">
+                            <div class="spinner-border center text-center mt-5" role="status"
+                                style="width: 100px; height: 100px;">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
