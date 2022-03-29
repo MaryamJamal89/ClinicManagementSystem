@@ -173,7 +173,11 @@
                 <div class="row g-0">
                     <div class="col-12">
                         <full-calendar *ngIf="initialized" [options]="calendarOptions" class="m-4"></full-calendar>
-                        <ng-template #elseBlock>Content to render when condition is false.</ng-template>
+                        <div *ngIf="!initialized">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- /.row -->

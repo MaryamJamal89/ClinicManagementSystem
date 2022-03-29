@@ -24,7 +24,7 @@ const verifyUserLogin = async (userName, password) => {
           "ITI",
           { expiresIn: "1h" }
         );
-        return { status: "ok", data: token,massage:"Rescptionist",userName:respUser.userName,id:respUser._id};
+        return { status: "ok", data: token,massage:"Rescptionist",id:respUser._id};
       }
       return { status: "error", error: "invalid password" };
     }
@@ -39,7 +39,7 @@ const verifyUserLogin = async (userName, password) => {
         "ITI",
         { expiresIn: "1h" }
       );
-      return { status: "ok", data: token ,massage:"Doctor",userName:doctorUser.userName,id:doctorUser._id};
+      return { status: "ok", data: token ,massage:"Doctor",id:doctorUser._id};
     }
   } catch (error) {
     console.log(error);

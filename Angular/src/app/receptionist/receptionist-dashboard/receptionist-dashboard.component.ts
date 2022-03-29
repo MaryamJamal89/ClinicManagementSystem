@@ -110,9 +110,8 @@ export class ReceptionistDashboardComponent implements OnInit {
     this.getDoctors();
     this.getData();
     this.getServices('62345f2086e4b9494d6237a4');
-
-    // this.cookieTemp= this.cookieService.get("ID")
-    // this.getRecep(this.cookieTemp)
+    this.cookieTemp= this.cookieService.get("ID")
+    this.getRecep(this.cookieTemp)
     // console.log(new mongoose.types.objectId)
   }
 
@@ -153,17 +152,6 @@ export class ReceptionistDashboardComponent implements OnInit {
             eventClick: this.handleEventClick.bind(this),
             eventsSet: this.handleEvents.bind(this),
             events: this.arr,
-            // [
-            //   {
-            //     title:this.appointments[0].service.name,
-            //   start: this.appointments[0].date,
-            //  }
-            // ],
-            /* you can update a remote database when these fire:
-            eventAdd:
-            eventChange:
-            eventRemove:
-            */
           }
           this.initialized=true;
         })
@@ -185,22 +173,20 @@ export class ReceptionistDashboardComponent implements OnInit {
 
   handleDateSelect(selectInfo: DateSelectArg) {
     if (confirm('Add event?') == false) return;
-    // const title = this.serviceObj.name;
     const calendarApi = selectInfo.view.calendar;
-
     calendarApi.unselect();
-
     if (true) {
       if (
         this.selectedPatID == '' ||
         this.serviceObj == undefined ||
         this.FeesAmount == 0 ||
         this.paymentMethod == ''
-      ) {
+      )
+      {
         alert('Please, Complete the appointment info!');
         return;
       }
-      console.log('2nd', this.serviceObj.name);
+
       this.newAppointment.doctorID = this.selectedDocID;
       this.newAppointment.patientID = this.selectedPatID;
       this.newAppointment.service = this.serviceObj;
@@ -220,10 +206,6 @@ export class ReceptionistDashboardComponent implements OnInit {
           });
         },
       });
-      // //this.docSrv.addAppointment(new Appointment("0","0", "0", new Date(selectInfo.startStr), 1, paymentMethod, fees, title));
-      // this.appointments.forEach(element => {
-      //   console.log(element)
-      // });
     }
   }
 
@@ -238,9 +220,9 @@ export class ReceptionistDashboardComponent implements OnInit {
   }
 
   redirectToPresc(clickInfo: EventClickArg) {
-    console.log('recscsccs');
     this.router.navigateByUrl(`receptionist/invoice/${clickInfo.event.id}`);
   }
+
   DeleteAppointment(clickInfo: EventClickArg) {
     this.deleteAppointment._id = clickInfo.event.id;
     this.docSrv.deleteAppointment(this.deleteAppointment._id).subscribe({
@@ -250,21 +232,6 @@ export class ReceptionistDashboardComponent implements OnInit {
     });
     clickInfo.event.remove();
   }
-
-  // handleEventClick(clickInfo: EventClickArg) {
-
-  //   this.openConfirmationDialog();
-  //   if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-  //     this.deleteAppointment._id = clickInfo.event.id
-  //     this.docSrv.deleteAppointment(this.deleteAppointment._id).subscribe({
-  //       next: a => { this.deleteAppointment = a; }
-  //     })
-  //     clickInfo.event.remove();
-  //   } else {
-  //     //!Redirect to prescription page
-  //     this.router.navigateByUrl(`/doctor/prescription/${clickInfo.event.id}`);
-  //   }
-  // }
 
   handleEvents(events: EventApi[]) {
     this.currentEvents = events;
@@ -305,7 +272,15 @@ export class ReceptionistDashboardComponent implements OnInit {
     this.recSrv.getRecepByID(id).subscribe({
       next: a => {
         this.cookieRecep = a;
-        console.log(this.cookieRecep)
+        this.getImage(this.cookieRecep.userName)
+      }
+    })
+  }
+
+  getImage(username:string) {
+    this.recSrv.imageRecep(username).subscribe({
+      next: a => {
+        console.log(a);
       }
     })
   }

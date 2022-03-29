@@ -75,12 +75,12 @@ export class DoctorDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("hereeeeeeeeeeeeeeeeeeee")
     this.getPatients();
     this.getData();
     this.getServices("62345f2086e4b9494d6237a4");
     this.cookieTemp= this.cookieService.get("ID")
     this.getDocotr(this.cookieTemp)
+    
   }
 
   getData() {
@@ -182,10 +182,6 @@ export class DoctorDashboardComponent implements OnInit {
             });
         }
       })
-      // //this.docSrv.addAppointment(new Appointment("0","0", "0", new Date(selectInfo.startStr), 1, paymentMethod, fees, title));
-      // this.appointments.forEach(element => {
-      //   console.log(element)
-      // });
 
     }
   }
@@ -261,11 +257,17 @@ export class DoctorDashboardComponent implements OnInit {
     this.docSrv.getDocotrByID(id).subscribe({
       next: a => {
         this.cookieDoc = a;
-        console.log(this.cookieDoc)
+        this.getImage(this.cookieDoc.userName)
       }
     })
   }
-
+  getImage(username:string) {
+    this.docSrv.imageDoctor(username).subscribe({
+      next: a => {
+        console.log("image",a);
+      }
+    })
+  }
   //?----------------------Clinic Services-----------------------------//
     getServices(clinicId:string) {
       this.docSrv.getServicesByClinicId(clinicId).subscribe({
