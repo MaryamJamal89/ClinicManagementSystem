@@ -32,12 +32,11 @@ export class AddReceptionistComponent implements OnInit {
     this.newRecep.permissions=this.permission
     this.recSrv.addRecep(this.newRecep).subscribe({
       next:a=>{
-
+        console.log("catched the error")
         const fd=new FormData();
         fd.append('image',this.image,this.newRecep.userName);
         this.recSrv.addImageRecep(fd,this.newRecep.userName).subscribe({
           next:data=>{
-            console.log(data);
             this.backToDash()
           }
         })
