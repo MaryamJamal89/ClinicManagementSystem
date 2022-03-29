@@ -94,9 +94,12 @@ export class DoctorDashboardComponent implements OnInit {
   patObj: any; //Service= new Service("",0);
   initialized = false; // I added this to stop fullcalender component rendering
   services: Service[] = [];
-  newClinic: Clinic = new Clinic(new Location('', ''), this.services);
+
   isImageLoading: boolean = true;
   imageToShow: any;
+  newClinic: Clinic = new Clinic(new Location("",""), this.services);
+  newAppointmentValidation: boolean = false;
+
 
   //event handler for the select element's change event
   selectChangeHandler(event: any) {
@@ -195,14 +198,11 @@ export class DoctorDashboardComponent implements OnInit {
     calendarApi.unselect(); // clear date selection
 
     if (true) {
-      if (
-        this.selectedPatID == '' ||
-        this.serviceObj == undefined ||
-        this.FeesAmount == 0 ||
-        this.paymentMethod == ''
-      ) {
-        alert('Please, Complete the appointment info!');
-        return;
+
+      if (this.selectedPatID == "" || this.serviceObj == undefined || this.FeesAmount == 0 || this.paymentMethod == "") {
+        this.newAppointmentValidation = true;
+        // alert("Please, Complete the appointment info!")
+        return
       }
       console.log('2nd', this.serviceObj.name);
 
