@@ -7,10 +7,10 @@ import { HttpClient } from '@angular/common/http';
 export class AuthServiceService {
 
   isLogged:boolean=false;
-  login(userName:string,password:string)
+  login(userName:string,password:string,type:string)
   {
     console.log(userName,password);
-    return this.http.post("http://localhost:8080/login",{"userName":userName, "password":password})
+    return this.http.post("http://localhost:8080/login",{"userName":userName, "password":password ,"type":type,})
   }
   constructor(public http:HttpClient) { }
 }

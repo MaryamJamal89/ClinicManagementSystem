@@ -33,7 +33,7 @@ export class AddDoctorComponent implements OnInit {
             console.log(data);
           }
         })
-        this.backToDash()
+       this.backToDash()
       }
     })
   }
