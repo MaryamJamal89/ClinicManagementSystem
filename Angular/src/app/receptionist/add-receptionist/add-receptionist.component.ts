@@ -40,6 +40,9 @@ export class AddReceptionistComponent implements OnInit {
             this.backToDash()
           }
         })
+      },
+      error:e=>{
+        alert("Some Thing Wrong Happened try Again"+ e)
       }
     })
   }
