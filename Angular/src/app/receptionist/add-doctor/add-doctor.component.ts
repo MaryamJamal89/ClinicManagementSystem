@@ -36,7 +36,8 @@ export class AddDoctorComponent implements OnInit {
        this.backToDash()
       },
       error:e=>{
-        alert("Some Thing Wrong Happened try Again"+ e)
+        alert("Some Thing Wrong Happened try Again"+e.message)
+       console.log(e.message);
       }
     })
   }
