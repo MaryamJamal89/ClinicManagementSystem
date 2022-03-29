@@ -21,15 +21,19 @@
                 <div class="row mb-2 g-0">
                     <div class="col-sm-6">
                         <h1 class="m-0">Receptionist Profile</h1>
-                    </div><!-- /.col -->
+                    </div>
+                    <!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a [routerLink]="['/receptionist']">Home</a></li>
                             <li class="breadcrumb-item active">New Receptionist</li>
                         </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
 
@@ -88,12 +92,21 @@
                                     <!-- /.input group -->
                                 </div>
                                 <!-- /.form group -->
-
+                                <div class="form-group">
+                                    <label for="InputNID">image:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                        </div>
+                                        <input type="file" class="form-control masked" id="Inputimage" (change)="fileChange($event)">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-info"(click)="addRecep()">Submit</button>
+                                <button type="submit" class="btn btn-info" (click)="addRecep()">Submit</button>
                                 <button type="submit" class="btn btn-default float-right" (click)="backToDash()">Cancel</button>
                             </div>
                             <!-- /.card-footer -->

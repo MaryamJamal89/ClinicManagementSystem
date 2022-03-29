@@ -268,7 +268,7 @@ export class DoctorDashboardComponent implements OnInit {
   getImage(username:string) {
     this.docSrv.imageDoctor(username).subscribe({
       next: a => {
-        console.log(a);
+        console.log("image",a);
       }
     })
   }

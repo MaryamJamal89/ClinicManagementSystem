@@ -72,6 +72,18 @@ imageRecep(username:string){
  return this.http.get(`http://localhost:8080/receptionist/image/${username}`) 
 }
 
+addImageRecep(fd:FormData){
+  return this.http.post("http://localhost:8080/receptionist/image",fd) 
+ }
+  //?----------------------------Image------------------------------?//
+  imageDoctor(username:string){
+    return this.http.get(`http://localhost:8080/doctor/image/${username}.jpg`)
+  }
+  
+  addImageDoctor(fd:FormData){
+    return this.http.post("http://localhost:8080/doctor/image",fd)
+  }
+
 //   getAppointmentByDate(date:Data):Appointment{
 //   for (let i = 0; i < this.appointment.length; i++) {
 //     if (this.appointment[i].appDate==date) {

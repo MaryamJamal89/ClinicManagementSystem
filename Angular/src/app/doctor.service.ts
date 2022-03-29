@@ -69,10 +69,15 @@ export class DoctorService {
   getDocotrByID(id:string){
     return this.http.get<Doctor>(`http://localhost:8080/doctor/${id}`);
   }  
+
+  //?----------------------------Image------------------------------?//
   imageDoctor(username:string){
     return this.http.get(`http://localhost:8080/doctor/image/${username}.jpg`)
   }
-
+  
+  addImageDoctor(fd:FormData){
+    return this.http.post("http://localhost:8080/doctor/image",fd)
+  }
 
   //   getAppointmentByDate(date:Data):Appointment{
   //   for (let i = 0; i < this.appointment.length; i++) {
