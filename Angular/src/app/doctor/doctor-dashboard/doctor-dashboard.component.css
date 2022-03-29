@@ -1,4 +1,8 @@
-#divChart{
-    width: 400px;
-    height: 400px;
+#divChart {
+  width: 400px;
+  height: 400px;
+}
+
+.center-cropped {
+  height: 2.1rem !important;
 }
