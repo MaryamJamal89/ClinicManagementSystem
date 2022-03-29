@@ -27,10 +27,17 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.authser.isLogged = false;
+    this.deleteCookie()
   }
 
   setCookie(_id: string) {
     this.cookieService.set('ID', _id)
+  }
+
+  deleteCookie(){
+    this.cookieService.delete('ID')
+    console.log("Cookie is deleted")
+    this.router.navigate(['/login'])
   }
   login() {
     this.authser.login(this.userName, this.password,this.type)

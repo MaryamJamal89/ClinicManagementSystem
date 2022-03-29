@@ -82,7 +82,7 @@ export class ReceptionistDashboardComponent implements OnInit {
   newClinic: Clinic = new Clinic(new Location('', ''), this.services);
   doctors: Doctor[] = [];
   initialized = false; // I added this to stop fullcalender component rendering
-
+  newAppointmentValidation: boolean = false;
 
   //event handler for the select element's change event
   selectChangeHandler(event: any) {
@@ -183,7 +183,8 @@ export class ReceptionistDashboardComponent implements OnInit {
         this.paymentMethod == ''
       )
       {
-        alert('Please, Complete the appointment info!');
+        this.newAppointmentValidation = true;
+        // alert('Please, Complete the appointment info!');
         return;
       }
 
@@ -272,16 +273,9 @@ export class ReceptionistDashboardComponent implements OnInit {
     this.recSrv.getRecepByID(id).subscribe({
       next: a => {
         this.cookieRecep = a;
-        this.getImage(`${this.cookieRecep.userName}Receptionist`)
       }
     })
   }
 
-  getImage(username:string) {
-    this.recSrv.imageRecep(username).subscribe({
-      next: a => {
-        console.log(a);
-      }
-    })
-  }
+ 
 }

@@ -25,7 +25,7 @@
                     <!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a [routerLink]="['/receptionist']">Home</a></li>
+                            <li class="breadcrumb-item"><a [routerLink]="['/receptionist']">Dashboard</a></li>
                             <li class="breadcrumb-item active">New Receptionist</li>
                         </ol>
                     </div>
@@ -49,7 +49,7 @@
                             <div class="card-body">
                                 <!-- username -->
                                 <div class="form-group">
-                                    <label for="InputNID">username:</label>
+                                    <label for="InputNID">Username:</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-id-card"></i></span>
@@ -93,11 +93,11 @@
                                 </div>
                                 <!-- /.form group -->
                                 <div class="form-group">
-                                    <label for="InputNID">image:</label>
+                                    <label for="InputNID">Image:</label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
+                                        <!-- <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-id-card"></i></span>
-                                        </div>
+                                        </div> -->
                                         <input type="file" class="form-control masked" id="Inputimage" (change)="fileChange($event)">
                                     </div>
                                     <!-- /.input group -->

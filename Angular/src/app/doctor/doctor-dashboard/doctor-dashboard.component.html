@@ -28,7 +28,7 @@
             <!-- Sidebar user panel -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="../../../assets/img/icons8_wear_laboratory_coat_400px.png" class="img-circle elevation-2" alt="User Image">
+                    <img src={{imageToShow}} class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
                     <a [routerLink]="['/doctor']" class="d-block">{{cookieDoc.userName}}</a>
@@ -36,7 +36,7 @@
             </div>
             <div class="user-panel mt-2 pb-2 mb-2 d-flex">
                 <div class="info">
-                    <p href="#" class="d-block h5 text-white">New Appointment</p>
+                    <p href="#" class="d-block h6 text-white">New Appointment</p>
                 </div>
             </div>
 
@@ -137,6 +137,9 @@
                                                     <label class="form-check-label text-white">Insurance</label>
                                                 </div>
                                             </div>
+                                            <div class="text-danger" id="idValidation" *ngIf="newAppointmentValidation">
+                                                Please, Complete the appointment info!
+                                            </div>
                                         </td>
                                     </tr>
                                     <!-- <tr>
@@ -173,11 +176,11 @@
                 <div class="row g-0">
                     <div class="col-12">
                         <full-calendar *ngIf="initialized" [options]="calendarOptions" class="m-4"></full-calendar>
-                        <div *ngIf="!initialized">
-                            <div class="spinner-border" role="status">
+                        <div *ngIf="!initialized" class="text-center pt-5 mt-5">
+                            <div class="spinner-border center text-center mt-5" role="status" style="width: 100px; height: 100px;">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
-                        </div>
+                        </div>                      
                     </div>
                 </div>
                 <!-- /.row -->

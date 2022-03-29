@@ -72,8 +72,10 @@ export class DoctorService {
 
   //?----------------------------Image------------------------------?//
   imageDoctor(username:string){
-    return this.http.get(`http://localhost:8080/doctor/image/${username}.jpg`)
+    return this.http.get(`http://localhost:8080/doctor/image/${username}.jpg`,{ responseType: 'blob' })
   }
+
+  
   
   addImageDoctor(fd:FormData){
     return this.http.post("http://localhost:8080/doctor/image",fd)
