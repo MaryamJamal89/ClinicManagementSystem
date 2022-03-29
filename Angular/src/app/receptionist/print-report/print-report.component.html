@@ -42,13 +42,13 @@
                         <div class="small-box bg-info">
                             <div class="inner">
                                 <h3>{{appCount}}</h3>
-                                <!-- TODO: Appointment count -->
                                 <p>Appointment</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-calendar-check"></i>
                             </div>
-                            <a [routerLink]="['/receptionist']" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a [routerLink]="['/receptionist']" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -57,7 +57,6 @@
                         <div class="small-box bg-success">
                             <div class="inner">
                                 <h3>53<sup style="font-size: 20px">%</sup></h3>
-
                                 <p>Income Rate</p>
                             </div>
                             <div class="icon">
@@ -72,13 +71,13 @@
                         <div class="small-box bg-warning">
                             <div class="inner">
                                 <h3>{{patCount}}</h3>
-                                <!-- TODO: Patient count -->
                                 <p>Patient Profile</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-user-injured"></i>
                             </div>
-                            <a [routerLink]="['/receptionist/patient']" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a [routerLink]="['/receptionist/patient']" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -87,13 +86,13 @@
                         <div class="small-box bg-danger">
                             <div class="inner">
                                 <h3>{{docCount}}</h3>
-                                <!-- TODO: Doctor count -->
                                 <p>Doctor Profiles</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-user-md"></i>
                             </div>
-                            <a [routerLink]="['/receptionist/doctor']" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a [routerLink]="['/receptionist/doctor']" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -111,18 +110,11 @@
                                     Patient Gender
                                 </h3>
                             </div><!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="tab-content p-0">
-                                    <!-- Morris chart - Sales -->
-                                    <div class="chart tab-pane active" id="revenue-chart"
-                                        style="position: relative; height: 350px;">
-                                        <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                                    </div>
-                                </div>
+                            <div class="card-body" style="height: auto;">
+                                <canvas id="revenue-chart-canvas" style="height: auto !important;"></canvas>
                             </div><!-- /.card-body -->
                         </div>
                         <!-- /.card -->
-
                     </section>
                     <!-- /.Left col -->
                     <!-- right col (We are only adding the ID to make the widgets sortable)-->
@@ -135,9 +127,9 @@
                                     Income Rate per Month
                                 </h3>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" style="height: auto;">
                                 <canvas class="chart" id="bar-chart"
-                                    style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
+                                    style="height: auto !important; max-width: 100%;"></canvas>
                             </div>
                             <!-- /.card-body -->
                         </div>
