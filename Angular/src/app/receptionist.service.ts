@@ -69,7 +69,7 @@ addRecep(newRecep : Receptionist){
 }
 
 imageRecep(username:string){
- return this.http.get(`http://localhost:8080/receptionist/image/${username}.jpg`) 
+ return this.http.get(`http://localhost:8080/receptionist/image/${username}.jpg`,{ responseType: 'blob' }) 
 }
 
 addImageRecep(fd:FormData,username:string){
@@ -77,7 +77,7 @@ addImageRecep(fd:FormData,username:string){
  }
   //?----------------------------Image------------------------------?//
   imageDoctor(username:string){
-    return this.http.get(`http://localhost:8080/doctor/image/${username}.jpg`)
+    return this.http.get(`http://localhost:8080/doctor/image/${username}.jpg`,{ responseType: 'blob' })
   }
   
   addImageDoctor(fd:FormData,username:string){
