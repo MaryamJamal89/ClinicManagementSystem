@@ -69,7 +69,7 @@ addRecep(newRecep : Receptionist){
 }
 
 imageRecep(username:string){
- return this.http.get(`http://localhost:8080/receptionist/image/${username}`) 
+ return this.http.get(`http://localhost:8080/receptionist/image/${username}.jpg`) 
 }
 
 addImageRecep(fd:FormData,username:string){
