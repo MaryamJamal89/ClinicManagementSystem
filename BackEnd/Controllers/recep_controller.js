@@ -60,5 +60,6 @@ const storage = multer.diskStorage({
       response.send("no file image");
     }
     response.send(request.file);
+    
   };
   
