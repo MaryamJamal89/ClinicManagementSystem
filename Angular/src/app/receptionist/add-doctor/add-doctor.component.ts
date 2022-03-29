@@ -12,6 +12,7 @@ import { Patient } from 'src/app/_models/patient';
 export class AddDoctorComponent implements OnInit {
   newDoc:Doctor= new Doctor("62345f2086e4b9494d6237a4","","",0);
   image:any=null;
+  isValid: boolean = false;
 
   constructor(public router:Router,public recSrv:ReceptionistService) { }
 
@@ -36,7 +37,8 @@ export class AddDoctorComponent implements OnInit {
        this.backToDash()
       },
       error:e=>{
-        alert("Some Thing Wrong Happened try Again"+e.message)
+        this.isValid = true;
+        // alert("Some Thing Wrong Happened try Again"+e.message)
        console.log(e.message);
       }
     })
