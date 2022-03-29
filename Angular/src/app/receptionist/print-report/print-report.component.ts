@@ -20,6 +20,8 @@ Chart.register(...registerables);
 export class PrintReportComponent implements OnInit {
   @ViewChild('content')
   content!: ElementRef;
+  mCount: number=0;
+  fCount: number=0;
 
   public openPDF(): void {
     let DATA: any = document.getElementById('content');
@@ -58,36 +60,7 @@ export class PrintReportComponent implements OnInit {
     this.getPatients();
     this.getAppointments();
 
-    const patientGenderPieChart = new Chart('revenue-chart-canvas', {
-      type: 'pie',
-      data: {
-        labels: ['Female', 'Male'],
-        datasets: [
-          {
-            label: "Patient's Gender Rate",
-            data: [60, 40],
-            // TODO: Calc gender rate
-            backgroundColor: [
-              'rgba(153, 102, 255, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 99, 132, 0.3)',
-              'rgba(255, 159, 64, 0.2)',
-            ],
-            borderColor: [
-              'rgba(153, 102, 255, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 99, 132, 1)',
-              'rgba(255, 159, 64, 1)',
-            ],
-            hoverOffset: 4,
-          },
-        ],
-      },
-    });
+    
 
     const incomeRateBarChart = new Chart('bar-chart', {
       type: 'bar',
@@ -170,8 +143,46 @@ export class PrintReportComponent implements OnInit {
       next: (a) => {
         this.patients = a;
         console.log(this.patients);
-
         this.patCount = this.patients.length;
+        for (let i = 0; i < this.patients.length; i++) {
+          if (this.patients[i].gender == "male") {
+            this.mCount++
+          }else{
+            this.fCount++
+          }
+        }
+
+        const patientGenderPieChart = new Chart('revenue-chart-canvas', {
+          type: 'pie',
+          data: {
+            labels: ['Female', 'Male'],
+            datasets: [
+              {
+                label: "Patient's Gender Rate",
+                data: [this.fCount, this.mCount],
+                // TODO: Calc gender rate
+                backgroundColor: [
+                  'rgba(153, 102, 255, 0.6)',
+                  'rgba(75, 192, 192, 0.6)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 99, 132, 0.3)',
+                  'rgba(255, 159, 64, 0.2)',
+                ],
+                borderColor: [
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(255, 159, 64, 1)',
+                ],
+                hoverOffset: 4,
+              },
+            ],
+          },
+        });
+
       },
     });
   }
@@ -185,4 +196,7 @@ export class PrintReportComponent implements OnInit {
       },
     });
   }
+  //?----------------------Male/Female counters-----------------------------//
+  
+
 }
