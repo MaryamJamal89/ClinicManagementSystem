@@ -37,7 +37,6 @@ export class AddReceptionistComponent implements OnInit {
         fd.append('image',this.image,this.newRecep.userName);
         this.recSrv.addImageRecep(fd,this.newRecep.userName).subscribe({
           next:data=>{
-            console.log(data);
             this.backToDash()
           }
         })
