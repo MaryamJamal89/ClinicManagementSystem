@@ -30,8 +30,40 @@ export class MainSlidebarComponent implements OnInit {
       next: a => {
         this.cookieRecep = a;
         console.log(this.cookieRecep)
+        this.getImage(`${this.cookieRecep.userName}Receptionist`)
       }
     })
   }
+
+  isImageLoading: boolean = true;
+  imageToShow: any;
+
+    //?----------------------Images-----------------------------//
+
+    getImage(username: string) {
+      this.isImageLoading = true;
+      this.recSrv.imageRecep(username).subscribe({
+        next: (a) => {
+          this.createImageFromBlob(a);
+          this.isImageLoading = false;
+          console.log('image', a);
+        },
+        error: (e)=> {
+          this.isImageLoading = false;
+          console.log('image error', e);
+        }
+      });
+    }
+  
+    createImageFromBlob(image: Blob) {
+      let reader = new FileReader();
+      reader.addEventListener("load", () => {
+         this.imageToShow = reader.result;
+      }, false);
+   
+      if (image) {
+         reader.readAsDataURL(image);
+      }
+     }
 
 }

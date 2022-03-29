@@ -272,16 +272,9 @@ export class ReceptionistDashboardComponent implements OnInit {
     this.recSrv.getRecepByID(id).subscribe({
       next: a => {
         this.cookieRecep = a;
-        this.getImage(`${this.cookieRecep.userName}Receptionist`)
       }
     })
   }
 
-  getImage(username:string) {
-    this.recSrv.imageRecep(username).subscribe({
-      next: a => {
-        console.log(a);
-      }
-    })
-  }
+ 
 }

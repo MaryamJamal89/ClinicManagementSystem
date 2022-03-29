@@ -37,6 +37,7 @@ import { ConfirmationService } from 'src/app/confirmation.service';
 import { Location } from 'src/app/_models/location';
 import { CookieService } from 'ngx-cookie-service';
 import { Doctor } from 'src/app/_models/doctor';
+import { AuthServiceService } from 'src/app/auth-service.service';
 
 @Component({
   selector: 'pm-doctor-dashboard',
@@ -53,6 +54,7 @@ export class DoctorDashboardComponent implements OnInit {
     public router: Router,
     public conf: ConfirmationService,
     private cookieService: CookieService,
+    public authser: AuthServiceService
   ) {}
 
   appointments: Appointment[] = [];
