@@ -257,7 +257,7 @@ export class DoctorDashboardComponent implements OnInit {
     this.docSrv.getDocotrByID(id).subscribe({
       next: a => {
         this.cookieDoc = a;
-        this.getImage(this.cookieDoc.userName)
+        this.getImage(`${this.cookieDoc.userName}Doctor`)
       }
     })
   }

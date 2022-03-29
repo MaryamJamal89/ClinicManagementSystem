@@ -55,7 +55,7 @@ const storage = multer.diskStorage({
   exports.createImage = (request, response, next) => {
    
     fs.renameSync(request.file.path, request.file.path.replace('bla.jpg', 
-    `${request.params.userName}.jpg` ));
+    `${request.params.userName}Receptionist.jpg` ));
     if (!request.file) {
       response.send("no file image");
     }
