@@ -8,6 +8,7 @@ const receptionistSchema = new mongoose.Schema({
     userName: {
         type: String,
         minlength: 2,
+        unique: true,
         trim: true,
         required: true
     },

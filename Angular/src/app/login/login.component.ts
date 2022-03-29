@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   userName: string = "";
   password: string = "";
+  type:string="Doctor"
   token: any;
   private cookieName = "";
   idValidation: boolean = false;
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
     this.cookieService.set('ID', _id)
   }
   login() {
-    this.authser.login(this.userName, this.password)
+    this.authser.login(this.userName, this.password,this.type)
       .subscribe((data: any) => {
         console.log(data);
         if (data.massage === "Doctor") {

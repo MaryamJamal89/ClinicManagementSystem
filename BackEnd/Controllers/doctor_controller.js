@@ -38,7 +38,7 @@ exports.createDoctor = (request, response, next) => {
     doctorObject.save()
         .then(result => {
             response.status(201).json({ message: "added" })
-        }).catch(error => console.log(error))
+        }).catch(error => response.status(500).json({error:error}))
 }
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
