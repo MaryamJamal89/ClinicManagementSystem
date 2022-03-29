@@ -10,6 +10,7 @@ const patientSchema=new mongoose.Schema(
             trim:true,
             required:true
         },
+        
         name:
         {
             type:String,
