@@ -80,7 +80,7 @@ export class ReceptionistDashboardComponent implements OnInit {
   patObj: any; //Service= new Service("",0);
   services: Service[] = [];
   newClinic: Clinic = new Clinic(new Location('', ''), this.services);
-  docotrs: Doctor[] = [];
+  doctors: Doctor[] = [];
   initialized = false; // I added this to stop fullcalender component rendering
 
 
@@ -251,7 +251,7 @@ export class ReceptionistDashboardComponent implements OnInit {
   getDoctors() {
     this.docSrv.getAllDoctors().subscribe({
       next: (a) => {
-        this.docotrs = a;
+        this.doctors = a;
       },
     });
   }

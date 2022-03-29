@@ -47,6 +47,7 @@ import { PrintReportComponent } from './receptionist/print-report/print-report.c
 const routes: Routes =
   [
     { path: "login", component: LoginComponent },
+    { path: "login/about", component: AboutComponent },
     { path: "doctor", component: DoctorDashboardComponent, canActivate: [LoginGuard] },
     { path: "receptionist", component: ReceptionistDashboardComponent, canActivate: [LoginGuard] },
     { path: "doctor/prescription/:id", component: AddPrescriptionComponent, canActivate: [LoginGuard] },
