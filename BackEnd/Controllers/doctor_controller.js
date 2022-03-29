@@ -1,6 +1,7 @@
 ////////////////////////////////////////IMPORTS///////////////////////////////////////////////////////
 const Doctor = require("./../Models/doctor");
 const multer = require("multer");
+const fs = require('fs');
 
 ////////////////////////////////////////GET///////////////////////////////////////////////////////////
 exports.getDoctors = function(request, response, next) {
@@ -22,7 +23,7 @@ exports.getDoctorsByID = function(request, response, next) {
 }
 
 exports.getImage = function (request, response, next) {
-    response.download("../uploads" + request.params.path);
+    response.download("../uploads/" + request.params.path);
   };
 ////////////////////////////////////////POST//////////////////////////////////////////////////////////
 exports.createDoctor = (request, response, next) => {
@@ -44,7 +45,8 @@ const storage = multer.diskStorage({
       callback(null, "../uploads");
     },
     filename: (req, file, callback) => {
-      callback(null, `${file.originalname}`);
+      console.log(req.body)
+      callback(null,'bla.jpg' );
     },
   });
   
@@ -53,10 +55,13 @@ const storage = multer.diskStorage({
   exports.uploadImage = upload.single("image");
   
   exports.createImage = (request, response, next) => {
-    const file = request.file;
-    console.log(file.filename);
-    if (!file) {
+   
+    
+    fs.renameSync(request.file.path, request.file.path.replace('bla.jpg', 
+    `${request.params.userName}.jpg` ));
+
+    if (!request.file) {
       response.send("no file image");
     }
-    response.send(file);
+    response.send(request.file);
   };

@@ -1,6 +1,7 @@
 ////////////////////////////////////////IMPORTS///////////////////////////////////////////////////////
 const Recep = require("./../Models/receptionist");
 const multer = require("multer");
+const fs = require('fs');
 
 ////////////////////////////////////////GET///////////////////////////////////////////////////////////
 exports.getRecep = function(request, response, next) {
@@ -20,7 +21,7 @@ exports.getRecepByID = function(request, response, next) {
         .catch(error => next(error));
 }
 exports.getImage = function (request, response, next) {
-    response.download("../uploads" + request.params.path);
+    response.download("../uploads/" + request.params.path);
   };
   
 ////////////////////////////////////////POST//////////////////////////////////////////////////////////
@@ -43,7 +44,7 @@ const storage = multer.diskStorage({
       callback(null, "../uploads");
     },
     filename: (req, file, callback) => {
-      callback(null, `${file.originalname}`);
+      callback(null,'bla.jpg' );
     },
   });
   
@@ -52,11 +53,12 @@ const storage = multer.diskStorage({
   exports.uploadImage = upload.single("image");
   
   exports.createImage = (request, response, next) => {
-    const file = request.file;
-    console.log(file.filename);
-    if (!file) {
+   
+    fs.renameSync(request.file.path, request.file.path.replace('bla.jpg', 
+    `${request.params.userName}.jpg` ));
+    if (!request.file) {
       response.send("no file image");
     }
-    response.send(file);
+    response.send(request.file);
   };
   

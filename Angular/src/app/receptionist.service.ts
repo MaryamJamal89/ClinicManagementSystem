@@ -72,16 +72,16 @@ imageRecep(username:string){
  return this.http.get(`http://localhost:8080/receptionist/image/${username}`) 
 }
 
-addImageRecep(fd:FormData){
-  return this.http.post("http://localhost:8080/receptionist/image",fd) 
+addImageRecep(fd:FormData,username:string){
+  return this.http.post(`http://localhost:8080/receptionist/image/${username}`,fd) 
  }
   //?----------------------------Image------------------------------?//
   imageDoctor(username:string){
     return this.http.get(`http://localhost:8080/doctor/image/${username}.jpg`)
   }
   
-  addImageDoctor(fd:FormData){
-    return this.http.post("http://localhost:8080/doctor/image",fd)
+  addImageDoctor(fd:FormData,username:string){
+    return this.http.post(`http://localhost:8080/doctor/image/${username}`,fd)
   }
 
 //   getAppointmentByDate(date:Data):Appointment{

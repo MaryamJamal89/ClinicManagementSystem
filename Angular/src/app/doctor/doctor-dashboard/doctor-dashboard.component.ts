@@ -182,10 +182,6 @@ export class DoctorDashboardComponent implements OnInit {
             });
         }
       })
-      // //this.docSrv.addAppointment(new Appointment("0","0", "0", new Date(selectInfo.startStr), 1, paymentMethod, fees, title));
-      // this.appointments.forEach(element => {
-      //   console.log(element)
-      // });
 
     }
   }

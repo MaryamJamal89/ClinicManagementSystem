@@ -25,16 +25,15 @@ export class AddDoctorComponent implements OnInit {
   addDoc(){
     this.recSrv.addDoctor(this.newDoc).subscribe({
       next:a=>{
-        this.newDoc=a
         const fd=new FormData();
         console.log(this.newDoc.userName)
         fd.append('image',this.image,this.newDoc.userName);
-        this.recSrv.addImageDoctor(fd).subscribe({
+        this.recSrv.addImageDoctor(fd,this.newDoc.userName).subscribe({
           next:data=>{
             console.log(data);
-            this.backToDash()
           }
         })
+        this.backToDash()
       }
     })
   }
