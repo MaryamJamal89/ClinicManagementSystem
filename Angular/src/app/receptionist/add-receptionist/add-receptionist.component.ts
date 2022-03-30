@@ -13,6 +13,8 @@ export class AddReceptionistComponent implements OnInit {
   newRecep:Receptionist= new Receptionist("62345f2086e4b9494d6237a4","","","");
   permission:string="";
   image:any=null;
+  isValid:boolean = false;
+
   constructor(public router:Router,public recSrv:ReceptionistService,public http:HttpClient) { }
 
   ngOnInit(): void {
@@ -42,7 +44,8 @@ export class AddReceptionistComponent implements OnInit {
         })
       },
       error:e=>{
-        alert("Some Thing Wrong Happened try Again"+ e)
+        this.isValid = true;
+        // alert("Some Thing Wrong Happened try Again" + e)
       }
     })
   }

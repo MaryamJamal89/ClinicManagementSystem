@@ -1,3 +1,7 @@
 a {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.center-cropped {
+  height: 2.1rem !important;
 }
