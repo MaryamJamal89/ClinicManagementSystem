@@ -21,22 +21,26 @@
                 <div class="row mb-2 g-0">
                     <div class="col-sm-6">
                         <h1 class="m-0">Patient Profile</h1>
-                    </div><!-- /.col -->
+                    </div>
+                    <!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a [routerLink]="['/receptionist']">Dashboard</a></li>
                             <li class="breadcrumb-item active">New Patient</li>
                         </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
 
         <!-- Main content -->
         <div class="content">
             <div class="c">
-                <div class="row g-0">                    
+                <div class="row g-0">
                     <div class="offset-1 col-11 m-4">
                         <div class="card card-info">
                             <div class="card-header">
@@ -50,7 +54,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-id-card"></i></span>
                                         </div>
-                                        <input type="text" class="form-control masked" id="InputNID" pattern="(9[0-9]) "  [(ngModel)]="newPatient.NID" #id="ngModel">
+                                        <input type="text" class="form-control masked" id="InputNID" pattern="(9[0-9]) " [(ngModel)]="newPatient.NID" #id="ngModel">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -91,7 +95,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                         </div>
-                                        <input type="date" class="form-control" min="1922-01-01" max=""  [(ngModel)]="newPatient.DOB" #id="ngModel"/>
+                                        <input type="date" class="form-control" min="1922-01-01" max="" [(ngModel)]="newPatient.DOB" #id="ngModel" />
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -107,6 +111,9 @@
                                         <input type="text" class="form-control masked" pattern="(10[0-9])" [(ngModel)]="newPatient.phoneNumber" #id="ngModel">
                                     </div>
                                     <!-- /.input group -->
+                                    <div class="text-danger" id="idValidation" *ngIf="isValid">
+                                        Please, Complete All Fields.
+                                    </div>
                                 </div>
                                 <!-- /.form group -->
 

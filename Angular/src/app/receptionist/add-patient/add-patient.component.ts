@@ -12,7 +12,8 @@ import { Patient } from 'src/app/_models/patient';
 export class AddPatientComponent implements OnInit {
 
   newPatient:Patient= new Patient("","","male",new Date(),0);
-
+  isValid:boolean = false;
+  
   constructor(public patSer:ReceptionistService,private route:ActivatedRoute,public router:Router) { }
 
   ngOnInit(): void {
@@ -20,9 +21,14 @@ export class AddPatientComponent implements OnInit {
 
   addPatient(){
     this.patSer.addPatient(this.newPatient).subscribe({
-      next:a=>{this.newPatient=a
+      next:a=>{
+        this.newPatient=a
         this.backToDash()
+      },
+      error:e=>{
+        this.isValid = true;
       }
+      
     })
   }
 
