@@ -20,7 +20,11 @@ export class AddPatientComponent implements OnInit {
 
   addPatient(){
     this.patSer.addPatient(this.newPatient).subscribe({
-      next:a=>{this.newPatient=a}
+      next:a=>{this.newPatient=a},
+      error:e=>{
+          
+      }
+      
     })
   }
 
