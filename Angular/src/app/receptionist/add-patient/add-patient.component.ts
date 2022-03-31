@@ -25,7 +25,8 @@ export class AddPatientComponent implements OnInit {
         this.newPatient=a
         this.backToDash()
       },
-      error:e=>{
+      error:(e)=>{
+      
         this.isValid = true;
       }
       
